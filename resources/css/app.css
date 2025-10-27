@@ -1,3 +1,4 @@
+@import "flowbite/src/themes/default";
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
 
@@ -5,6 +6,9 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
 @source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@plugin "flowbite/plugin";
+@source "../../node_modules/flowbite";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
