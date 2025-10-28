@@ -28,6 +28,53 @@
                 placeholder="email@example.com"
             />
 
+            <!-- Phone Number -->
+            <flux:input
+                name="phone"
+                :label="__('Phone number')"
+                type="tel"
+                required
+                autocomplete="tel"
+                :placeholder="__('Phone number')"
+            />
+
+            <!-- Date of Birth -->
+            <flux:input
+                name="date_of_birth"
+                :label="__('Date of Birth')"
+                type="date"
+                required
+                autocomplete="bday"
+                :placeholder="__('Date of Birth')"
+            />
+
+            <!-- Address -->
+            <flux:input
+                name="address"
+                :label="__('Address')"
+                type="text"
+                required
+                autocomplete="street-address"
+                :placeholder="__('Address')"
+            />
+
+            @php
+                $countries = App\Models\Country::all();
+            @endphp
+
+            <!-- National -->
+            <flux:select
+                name="nationality"
+                :label="__('Nationality')"
+                required
+                autocomplete="nationality"
+            >
+                <option value="">{{ __('Select your nationality') }}</option>
+                @foreach ($countries as $country)
+                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                @endforeach
+            </flux:select>
+
             <!-- Password -->
             <flux:input
                 name="password"

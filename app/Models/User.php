@@ -23,6 +23,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'country_id',
+        'phone',
+        'date_of_birth',
+        'address',
     ];
 
     /**
@@ -60,5 +64,10 @@ class User extends Authenticatable
             ->take(2)
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }
