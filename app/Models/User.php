@@ -24,9 +24,16 @@ class User extends Authenticatable
         'email',
         'password',
         'country_id',
+        'country_code',
         'phone',
         'date_of_birth',
         'address',
+        'gt_points',
+        'subscription_type',
+        'subscription_start_date',
+        'subscription_end_date',
+        'referral_code',
+        'discount_code',
     ];
 
     /**
@@ -51,6 +58,13 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'country_code' => 'string',
+            'gt_points' => 'integer',
+            'subscription_type' => 'string',
+            'subscription_start_date' => 'date',
+            'subscription_end_date' => 'date',
+            'referral_code' => 'string',
+            'discount_code' => 'string',
         ];
     }
 

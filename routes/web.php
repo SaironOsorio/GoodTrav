@@ -8,10 +8,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+/**Route Subscription */
+Route::get('subscription', function () {
+    return view('viewsubscription.subcription');
+})
+->middleware(['auth', 'verified'])
+->name('subscription');
 
+
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified', 'check.subscription'])
+    ->name('dashboard');
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
