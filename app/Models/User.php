@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -28,12 +29,11 @@ class User extends Authenticatable
         'phone',
         'date_of_birth',
         'address',
+        'stripe_id',
         'gt_points',
-        'subscription_type',
         'subscription_start_date',
         'subscription_end_date',
         'referral_code',
-        'discount_code',
     ];
 
     /**
@@ -60,11 +60,9 @@ class User extends Authenticatable
             'password' => 'hashed',
             'country_code' => 'string',
             'gt_points' => 'integer',
-            'subscription_type' => 'string',
             'subscription_start_date' => 'date',
             'subscription_end_date' => 'date',
             'referral_code' => 'string',
-            'discount_code' => 'string',
         ];
     }
 

@@ -5,6 +5,23 @@
                     <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Planes pensados para tu progreso</h2>
                     <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">Aprender inglés es más que estudiar un idioma: es abrirte al mundo. Con nuestras membresías podrás mejorar tu nivel, prepararte para viajar, trabajar o comunicarte con confianza donde quiera que vayas.</p>
                 </div>
+
+                <!-- Campo de cupón -->
+                <div class="max-w-md mx-auto mb-8">
+                    <label for="coupon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        ¿Tienes un cupón de descuento?
+                    </label>
+                    <input
+                        type="text"
+                        wire:model="couponCode"
+                        id="coupon"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                        placeholder="Ingresa tu código"
+                    >
+                    @if (session()->has('coupon_error'))
+                        <p class="mt-2 text-sm text-red-600">{{ session('coupon_error') }}</p>
+                    @endif
+                </div>
                 <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                     @foreach ($subscriptions as $subscription)
                         <!-- Card -->
@@ -36,12 +53,14 @@
                                     <p class="text-white font-medium mt-2">per month</p>
                                 </div>
 
-                                <button class="w-full text-black bg-[#70ff51] hover:bg-[#60e041] focus:ring-4 focus:ring-[#70ff51] font-medium rounded-lg text-sm px-6 py-3 text-center transition-all mb-3 cursor-pointer">
-                                    Buy now
+                                <button
+                                    wire:click="checkout('{{ $subscription['stripe_price_id'] }}', '{{ $couponCode ?? '' }}')"
+                                    class="w-full text-black bg-[#70ff51] hover:bg-[#60e041] focus:ring-4 focus:ring-[#70ff51] font-medium rounded-lg text-sm px-6 py-3 text-center transition-all mb-3 cursor-pointer">
+                                    Unirse ahora
                                 </button>
 
                                 <a href="#" class="text-sm text-white hover:text-gray-300 transition-colors flex items-center gap-1">
-                                    View team pricing
+                                    Prueba nuestra membresía gratuita
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                                     </svg>

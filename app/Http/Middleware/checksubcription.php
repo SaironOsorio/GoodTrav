@@ -8,22 +8,23 @@ use Symfony\Component\HttpFoundation\Response;
 
 class checksubcription
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
 
-        if($user && $user->subscription_start_date < now() && $user->subscription_end_date > now()){
-            return redirect()->route('dashboard');
+        if (!$user) {
+            return redirect()->route('login');
         }
-        else{
+        $hasActiveSubscription = $user->subscription_start_date
+            && $user->subscription_end_date
+            && $user->subscription_start_date <= now()
+            && $user->subscription_end_date >= now();
 
-            return redirect()->route('subscription');
+        if (!$hasActiveSubscription) {
+            return redirect()->route('cardsubscription');
         }
+
+        // Si tiene suscripción activa, continuar
         return $next($request);
     }
 }

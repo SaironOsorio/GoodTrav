@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,9 +12,19 @@ Route::get('/', function () {
 /**Route Subscription */
 Route::get('subscription', function () {
     return view('viewsubscription.subcription');
-})
-->middleware(['auth', 'verified'])
+})->middleware(['auth', 'verified'])
 ->name('subscription');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/subscription/success', function () {
+        /** @var \App\Models\User|null $user */
+        $user = Auth::user();
+        if ($user) {
+            $user->refresh(); // Refrescar datos del usuario
+        }
+        return view('viewsubscription.success');
+    })->name('subscription.success');
+});
 
 
 Route::view('dashboard', 'dashboard')
