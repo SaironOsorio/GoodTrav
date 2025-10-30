@@ -36,6 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => $input['password'],
             'country_id' => $input['nationality'],
+            'country_code' => $input['country_code'],
             'phone' => $input['phone'],
             'date_of_birth' => $input['date_of_birth'],
             'address' => $input['address'],

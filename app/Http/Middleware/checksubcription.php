@@ -21,7 +21,7 @@ class checksubcription
             && $user->subscription_end_date >= now();
 
         if (!$hasActiveSubscription) {
-            return redirect()->route('cardsubscription');
+            return redirect()->route('subscription');
         }
 
         // Si tiene suscripción activa, continuar
