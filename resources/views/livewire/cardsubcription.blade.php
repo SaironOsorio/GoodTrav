@@ -10,6 +10,22 @@
                 </p>
             </div>
 
+            <!-- Banner de prueba gratuita -->
+            @if(!$hasHadTrial)
+                <div class="max-w-3xl mx-auto mb-8">
+                    <div class="bg-gradient-to-r from-[#5170ff] to-[#ff5170] rounded-2xl p-6 text-center text-white shadow-lg">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                            </svg>
+                            <h3 class="text-2xl font-bold">¡7 Días de Prueba Gratuita!</h3>
+                        </div>
+                        <p class="text-lg mb-2">Prueba todas las funcionalidades sin compromiso</p>
+                        <p class="text-sm opacity-90">No se realizará ningún cargo durante los primeros 7 días. Cancela cuando quieras.</p>
+                    </div>
+                </div>
+            @endif
+
             <!-- Campo de cupón mejorado -->
             <div class="max-w-md mx-auto mb-8">
                 <label for="coupon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -73,8 +89,23 @@
 
                         <!-- Right side: Price and CTA -->
                         <div class="lg:w-80 flex flex-col justify-center items-center bg-[#5170ff] rounded-xl p-8">
+                            <!-- Badge de trial -->
+                            @if(!$hasHadTrial)
+                                <div class="mb-4 px-4 py-2 bg-[#70ff51] text-black rounded-full text-sm font-bold animate-pulse">
+                                    🎁 7 días gratis
+                                </div>
+                            @endif
+
                             <div class="text-center mb-6">
                                 @if($appliedDiscount)
+                                    <!-- Con descuento -->
+                                    @if(!$hasHadTrial)
+                                        <div class="mb-3 text-xs text-white bg-green-600 rounded-lg p-2">
+                                            Días 1-7: Gratis<br>
+                                            Día 8-37: €{{ $appliedDiscount['new_price'] }}/mes<br>
+                                        </div>
+                                    @endif
+
                                     <div class="mb-2">
                                         <span class="text-3xl font-bold text-white line-through opacity-60">€{{ $appliedDiscount['original_price'] }}</span>
                                     </div>
@@ -85,7 +116,18 @@
                                         {{ $appliedDiscount['description'] }}
                                     </div>
                                 @else
+                                    <!-- Sin descuento -->
+                                    @if(!$hasHadTrial)
+                                        <div class="mb-3 text-sm text-white opacity-90">
+                                            <span class="font-semibold">Hoy:</span> €0
+                                        </div>
+                                    @endif
                                     <span class="text-6xl font-bold text-white">€{{ $subscription['price'] }}</span>
+                                    @if(!$hasHadTrial)
+                                        <p class="text-white text-sm mt-2 opacity-90">
+                                            después de 7 días
+                                        </p>
+                                    @endif
                                 @endif
                                 <p class="text-white font-medium mt-2">por mes</p>
                             </div>
@@ -93,15 +135,18 @@
                             <button
                                 wire:click="checkout('{{ $subscription['stripe_price_id'] }}', '{{ $couponCode ?? '' }}')"
                                 class="w-full text-black bg-[#70ff51] hover:bg-[#60e041] focus:ring-4 focus:ring-[#70ff51] font-medium rounded-lg text-sm px-6 py-3 text-center transition-all mb-3 cursor-pointer">
-                                Unirse ahora
+                                @if(!$hasHadTrial)
+                                    Empezar prueba gratuita
+                                @else
+                                    Suscribirse ahora
+                                @endif
                             </button>
 
-                            <a href="{{ route('home') }}" class="text-sm text-white hover:text-gray-300 transition-colors flex items-center gap-1">
-                                Ver membresía gratuita
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                </svg>
-                            </a>
+                            @if(!$hasHadTrial)
+                                <p class="text-xs text-white text-center opacity-80">
+                                    Sin compromiso • Cancela cuando quieras
+                                </p>
+                            @endif
                         </div>
                     </div>
                 @endforeach

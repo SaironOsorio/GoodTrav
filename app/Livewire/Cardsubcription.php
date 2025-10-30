@@ -84,6 +84,10 @@ class Cardsubcription extends Component
             return redirect()->route('login');
         }
 
+
+        $user = Auth::user();
+        $hasHadTrial = $user->is_on_trial !== null;
+
         try {
             $stripe = new \Stripe\StripeClient(config('cashier.secret'));
 
@@ -102,6 +106,14 @@ class Cardsubcription extends Component
                     'user_id' => Auth::id(),
                 ],
             ];
+
+
+            if (!$hasHadTrial) {
+                $sessionParams['subscription_data'] = [
+                    'trial_period_days' => 7,
+                ];
+                Log::info('Trial applied for user: ' . $user->id);
+            }
 
             // Aplicar cupón si existe
             if (!empty($coupon)) {
@@ -136,8 +148,12 @@ class Cardsubcription extends Component
 
     public function render()
     {
+        $user = Auth::user();
+        $hasHadTrial = $user ? $user->is_on_trial !== null : false;
+
         return view('livewire.cardsubcription', [
             'subscriptions' => $this->subscription,
+            'hasHadTrial' => $hasHadTrial,
         ]);
     }
 }

@@ -30,6 +30,8 @@ class User extends Authenticatable
         'date_of_birth',
         'address',
         'stripe_id',
+        'stripe_subscription_id',
+        'is_on_trial',
         'gt_points',
         'subscription_start_date',
         'subscription_end_date',
@@ -63,6 +65,8 @@ class User extends Authenticatable
             'subscription_start_date' => 'date',
             'subscription_end_date' => 'date',
             'referral_code' => 'string',
+            'stripe_subscription_id' => 'string',
+            'is_on_trial' => 'boolean',
         ];
     }
 
