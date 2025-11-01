@@ -1,4 +1,3 @@
-{{-- filepath: d:\Projects\goodtrap\resources\views\components\layouts\app\sidebar.blade.php --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
     <head>
@@ -49,32 +48,32 @@
                     <span class="text-base font-medium">Study</span>
                 </a>
 
-                <a href="#"
-                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                <a href="{{ route('points') }}"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('points') ? 'bg-white/20' : '' }}"
                    wire:navigate>
                     <span class="text-base font-medium">GT Points</span>
                 </a>
 
-                <a href="#"
-                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                <a href="{{ route('trips') }}"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('trips') ? 'bg-white/20' : '' }}"
                    wire:navigate>
                     <span class="text-base font-medium">Trips</span>
                 </a>
 
-                <a href="#"
-                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                <a href="{{ route('forum') }}"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('forum') ? 'bg-white/20' : '' }}"
                    wire:navigate>
-                    <span class="text-base font-medium">Chat</span>
+                    <span class="text-base font-medium">Foro</span>
                 </a>
 
-                <a href="#"
-                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                <a href="{{ route('profile.edit') }}"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('profile.edit') ? 'bg-white/20' : '' }}"
                    wire:navigate>
-                    <span class="text-base font-medium">Info</span>
+                    <span class="text-base font-medium">Informacion de la cuenta</span>
                 </a>
 
-                <a href="#"
-                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                <a href="{{ route('society') }}"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('society') ? 'bg-white/20' : '' }}"
                    wire:navigate>
                     <span class="text-base font-medium">GoodTrav Society</span>
                 </a>
@@ -109,17 +108,9 @@
                         </div>
                     </flux:menu.radio.group>
 
-                    <flux:menu.separator />
-
-                    <flux:menu.radio.group>
-                        <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
-                    </flux:menu.radio.group>
-
-                    <flux:menu.separator />
-
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
-                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full" data-test="logout-button">
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full cursor-pointer" data-test="logout-button">
                             {{ __('Log Out') }}
                         </flux:menu.item>
                     </form>

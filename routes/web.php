@@ -33,6 +33,18 @@ Route::view('dashboard', 'dashboard')
 Route::view('study', 'study')
     ->middleware(['auth', 'verified', 'check.subscription'])
     ->name('study');
+Route::view('points', 'points')
+    ->middleware(['auth', 'verified', 'check.subscription'])
+    ->name('points');
+Route::view('trips', 'trips')
+    ->middleware(['auth', 'verified', 'check.subscription'])
+    ->name('trips');
+Route::view('forum', 'forum')
+    ->middleware(['auth', 'verified', 'check.subscription'])
+    ->name('forum');
+Route::view('society', 'Society')
+    ->middleware(['auth', 'verified', 'check.subscription'])
+    ->name('society');
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
