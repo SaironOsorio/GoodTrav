@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified', 'check.subscription'])
     ->name('dashboard');
+Route::view('study', 'study')
+    ->middleware(['auth', 'verified', 'check.subscription'])
+    ->name('study');
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
