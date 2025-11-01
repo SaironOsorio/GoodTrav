@@ -1,40 +1,89 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
     <head>
         @include('partials.head')
+
+        <style>
+        [data-flux-sidebar] [data-flux-profile],
+        [data-flux-sidebar] [data-flux-profile] *,
+        [data-flux-sidebar] [data-flux-profile] span,
+        [data-flux-sidebar] [data-flux-profile] div {
+            color: white !important;
+        }
+
+        [data-flux-sidebar] [data-flux-profile]:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        [data-flux-sidebar] [data-flux-profile] [data-flux-badge] {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        </style>
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+        <flux:sidebar sticky stashable class=" bg-[#5170ff] border-e border-[#5170ff] text-white" data-test="sidebar">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
-                <x-app-logo />
+                <img src="{{ asset('assets/images/GoodTrav.png') }}" alt="Logo" class="w-full h-auto" />
             </a>
 
-            <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                </flux:navlist.group>
-            </flux:navlist>
+
+            <nav class="px-4 space-y-2">
+                <a href="{{ route('dashboard') }}"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('dashboard') ? 'bg-white/20' : '' }}"
+                   wire:navigate>
+                    <span class="text-base font-medium">Inicio</span>
+                </a>
+
+                <a href="#"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                   wire:navigate>
+                    <span class="text-base font-medium">Study</span>
+                </a>
+
+                <a href="#"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                   wire:navigate>
+                    <span class="text-base font-medium">GT Points</span>
+                </a>
+
+                <a href="#"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                   wire:navigate>
+                    <span class="text-base font-medium">Trips</span>
+                </a>
+
+                <a href="#"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                   wire:navigate>
+                    <span class="text-base font-medium">Chat</span>
+                </a>
+
+                <a href="#"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                   wire:navigate>
+                    <span class="text-base font-medium">Info</span>
+                </a>
+
+                <a href="#"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors"
+                   wire:navigate>
+                    <span class="text-base font-medium">GoodTrav Society</span>
+                </a>
+            </nav>
 
             <flux:spacer />
 
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
 
             <!-- Desktop User Menu -->
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">
                 <flux:profile
                     :name="auth()->user()->name"
                     :initials="auth()->user()->initials()"
-                    icon:trailing="chevrons-up-down"
+                    icon:trailing="chevron-down"
                     data-test="sidebar-menu-button"
                 />
 
@@ -44,7 +93,7 @@
                             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
                                     <span
-                                        class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
+                                        class="flex h-full w-full items-center justify-center rounded-lg bg-white text-black dark:bg-neutral-700 dark:text-white"
                                     >
                                         {{ auth()->user()->initials() }}
                                     </span>

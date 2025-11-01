@@ -25,7 +25,7 @@
         <section class="bg-cover bg-center bg-no-repeat dark:bg-gray-900 h-[85vh]" style="background-image: url('https://www.conmishijos.com/uploads/tareas_escolares/quizpaises-1.jpg');">
             <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 h-full flex items-center">
                 <div class="max-w-screen-md">
-                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Aprende inglés, conquista nuevos retos y viaja más lejos.</h2>
+                    <h2 class="mb-4 text-7xl tracking-tight font-extrabold text-gray-900 dark:text-white">Aprende inglés, conquista nuevos retos y viaja más lejos.</h2>
                     <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                         <a href="{{ route('register') }}" class="text-white bg-[#5170ff] hover:bg-[#4158d0] focus:outline-none focus:ring-4 focus:ring-[#4158d0] font-medium rounded-full text-lg px-8 py-4 text-center cursor-pointer inline-block">Comenzar</a>
                     </div>
