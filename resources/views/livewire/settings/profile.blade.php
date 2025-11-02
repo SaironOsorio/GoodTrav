@@ -213,6 +213,10 @@ new class extends Component {
             </div>
         </form>
 
+        <div class="my-6 border-t border-neutral-200 pt-6">
+            <livewire:settings.payment-method />
+        </div>
+
         <livewire:settings.delete-user-form />
     </x-settings.layout>
 </section>

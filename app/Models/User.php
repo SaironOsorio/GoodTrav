@@ -36,6 +36,9 @@ class User extends Authenticatable
         'subscription_start_date',
         'subscription_end_date',
         'referral_code',
+        'pm_type',
+        'pm_last_four',
+        'trial_ends_at',
     ];
 
     /**
@@ -67,6 +70,7 @@ class User extends Authenticatable
             'referral_code' => 'string',
             'stripe_subscription_id' => 'string',
             'is_on_trial' => 'boolean',
+            'trial_ends_at' => 'datetime',
         ];
     }
 
