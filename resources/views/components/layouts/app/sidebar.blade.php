@@ -67,9 +67,9 @@
                 </a>
 
                 <a href="{{ route('profile.edit') }}"
-                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('profile.edit') ? 'bg-white/20' : '' }}"
+                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('profile.edit') || request()->routeIs('billing') ||  request()->routeIs('user-password.edit') ? 'bg-white/20' : '' }}"
                    wire:navigate>
-                    <span class="text-base font-medium">Informacion de la cuenta</span>
+                    <span class="text-base font-medium">Información de la cuenta</span>
                 </a>
 
                 <a href="{{ route('society') }}"

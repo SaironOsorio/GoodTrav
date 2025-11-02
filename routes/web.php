@@ -47,6 +47,7 @@ Route::view('society', 'Society')
     ->name('society');
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
+    Volt::route('settings/billing', 'settings.billing-fac')->name('billing');
 
     Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
     Volt::route('settings/password', 'settings.password')->name('user-password.edit');
