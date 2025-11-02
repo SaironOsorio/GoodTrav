@@ -37,7 +37,7 @@
 
         <div class="bg-white dark:bg-gray-900">
             <section class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-                <p class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-12">Asi funciona</p>
+                <p class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Asi funciona</p>
                 <div class="flex flex-col md:flex-row justify-around text-center gap-6 md:gap-6 items-stretch">
                     <div class="flex flex-col items-center rounded-2xl bg-[#51c7ff] border-5 border-[#9ce0ff] p-6 flex-1 inset-shadow-sm inset-shadow-[#5170ff] shadow-xl">
                         <div class="py-6">
