@@ -34,6 +34,10 @@
                         <button type="button" wire:click="mostrarMasOmenos" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Ver menos</button>
                     </div>
                     @endif
+
+        <div class="bg-[#5170ff] text-center py-4 border-4 border-black">
+            <p class="text-[#70ff51] font-bold text-2xl">De 11 a 14 años: <span class="text-[#70ff51] font-[500]">JUNIOR</span></p>
+            <p class="text-[#70ff51] font-bold text-2xl">De 15 a 18 años: <span class="text-[#ff5170] font-[500]">SENIOR</span></p>
         </div>
     </section>
 </div>
