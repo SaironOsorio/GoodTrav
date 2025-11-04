@@ -108,6 +108,13 @@
                         </div>
                     </flux:menu.radio.group>
 
+
+                    @if(auth()->check() && auth()->user()->canAccessPanel(app(\Filament\Panel::class)))
+                        <flux:menu.item :href="route('filament.admin.pages.dashboard')" icon="arrow-right-end-on-rectangle" target="_blank">
+                            {{ __('Panel Administrador') }}
+                        </flux:menu.item>
+                    @endif
+
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full cursor-pointer" data-test="logout-button">

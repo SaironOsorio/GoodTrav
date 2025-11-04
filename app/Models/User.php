@@ -9,8 +9,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Cashier\Billable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable, Billable;
@@ -23,6 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'is_admin',
         'password',
         'country_id',
         'country_code',
@@ -71,6 +74,7 @@ class User extends Authenticatable
             'stripe_subscription_id' => 'string',
             'is_on_trial' => 'boolean',
             'trial_ends_at' => 'datetime',
+            'is_admin' => 'boolean',
         ];
     }
 
@@ -89,5 +93,10 @@ class User extends Authenticatable
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->is_admin;
     }
 }
