@@ -15,6 +15,9 @@ class checksubcription
         if (!$user) {
             return redirect()->route('login');
         }
+        if($user->is_admin){
+            return $next($request);
+        }
         $hasActiveSubscription = $user->subscription_start_date
             && $user->subscription_end_date
             && $user->subscription_start_date <= now()
