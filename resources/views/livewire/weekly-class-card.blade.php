@@ -8,11 +8,7 @@
     {{-- Video Preview Area --}}
     <div class="relative aspect-video bg-gray-50 dark:bg-zinc-800 rounded-lg mb-4 flex items-center justify-center border border-gray-200 dark:border-zinc-700">
         <div class="text-center">
-            <svg class="w-12 h-12 mx-auto mb-2 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <p class="text-sm text-gray-500 dark:text-gray-400">{{ $videoType }}</p>
+             <img src="https://marketplace.canva.com/EAFU2pTNJWE/3/0/1600w/canva-miniatura-para-youtube-turismo-moderna-azul-y-naranja-7vDhsTmXzXQ.jpg" alt="">
         </div>
     </div>
 
