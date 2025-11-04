@@ -3,13 +3,42 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Study;
+use Carbon\Carbon;
 
 class WeeklyClassCard extends Component
 {
-    public $title = 'Clase semanal';
-    public $schedule = 'Disponible de lunes 9:00 a domingo 23:59';
-    public $videoType = 'Video (Vimeo)';
-    public $classUrl = '#';
+    public $study;
+    public $title;
+    public $startDate;
+    public $endDate;
+    public $formattedDateRange;
+    public $image;
+
+    public function mount()
+    {
+        $this->getInformationClass();
+    }
+
+    private function getInformationClass()
+    {
+        $this->study = Study::with('challenges')->first();
+
+        if ($this->study) {
+            $this->title = $this->study->title;
+            $this->image = $this->study->image;
+
+            
+            Carbon::setLocale('es');
+            $start = Carbon::parse($this->study->start_date);
+            $end = Carbon::parse($this->study->end_date);
+            
+            $this->startDate = $start;
+            $this->endDate = $end;
+            $this->formattedDateRange = ucfirst($start->isoFormat('ddd D MMM, HH:mm')) . ' - ' . ucfirst($end->isoFormat('ddd D MMM, HH:mm'));
+
+        }
+    }
     
     public function render()
     {
