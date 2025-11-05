@@ -13,6 +13,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Toggle;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class StudyForm
 {
@@ -86,7 +87,7 @@ class StudyForm
                             ->required()
                             ->maxLength(255)
                             ->columnSpanFull(),
-                            
+
                         RichEditor::make('description')
                             ->label('Descripción de la clase')
                             ->placeholder('Describe de qué trata esta clase...')
@@ -115,7 +116,7 @@ class StudyForm
                             ->seconds(false)
                             ->required()
                             ->default(now()),
-                            
+
                         DateTimePicker::make('end_date')
                             ->label('Fecha de fin')
                             ->helperText('Hasta cuándo estará disponible esta clase')
@@ -125,7 +126,7 @@ class StudyForm
                             ->required()
                             ->after('start_date')
                             ->default(now()->addDays(30)),
-                            
+
                         TextInput::make('points')
                             ->label('Puntos de la clase')
                             ->helperText('Puntos que obtiene el estudiante al completar la clase')
@@ -137,7 +138,7 @@ class StudyForm
                             ->required(),
                     ])
                     ->columns(2),
-                    
+
                 Tab::make('Retos')
                     ->badge(fn ($get) => count($get('challenges') ?? []))
                     ->schema([
@@ -147,12 +148,34 @@ class StudyForm
                             ->schema([
                                 TextInput::make('title')
                                     ->label('Título del reto')
-                                    ->placeholder('Ej: Crea tu primer componente')
+                                    ->placeholder('Ej: Quiz: Vocabulario del Verbo to be')
                                     ->helperText('Nombre corto y descriptivo del reto.')
                                     ->required()
                                     ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                                        if (!empty($state)) {
+                                            $newCode = Str::slug($state) . '-' . Str::random(6);
+                                            $set('code', $newCode);
+                                        }
+                                    })
                                     ->columnSpanFull(),
-                                    
+                                TextInput::make('code')
+                                    ->label('Código del reto')
+                                    ->placeholder('Se genera automáticamente desde el título')
+                                    ->helperText('Este código identifica el reto de manera única.')
+                                    ->required()
+                                    ->unique(ignoreRecord: true)
+                                    ->maxLength(100)
+                                    ->disabled()
+                                    ->dehydrated()
+                                    ->columnSpanFull(),
+                                TextInput::make('order')
+                                    ->label('Orden')
+                                    ->helperText('Orden de aparición del reto (menor primero).')
+                                    ->numeric()
+                                    ->default(0)
+                                    ->minValue(0),
                                 Textarea::make('description')
                                     ->label('Descripción del reto')
                                     ->placeholder('Explica qué debe hacer el estudiante...')
@@ -160,7 +183,7 @@ class StudyForm
                                     ->rows(4)
                                     ->maxLength(1000)
                                     ->columnSpanFull(),
-                                    
+
                                 TextInput::make('points')
                                     ->label('Puntos del reto')
                                     ->helperText('Puntos que vale completar este reto.')
@@ -170,20 +193,21 @@ class StudyForm
                                     ->maxValue(500)
                                     ->suffix('pts')
                                     ->required(),
-                                    
+
                                 TextInput::make('url_resource')
                                     ->label('Recurso (URL)')
                                     ->placeholder('https://ejemplo.com/recurso')
                                     ->helperText('Enlace a documentación, video o material de apoyo.')
                                     ->url()
                                     ->maxLength(500),
-                                    
+
                                 Toggle::make('is_audio')
                                     ->label('¿Es un reto de audio?')
                                     ->helperText('Activa si el reto requiere grabación de audio.')
                                     ->default(false)
                                     ->inline(false),
                             ])
+                            ->orderColumn('order')
                             ->columns(2)
                             ->defaultItems(0)
                             ->addActionLabel('➕ Agregar reto')
@@ -193,7 +217,12 @@ class StudyForm
                             ->collapsed()
                             ->cloneable()
                             ->deleteAction(
-                                fn ($action) => $action->requiresConfirmation()
+                                fn ($action) => $action
+                                    ->requiresConfirmation()
+                                    ->modalHeading('Eliminar reto')
+                                    ->modalDescription('¿Estás seguro de que quieres eliminar este reto? Esta acción no se puede deshacer.')
+                                    ->modalSubmitActionLabel('Sí, eliminar')
+                                    ->modalCancelActionLabel('Cancelar')
                             )
                             ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Nuevo reto'),
                     ])

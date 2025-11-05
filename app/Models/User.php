@@ -99,4 +99,26 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->is_admin;
     }
+
+    public function challenges()
+    {
+        return $this->belongsToMany(Challenge::class, 'challenge_user')
+            ->withPivot(['is_completed', 'completed_at', 'points_earned', 'submission', 'submission_url'])
+            ->withTimestamps();
+    }
+
+    public function hasCompletedChallenge(Challenge $challenge): bool
+    {
+        return $this->challenges()
+            ->where('challenge_id', $challenge->id)
+            ->where('is_completed', true)
+            ->exists();
+    }
+
+    public function getTotalPointsAttribute(): int
+    {
+        return $this->challenges()
+            ->where('is_completed', true)
+            ->sum('challenge_user.points_earned');
+    }
 }

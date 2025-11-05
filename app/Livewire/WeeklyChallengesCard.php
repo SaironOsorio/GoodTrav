@@ -1,48 +1,47 @@
 <?php
+// filepath: d:\Projects\goodtrap\app\Livewire\WeeklyChallengesCard.php
 
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Study;
+use Illuminate\Support\Facades\Auth;
 
 class WeeklyChallengesCard extends Component
 {
-    public $pendingActivities;
-    public $completedCount;
-    public $totalCount;
+    public $completedCount = 0;
+    public $totalCount = 0;
+    public $totalPoints = 0;
+    public $earnedPoints = 0;
 
     public function mount()
     {
-        $this->pendingActivities = collect([
-            ['id' => 1, 'title' => 'Quiz: Vocabulario básico', 'type' => 'quiz', 'platform' => 'Genially', 'points' => 150, 'is_completed' => false],
-            ['id' => 2, 'title' => 'Escucha: Conversación aeropuerto', 'type' => 'audio', 'platform' => 'SoundCloud', 'points' => 100, 'is_completed' => false],
-            ['id' => 3, 'title' => 'Video: Present Perfect', 'type' => 'video', 'platform' => 'YouTube', 'points' => 120, 'is_completed' => false],
-            ['id' => 4, 'title' => 'Lectura: Destinos Europa', 'type' => 'reading', 'platform' => 'Medium', 'points' => 80, 'is_completed' => false],
-            ['id' => 5, 'title' => 'Escritura: Tu viaje ideal', 'type' => 'writing', 'platform' => 'Google Forms', 'points' => 200, 'is_completed' => false],
-        ]);
-
-        $this->completedCount = $this->pendingActivities->where('is_completed', true)->count();
-        $this->totalCount = $this->pendingActivities->count();
+        $this->loadChallenges();
     }
 
-    public function markAsCompleted($activityId)
+    private function loadChallenges()
     {
-        // Marcar como completado en el array
-        $this->pendingActivities = $this->pendingActivities->map(function ($activity) use ($activityId) {
-            if ($activity['id'] == $activityId) {
-                $activity['is_completed'] = true;
-            }
-            return $activity;
-        });
+        $user = Auth::user();
 
-        // Actualizar contadores
-        $this->completedCount = $this->pendingActivities->where('is_completed', true)->count();
+        // Obtener el estudio activo (ID 1 según tu configuración)
+        $study = Study::with('challenges')->find(1);
 
-        // Obtener puntos de la actividad
-        $activity = $this->pendingActivities->firstWhere('id', $activityId);
+        if ($study && $study->challenges->count() > 0) {
+            $this->totalCount = $study->challenges->count();
+            $this->totalPoints = $study->challenges->sum('points');
 
-        session()->flash('message', '¡Actividad completada! +' . $activity['points'] . ' puntos');
+            // Contar retos completados
+            $this->completedCount = $study->challenges->filter(function ($challenge) use ($user) {
+                return $challenge->isCompletedBy($user);
+            })->count();
+
+            // Calcular puntos ganados
+            $this->earnedPoints = $study->challenges->filter(function ($challenge) use ($user) {
+                return $challenge->isCompletedBy($user);
+            })->sum('points');
+        }
     }
-    
+
     public function render()
     {
         return view('livewire.weekly-challenges-card');
