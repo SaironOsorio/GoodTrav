@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class StudyPage extends Component
 {
-    public $activeTab = 'classes'; // 'classes' o 'challenges'
+    public $activeTab = 'classes';
     public $study;
     public $challenges;
     public $completedCount = 0;
@@ -18,21 +18,31 @@ class StudyPage extends Component
     public $startDate;
     public $endDate;
     public $formattedDateRange;
+    public $hasWatchedVideo = false;
 
     public function mount()
     {
         $this->loadStudyData();
+        $this->checkVideoWatched();
+    }
+
+    private function checkVideoWatched()
+    {
+        $user = Auth::user();
+
+        // Verificar si ya vio el video de esta semana
+        if ($user->current_study_id === $this->study->id && $user->has_watched_weekly_video) {
+            $this->hasWatchedVideo = true;
+        }
     }
 
     private function loadStudyData()
     {
         $user = Auth::user();
 
-
         $this->study = Study::with(['challenges' => function ($query) {
             $query->orderBy('order', 'asc');
         }])->find(1);
-
 
         if ($this->study) {
             Carbon::setLocale('es');
@@ -68,6 +78,31 @@ class StudyPage extends Component
         } else {
             $this->challenges = collect([]);
         }
+    }
+
+    public function markVideoAsWatched()
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        // Verificar que no haya visto ya el video
+        if ($user->current_study_id === $this->study->id && $user->has_watched_weekly_video) {
+            session()->flash('error', 'Ya has recibido los puntos por ver este video.');
+            return;
+        }
+
+        // Otorgar puntos
+        $user->gt_points += $this->study->points;
+        $user->has_watched_weekly_video = true;
+        $user->video_watched_at = now();
+        $user->current_study_id = $this->study->id;
+        $user->save();
+
+        $this->hasWatchedVideo = true;
+
+        session()->flash('message', '¡Felicidades! Has ganado ' . $this->study->points . ' puntos por ver el video 🎉');
+
+        $this->loadStudyData();
     }
 
     private function getChallengeType($challenge): string
@@ -126,10 +161,11 @@ class StudyPage extends Component
 
         return 'Enlace externo';
     }
-
     public function markAsCompleted($challengeCode)
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
+        $challenge = Challenge::where('code', $challengeCode)->first();
         $challenge = Challenge::where('code', $challengeCode)->first();
 
         if (!$challenge) {
@@ -147,6 +183,10 @@ class StudyPage extends Component
             'completed_at' => now(),
             'points_earned' => $challenge->points,
         ]);
+
+        // También sumar puntos a gt_points
+        $user->gt_points += $challenge->points;
+        $user->save();
 
         $this->loadStudyData();
         session()->flash('message', '¡Reto completado! +' . $challenge->points . ' puntos 🎉');

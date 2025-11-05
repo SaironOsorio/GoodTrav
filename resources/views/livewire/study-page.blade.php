@@ -76,15 +76,26 @@
                             <div class="relative aspect-video bg-black rounded-xl overflow-hidden">
                                 @if($study && $study->url_video)
                                     <video
+                                        id="weeklyVideo"
                                         class="w-full h-full object-contain"
                                         controls
                                         controlsList="nodownload"
-                                        preload="metadata">
+                                        preload="metadata"
+                                        @if($hasWatchedVideo)
+                                            data-watched="true"
+                                        @endif>
                                         <source src="{{ Storage::url($study->url_video) }}" type="video/mp4">
                                         <source src="{{ Storage::url($study->url_video) }}" type="video/webm">
                                         <source src="{{ Storage::url($study->url_video) }}" type="video/ogg">
                                         Tu navegador no soporta la reproducción de video.
                                     </video>
+
+                                    {{-- Indicador de progreso minimalista --}}
+                                    @if(!$hasWatchedVideo)
+                                        <div id="progressIndicator" class="absolute top-4 right-4 bg-black/70 backdrop-blur-sm px-4 py-2 rounded-lg text-white text-sm font-medium opacity-0 transition-opacity pointer-events-none">
+                                            <span id="watchPercentage">0%</span> visto
+                                        </div>
+                                    @endif
                                 @else
                                     {{-- Placeholder --}}
                                     <div class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-zinc-800">
@@ -99,11 +110,51 @@
                                 @endif
                             </div>
 
-                            {{-- Action Button y puntos --}}
-                            <div class="mt-4 flex items-center justify-between">
-                                <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    <span class="text-[#4ade80] font-semibold">{{ $study->points ?? 100 }} puntos automáticos</span> por ver la clase.
-                                </p>
+                            {{-- Botón de completar --}}
+                            <div class="mt-4">
+                                @if($hasWatchedVideo)
+                                    <div class="flex items-center gap-3 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                                        <svg class="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-semibold text-green-800 dark:text-green-200">Video completado</p>
+                                            <p class="text-xs text-green-600 dark:text-green-400">+{{ $study->points }} puntos obtenidos ✓</p>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="flex items-center gap-3">
+                                        {{-- Barra de progreso --}}
+                                        <div class="flex-1">
+                                            <div class="flex justify-between text-xs text-gray-600 dark:text-gray-400 mb-1">
+                                                <span>Progreso del video</span>
+                                                <span id="progressPercentageText">0%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                                <div id="videoProgressBar" class="bg-[#5170ff] h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+
+                                        {{-- Botón --}}
+                                        <button
+                                            id="completeVideoBtn"
+                                            wire:click="markVideoAsWatched"
+                                            disabled
+                                            class="px-6 py-2.5 bg-[#5170ff] hover:bg-[#4060ef] text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#5170ff] whitespace-nowrap">
+                                            <span class="flex items-center gap-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span id="btnText">Marcar como visto</span>
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    {{-- Mensaje informativo --}}
+                                    <p id="unlockMessage" class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
+                                        📺 Ve al menos el <strong>50%</strong> del video para desbloquear el botón y ganar <strong class="text-[#4ade80]">{{ $study->points }} puntos</strong>
+                                    </p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -312,4 +363,94 @@
         filter: brightness(1.2);
     }
 </style>
+@endpush
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('weeklyVideo');
+
+    if (!video) return;
+
+    const hasWatched = video.dataset.watched === 'true';
+    if (hasWatched) return;
+
+    const progressIndicator = document.getElementById('progressIndicator');
+    const progressBar = document.getElementById('videoProgressBar');
+    const progressText = document.getElementById('progressPercentageText');
+    const watchPercentage = document.getElementById('watchPercentage');
+    const completeBtn = document.getElementById('completeVideoBtn');
+    const btnText = document.getElementById('btnText');
+    const unlockMessage = document.getElementById('unlockMessage');
+
+
+    const studyPoints = {{ $study->points ?? 100 }};
+
+    let watchedSegments = [];
+    const totalSegments = 10;
+    const UNLOCK_THRESHOLD = 95;
+
+    for (let i = 0; i < totalSegments; i++) {
+        watchedSegments[i] = false;
+    }
+
+    video.addEventListener('timeupdate', function() {
+        const percentage = (video.currentTime / video.duration) * 100;
+        const currentSegment = Math.floor(percentage / 10);
+
+        if (currentSegment < totalSegments) {
+            watchedSegments[currentSegment] = true;
+        }
+
+        const segmentsWatched = watchedSegments.filter(seg => seg === true).length;
+        const coveragePercentage = (segmentsWatched / totalSegments) * 100;
+
+        // Actualizar UI
+        if (progressBar) {
+            progressBar.style.width = coveragePercentage + '%';
+        }
+
+        if (progressText && watchPercentage) {
+            const rounded = Math.round(coveragePercentage);
+            progressText.textContent = rounded + '%';
+            watchPercentage.textContent = rounded + '%';
+        }
+
+
+        if (!video.paused && progressIndicator) {
+            progressIndicator.classList.remove('opacity-0');
+            progressIndicator.classList.add('opacity-100');
+        }
+
+
+        if (coveragePercentage >= UNLOCK_THRESHOLD && completeBtn.disabled) {
+            completeBtn.disabled = false;
+            completeBtn.classList.add('animate-pulse');
+
+            if (btnText) {
+                btnText.innerHTML = `
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Obtener ${studyPoints} puntos
+                `;
+            }
+
+            if (unlockMessage) {
+                unlockMessage.innerHTML = '✅ <strong class="text-green-600">¡Botón desbloqueado!</strong> Haz clic cuando estés listo';
+            }
+
+            setTimeout(() => {
+                completeBtn.classList.remove('animate-pulse');
+            }, 3000);
+        }
+    });
+
+    video.addEventListener('pause', function() {
+        if (progressIndicator) {
+            progressIndicator.classList.add('opacity-0');
+        }
+    });
+});
+</script>
 @endpush

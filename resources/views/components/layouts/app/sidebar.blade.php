@@ -3,6 +3,7 @@
     <head>
         @include('partials.head')
 
+        @stack('styles')
         <style>
         [data-flux-sidebar] [data-flux-profile],
         [data-flux-sidebar] [data-flux-profile] *,
@@ -176,5 +177,7 @@
         {{ $slot }}
 
         @fluxScripts
+
+        @stack('scripts')
     </body>
 </html>
