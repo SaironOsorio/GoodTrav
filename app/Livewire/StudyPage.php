@@ -30,7 +30,6 @@ class StudyPage extends Component
     {
         $user = Auth::user();
 
-        // Verificar si ya vio el video de esta semana
         if ($user->current_study_id === $this->study->id && $user->has_watched_weekly_video) {
             $this->hasWatchedVideo = true;
         }
@@ -85,7 +84,7 @@ class StudyPage extends Component
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        // Verificar que no haya visto ya el video
+
         if ($user->current_study_id === $this->study->id && $user->has_watched_weekly_video) {
             session()->flash('error', 'Ya has recibido los puntos por ver este video.');
             return;
@@ -161,11 +160,11 @@ class StudyPage extends Component
 
         return 'Enlace externo';
     }
+
     public function markAsCompleted($challengeCode)
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
-        $challenge = Challenge::where('code', $challengeCode)->first();
         $challenge = Challenge::where('code', $challengeCode)->first();
 
         if (!$challenge) {
@@ -178,19 +177,21 @@ class StudyPage extends Component
             return;
         }
 
-        $user->challenges()->attach($challenge->id, [
+
+        $user->challenges()->attach($challenge->code, [
             'is_completed' => true,
             'completed_at' => now(),
             'points_earned' => $challenge->points,
         ]);
 
-        // También sumar puntos a gt_points
+
         $user->gt_points += $challenge->points;
         $user->save();
 
         $this->loadStudyData();
         session()->flash('message', '¡Reto completado! +' . $challenge->points . ' puntos 🎉');
     }
+
 
     public function setTab($tab)
     {

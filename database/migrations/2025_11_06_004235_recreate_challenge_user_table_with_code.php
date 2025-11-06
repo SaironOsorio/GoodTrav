@@ -6,15 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
+
         Schema::create('challenge_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('challenge_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->string('challenge_code'); 
             $table->boolean('is_completed')->default(false);
             $table->timestamp('completed_at')->nullable();
             $table->integer('points_earned')->default(0);
@@ -22,18 +20,17 @@ return new class extends Migration
             $table->string('submission_url')->nullable();
             $table->timestamps();
 
-            $table->unique(['user_id', 'challenge_id']);
-
+            // Índices y constraints
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unique(['user_id', 'challenge_code']);
+            $table->index('challenge_code');
+            $table->index(['challenge_code', 'is_completed']);
             $table->index(['user_id', 'is_completed']);
-            $table->index(['challenge_id', 'is_completed']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('challenge_user');
+        Schema::drop('challenge_user');
     }
 };

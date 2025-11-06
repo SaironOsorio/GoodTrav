@@ -42,6 +42,9 @@ class User extends Authenticatable implements FilamentUser
         'pm_type',
         'pm_last_four',
         'trial_ends_at',
+        'has_watched_weekly_video',
+        'video_watched_at',
+        'current_study_id',
     ];
 
     /**
@@ -54,6 +57,8 @@ class User extends Authenticatable implements FilamentUser
         'two_factor_secret',
         'two_factor_recovery_codes',
         'remember_token',
+        'video_watched_at' => 'datetime',
+        'has_watched_weekly_video' => 'boolean',
     ];
 
     /**
@@ -102,16 +107,23 @@ class User extends Authenticatable implements FilamentUser
 
     public function challenges()
     {
-        return $this->belongsToMany(Challenge::class, 'challenge_user')
-            ->withPivot(['is_completed', 'completed_at', 'points_earned', 'submission', 'submission_url'])
-            ->withTimestamps();
+        return $this->belongsToMany(
+            Challenge::class,
+            'challenge_user',
+            'user_id',
+            'challenge_code',
+            'id',
+            'code'
+        )
+        ->withPivot(['is_completed', 'completed_at', 'points_earned', 'submission', 'submission_url'])
+        ->withTimestamps();
     }
 
-    public function hasCompletedChallenge(Challenge $challenge): bool
+    public function hasCompletedChallenge($challengeCode)
     {
         return $this->challenges()
-            ->where('challenge_id', $challenge->id)
-            ->where('is_completed', true)
+            ->where('challenges.code', $challengeCode)
+            ->wherePivot('is_completed', true)
             ->exists();
     }
 

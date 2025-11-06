@@ -2,32 +2,64 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Challenge extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'study_id',
         'code',
+        'order',
         'title',
         'description',
         'points',
         'url_resource',
         'is_audio',
-        'order',
+        'study_id',
     ];
 
     protected $casts = [
-        'points' => 'integer',
         'is_audio' => 'boolean',
+        'points' => 'integer',
         'order' => 'integer',
     ];
+
+
+    public function users()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'challenge_user',      // tabla pivot
+            'challenge_code',      // FK de challenge en pivot (CODE)
+            'user_id',             // FK de user en pivot
+            'code',                // PK de challenges (usamos CODE)
+            'id'                   // PK de users
+        )
+        ->withPivot(['is_completed', 'completed_at', 'points_earned', 'submission', 'submission_url'])
+        ->withTimestamps();
+    }
 
     public function study()
     {
         return $this->belongsTo(Study::class);
     }
+
+
+    public function isCompletedBy($user)
+    {
+        if (!$user) {
+            return false;
+        }
+
+        return $this->users()
+            ->where('users.id', $user->id)
+            ->wherePivot('is_completed', true)
+            ->exists();
+    }
+
 
     protected static function boot()
     {
@@ -35,23 +67,18 @@ class Challenge extends Model
 
         static::creating(function ($challenge) {
             if (empty($challenge->code)) {
-                $challenge->code = Str::slug($challenge->title) . '-' . Str::random(6);
+
+                $baseCode = Str::slug($challenge->title);
+                $code = $baseCode;
+                $counter = 1;
+
+                while (static::where('code', $code)->exists()) {
+                    $code = $baseCode . '-' . $counter;
+                    $counter++;
+                }
+
+                $challenge->code = $code;
             }
         });
-    }
-    
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'challenge_user')
-            ->withPivot(['is_completed', 'completed_at', 'points_earned', 'submission', 'submission_url'])
-            ->withTimestamps();
-    }
-
-    public function isCompletedBy(User $user): bool
-    {
-        return $this->users()
-            ->where('user_id', $user->id)
-            ->where('is_completed', true)
-            ->exists();
     }
 }
