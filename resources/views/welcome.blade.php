@@ -37,8 +37,8 @@
 
         <div class="bg-white dark:bg-gray-900">
             <section class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-                <p class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Asi funciona</p>
-                <div class="flex flex-col md:flex-row justify-around text-center gap-6 md:gap-6 items-stretch">
+                <p class="mb-4 text-4xl tracking-tight font-[600] text-gray-900 dark:text-white">Así funciona</p>
+                <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 text-center gap-6 md:gap-6 items-stretch">
                     <div class="flex flex-col items-center rounded-2xl bg-[#51c7ff] border-5 border-[#9ce0ff] p-6 flex-1 inset-shadow-sm inset-shadow-[#5170ff] shadow-xl">
                         <div class="py-6">
                             <img src="https://i.pinimg.com/1200x/13/51/bf/1351bf9e366c5d9f2b0be9f5c3b9f2af.jpg" alt="Asi funciona" class="w-15">
@@ -63,7 +63,7 @@
                             <p>Por eso recomendamos unirse a la comunidad GoodTrav desde los 11 años, incluso si el viaje será más adelante.</p>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center rounded-2xl bg-[#ff5170] border-5 border-[#ff8399] p-6 flex-1 inset-shadow-sm inset-shadow-[#ae3a4f] shadow-xl">
+                    <div class="flex flex-col items-center rounded-2xl bg-[#ff5170] border-5 border-[#ff8399] p-6 flex-1 inset-shadow-sm inset-shadow-[#ae3a4f] shadow-xl md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto">
                         <div class="py-6">
                             <img src="https://i.pinimg.com/1200x/13/51/bf/1351bf9e366c5d9f2b0be9f5c3b9f2af.jpg" alt="Asi funciona" class="w-15">
                         </div>
@@ -81,7 +81,124 @@
 
         <livewire:component.opiniones />
 
+        <div class="bg-white dark:bg-gray-900">
+            <section class="py-8 px-4 mx-auto lg:w-1/3 md:max-w-screen-md sm:py-16 lg:px-6">
+                <p class="mb-4 text-4xl tracking-tight font-[600] text-gray-900 dark:text-white">Únete a la comunidad</p>
+                <div class="flex flex-col md:grid gap-6 md:gap-6 items-stretch">
+                    <div class="flex flex-col items-start rounded-2xl bg-[#70ff51] border-5 border-[#99ff83] p-6 flex-1 inset-shadow-sm inset-shadow-[#418b31] shadow-xl">
+                        <div class="flex flex-col lg:gap-4 md:gap-2 flex-1 lg:p-8 md:p-4">
+                            <p class="font-bold lg:text-4xl md:text-2xl">GoodTrav incluye:</p>
+                            <ul class="list-disc list-inside lg:text-xl md:text-base">
+                                <li>Clases online enfocadas en prepararlos para moverse por el mundo</li>
+                                <li>Retos de inglés semanales que tienen que completar</li>
+                                <li>Puntos GT para medir su aprendizaje y progreso</li>
+                                <li class="font-bold">Acceso a viajes de inglés seguros, con profesores cualificados 24/7</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col p-8 justify-center text-center w-full">
+                            <p class="font-bold lg:text-4xl md:text-2xl">1ª semana GRATIS</p>
+                            <p>Después 16EUR/mes o <span class="font-bold">12EUR/mes</span> <br>
+                            (si formas parte de uno de nuestros centros colaboradores)</p>
+                        </div>
+                        <div class="flex flex-col lg:p-8 md:p-4 justify-center text-center w-full">
+                            <p class="lg:text-2xl md:text-base font-bold">Cancela cuando quieras.</p>
+                        </div>
+                        <div class="flex flex-col lg:p-8 md:p-4 md:mt-4 lg:mt-1 justify-center text-center lg:w-1/2 md:w-full mx-auto">
+                            <button class="text-white bg-[#5170ff] hover:bg-[#4158d0] focus:outline-none focus:ring-4 focus:ring-[#4158d0] font-medium rounded-full text-lg px-8 py-4 text-center cursor-pointer inline-block">Quiero unirme GRATIS</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
         <livewire:component.colaboradores />
+
+        <div class="bg-white dark:bg-gray-900">
+            <section class="py-4 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+                <p class="mb-4 text-4xl tracking-tight font-[600] text-gray-900 dark:text-white">Preguntas frecuentes</p>
+                <div class="grid grid-cols-1 gap-6 md:gap-6 items-stretch">
+                    <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-1 items-stretch">
+                        <div class="flex flex-col rounded-2xl border-5 p-4 px-6 flex-1 shadow-sm">
+                            <div class="py-6 grid gap-4">
+                                <p class="font-bold text-xl">¿A partir de que edad pueden apuntarse a GoodTrav?</p>
+                                <p>Desde los 11 años. <br> Aunque el viaje lo quieran realizar más adelante, empezar antes permite acumular puntos GT, ganar práctica y llegar al viaje mucho más preparado y seguro. 
+                                Eso hace que su aprendizaje en el extranjero sea mucho mayor.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-1 items-stretch">
+                        <div class="flex flex-col rounded-2xl border-5 p-4 px-6 flex-1 shadow-sm">
+                            <div class="py-6 grid gap-4">
+                                <p class="font-bold text-xl">¿Cómo son las clases online?</p>
+                                <p>Las clases son online, impartidas por profesores nativos y bilingües. Están centradas en hablar, entender y aprender el inglés real que usarán en los viajes, por ejemplo, pedir agua en una cafeteria.
+                                     Cada lunes a las 9:00 aparece una nueva clase y los alumnos dispondrán hasta el domingo a las 23:59 de esa semana para verla.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-1 items-stretch">
+                        <div class="flex flex-col rounded-2xl border-5 p-4 px-6 flex-1 shadow-sm">
+                            <div class="py-6 grid gap-4">
+                                <p class="font-bold text-xl">¿Qué son los puntos GT?</p>
+                                <p>Cuantos más puntos consiguen, más avanzan en su aprendizaje y más listos están para viajar. 
+                                    Solo los alumnos con los puntos necesarios pueden acceder a los viajes, para asegurar que aprovechen la experiencia al máximo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-1 items-stretch">
+                        <div class="flex flex-col rounded-2xl border-5 p-4 px-6 flex-1 shadow-sm">
+                            <div class="py-6 grid gap-4">
+                                <p class="font-bold text-xl">¿Cómo son los viajes GoodTrav?</p>
+                                <p>Son viajes de 5 días, organizados y supervisados en todo momento por profesores nativos y bilingües.
+                                Sin riesgos, no hay familias de acogida: los alumnos viajan y duermen con su grupo y profesores, en
+                                un entorno seguro y acompañados las 24 horas del día. <br>
+                                Durante el viaje, además de visitar, practican inglés con retos que preparan y supervisan los
+                                profesores, donde van a tener que interactuar con personas locales para completarlos. rendizaje en el extranjero sea mucho mayor.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-1 items-stretch">
+                        <div class="flex flex-col rounded-2xl border-5 p-4 px-6 flex-1 shadow-sm">
+                            <div class="py-6 grid gap-4">
+                                <p class="font-bold text-xl">¿Quién acompaña a los alumnos?</p>
+                                <p>Todo el viaje está coordinado por el equipo GoodTrav, formado por profesores nativos y bilingües y
+                                personal cualificado.
+                                Están con los alumnos desde la salida hasta el regreso, garantizando seguridad y apoyo constante.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-1 items-stretch">
+                        <div class="flex flex-col rounded-2xl border-5 p-4 px-6 flex-1 shadow-sm">
+                            <div class="py-6 grid gap-4">
+                                <p class="font-bold text-xl">¿Qué pasa si mi hijo quiere viajar pero aún no tiene los puntos suficientes?</p>
+                                <p>Podrá seguir preparándose con las clases y retos hasta alcanzarlos. <br> Los puntos nos garantizan que todos nuentros alumnos aprovechen el viaje de verdad, 
+                                por eso es importante empezar cuanto antes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-1 items-stretch">
+                        <div class="flex flex-col rounded-2xl border-5 p-4 px-6 flex-1 shadow-sm">
+                            <div class="py-6 grid gap-4">
+                                <p class="font-bold text-xl">¿Dónde se realizan los viajes?</p>
+                                <p>Los destinos pueden variar en cada edición, pero siempre son países de habla inglesa.
+                                Seleccionamos lugares ideales para practicar el idioma en contextos reales, seguros y divertidos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-1 items-stretch">
+                        <div class="flex flex-col rounded-2xl border-5 p-4 px-6 flex-1 shadow-sm">
+                            <div class="py-6 grid gap-4">
+                                <p class="font-bold text-xl">¿Por qué empezar ya si mi hijo quiere viajar más adelante?</p>
+                                <p>Cuanto antes empiece, más puntos acumulará y más preparado estará para disfrutar y aprender durante su viaje. <br> Empezar pronto significa viajar con ventaja.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <x-navigation.footer />
 
