@@ -45,6 +45,8 @@ class User extends Authenticatable implements FilamentUser
         'has_watched_weekly_video',
         'video_watched_at',
         'current_study_id',
+        'is_society',
+        'society_code',
     ];
 
     /**
@@ -59,6 +61,8 @@ class User extends Authenticatable implements FilamentUser
         'remember_token',
         'video_watched_at' => 'datetime',
         'has_watched_weekly_video' => 'boolean',
+        'is_society' => 'boolean',
+        'society_code' => 'string',
     ];
 
     /**
@@ -137,5 +141,10 @@ class User extends Authenticatable implements FilamentUser
     public function reservers()
     {
         return $this->hasMany(Reserver::class);
+    }
+
+    public function society()
+    {
+        return $this->hasOne(Society::class);
     }
 }
