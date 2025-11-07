@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\TripController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,6 +46,8 @@ Route::view('forum', 'forum')
 Route::view('society', 'Society')
     ->middleware(['auth', 'verified', 'check.subscription'])
     ->name('society');
+Route::get('/trip/{trip:slug}', [TripController::class, 'show'])
+    ->name('trip.detail');
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
     Volt::route('settings/billing', 'settings.billing-fac')->name('billing');

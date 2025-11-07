@@ -133,4 +133,9 @@ class User extends Authenticatable implements FilamentUser
             ->where('is_completed', true)
             ->sum('challenge_user.points_earned');
     }
+
+    public function reservers()
+    {
+        return $this->hasMany(Reserver::class);
+    }
 }
