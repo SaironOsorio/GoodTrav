@@ -62,7 +62,7 @@ class TripForm
                             ->helperText('Ingresa el precio del viaje.')
                             ->required()
                             ->numeric()
-                            ->suffix('€'),
+                            ->money('EUR'),
                         TextInput::make('points')
                             ->label('Puntos')
                             ->helperText('Ingresa los puntos asociados al viaje.')

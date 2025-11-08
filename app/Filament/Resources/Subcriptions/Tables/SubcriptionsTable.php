@@ -1,33 +1,26 @@
 <?php
 
-namespace App\Filament\Resources\Trips\Tables;
+namespace App\Filament\Resources\Subcriptions\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class TripsTable
+class SubcriptionsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                ImageColumn::make('image_path')
-                    ->label('Imagen')
-                    ->disk('public')
-                    ->rounded()
-                    ->size(50),
-                TextColumn::make('destination')
-                    ->label('Destino')
+                TextColumn::make('title')
+                    ->label('Título')
                     ->searchable(),
                 TextColumn::make('price')
-                    ->money('EUR')
-                    ->sortable(),
-                TextColumn::make('rank')
-                    ->searchable(),
+                    ->label('Precio'),
+                TextColumn::make('duration')
+                    ->label('Duración'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

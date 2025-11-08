@@ -76,12 +76,12 @@
 
                             <!-- Features Grid -->
                             <ul role="list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                @foreach ($subscription['features'] as $feature)
+                                @foreach ($subscription['features'] as $featureItem)
                                 <li class="flex items-center space-x-3">
                                     <svg class="flex-shrink-0 w-5 h-5 text-[#70ff51]" fill="currentColor" viewBox="0 0 24 24">
                                         <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm13.707-1.293a1 1 0 0 0-1.414-1.414L11 12.586l-1.793-1.793a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd"/>
                                     </svg>
-                                    <span class="text-white font-medium text-sm">{{ $feature }}</span>
+                                    <span class="text-white font-medium text-sm"> {{ is_array($featureItem) ? $featureItem['feature'] : $featureItem }}</span>
                                 </li>
                                 @endforeach
                             </ul>
@@ -97,23 +97,27 @@
                             @endif
 
                             <div class="text-center mb-6">
-                                @if($appliedDiscount)
+                                @if($appliedDiscount && isset($appliedDiscount[$subscription->id]))
+                                    @php
+                                        $discount = $appliedDiscount[$subscription->id];
+                                    @endphp
+
                                     <!-- Con descuento -->
                                     @if(!$hasHadTrial)
                                         <div class="mb-3 text-xs text-white bg-green-600 rounded-lg p-2">
                                             Días 1-7: Gratis<br>
-                                            Día 8-37: €{{ $appliedDiscount['new_price'] }}/mes<br>
+                                            Día 8-37: €{{ $discount['new_price'] }}/mes<br>
                                         </div>
                                     @endif
 
                                     <div class="mb-2">
-                                        <span class="text-3xl font-bold text-white line-through opacity-60">€{{ $appliedDiscount['original_price'] }}</span>
+                                        <span class="text-3xl font-bold text-white line-through opacity-60">€{{ $discount['original_price'] }}</span>
                                     </div>
                                     <div class="mb-2">
-                                        <span class="text-6xl font-bold text-[#70ff51]">€{{ $appliedDiscount['new_price'] }}</span>
+                                        <span class="text-6xl font-bold text-[#70ff51]">€{{ $discount['new_price'] }}</span>
                                     </div>
                                     <div class="px-3 py-1 bg-[#70ff51] text-black rounded-full text-xs font-bold inline-block">
-                                        {{ $appliedDiscount['description'] }}
+                                        {{ $discount['description'] }}
                                     </div>
                                 @else
                                     <!-- Sin descuento -->
@@ -122,7 +126,7 @@
                                             <span class="font-semibold">Hoy:</span> €0
                                         </div>
                                     @endif
-                                    <span class="text-6xl font-bold text-white">€{{ $subscription['price'] }}</span>
+                                    <span class="text-6xl font-bold text-white">€{{ $subscription->price }}</span>
                                     @if(!$hasHadTrial)
                                         <p class="text-white text-sm mt-2 opacity-90">
                                             después de 7 días
