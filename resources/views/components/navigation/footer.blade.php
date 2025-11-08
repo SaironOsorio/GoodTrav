@@ -33,9 +33,9 @@
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <div>
                         <h3 class="text-white font-bold uppercase">Legal</h3>
-                        <a href="#" class="block mt-2 text-sm text-white font-medium hover:underline">Aviso Legal</a>
-                        <a href="#" class="block mt-2 text-sm text-white font-medium hover:underline">Politica Privacidad</a>
-                        <a href="#" class="block mt-2 text-sm text-white font-medium hover:underline">Politica de Cookies</a>
+                        <a href="{{ route('legal') }}" class="block mt-2 text-sm text-white font-medium hover:underline">Aviso Legal</a>
+                        <a href="{{ route('privacity') }}" class="block mt-2 text-sm text-white font-medium hover:underline">Politica Privacidad</a>
+                        <a href="{{ route('cookies') }}" class="block mt-2 text-sm text-white font-medium hover:underline">Politica de Cookies</a>
                     </div>
 
                     <div>

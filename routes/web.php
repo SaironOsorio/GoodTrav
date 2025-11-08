@@ -27,6 +27,20 @@ Route::middleware(['auth'])->group(function () {
     })->name('subscription.success');
 });
 
+Route::get('Cookies', function(){
+    return view('cookies');
+})
+->name('cookies');
+
+Route::get('PoliticasPrivacidad', function(){
+    return view('privacity');
+})
+->name('privacity');
+
+Route::get('Legal', function(){
+    return view('legal');
+})
+->name('legal');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified', 'check.subscription'])
