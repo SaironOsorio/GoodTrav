@@ -23,12 +23,12 @@
         <x-navigation.header />
 
 
-        <section class="hero-section relative bg-cover bg-center bg-no-repeat dark:bg-gray-900 min-h-[85vh] flex items-center overflow-hidden" 
+        <section class="hero-section relative bg-cover bg-center bg-no-repeat dark:bg-gray-900 min-h-[85vh] flex items-center overflow-hidden"
                 style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2835&auto=format&fit=crop');">
-            
+
             <!-- Overlay con gradiente para mejor legibilidad -->
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
-            
+
             <!-- Elementos decorativos animados -->
             <div class="floating-blob blob-1 absolute top-20 right-10 w-32 h-32 bg-[#70ff51] rounded-full opacity-20 blur-3xl"></div>
             <div class="floating-blob blob-2 absolute bottom-20 left-10 w-40 h-40 bg-[#5170ff] rounded-full opacity-20 blur-3xl"></div>
@@ -47,7 +47,7 @@
 
                     <!-- Título principal -->
                     <h1 class="fade-in-up animation-delay-200 mb-6 tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
-                        Aprende inglés, 
+                        Aprende inglés,
                         <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#70ff51] via-[#5170ff] to-[#ff5170] animate-gradient">
                             conquista nuevos retos
                         </span>
@@ -83,14 +83,14 @@
 
                     <!-- Botones CTA -->
                     <div class="fade-in-up animation-delay-500 flex flex-col sm:flex-row gap-4">
-                        <a href="{{ route('register') }}" 
+                        <a href="{{ route('register') }}"
                         class="btn-primary group relative inline-flex items-center justify-center gap-2 text-white bg-gradient-to-r from-[#5170ff] to-[#ff5170] hover:shadow-2xl hover:shadow-[#5170ff]/50 focus:outline-none focus:ring-4 focus:ring-[#5170ff]/50 font-bold rounded-full text-lg px-8 py-4 text-center transition-all duration-300">
                             <span>Comenzar gratis</span>
                             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                             </svg>
                         </a>
-                        <a href="#como-funciona" 
+                        <a href="#como-funciona"
                         class="btn-secondary inline-flex items-center justify-center gap-2 text-white bg-white/10 backdrop-blur-sm border-2 border-white hover:bg-white hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/50 font-semibold rounded-full text-lg px-8 py-4 text-center transition-all duration-300">
                             Ver cómo funciona
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,7 +145,7 @@
 
                 <!-- Cards Grid -->
                 <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 text-left gap-6 md:gap-8 items-stretch">
-                    
+
                     <!-- Card 1: Preparación -->
                     <div class="process-card group flex flex-col rounded-3xl bg-gradient-to-br from-[#51c7ff] to-[#6ad5ff] border-2 border-[#9ce0ff] p-8 flex-1 shadow-2xl hover:shadow-[#51c7ff]/50 transition-all duration-500 transform hover:-translate-y-2 fade-in-up animation-delay-100">
                         <!-- Número e Icono -->
@@ -165,7 +165,7 @@
                             <h3 class="font-extrabold text-2xl md:text-3xl text-white leading-tight">
                                 Se preparan antes de viajar
                             </h3>
-                            
+
                             <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                                 <p class="font-semibold text-white text-sm">
                                     🎯 <span class="font-bold">Objetivo:</span> Adquirir las frases y estructuras necesarias para comunicarse en el destino.
@@ -214,7 +214,7 @@
                             <h3 class="font-extrabold text-2xl md:text-3xl text-gray-900 leading-tight">
                                 Ganan puntos GT
                             </h3>
-                            
+
                             <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
                                 <p class="font-semibold text-gray-900 text-sm">
                                     🎯 <span class="font-bold">Objetivo:</span> Asegurar que lleguen al viaje con confianza real, no a "probar suerte".
@@ -266,7 +266,7 @@
                             <h3 class="font-extrabold text-2xl md:text-3xl text-white leading-tight">
                                 Viajan y practican lo aprendido
                             </h3>
-                            
+
                             <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                                 <p class="font-semibold text-white text-sm">
                                     🎯 <span class="font-bold">Objetivo:</span> Practicar inglés en situaciones reales con hablantes nativos.
@@ -331,79 +331,9 @@
         <livewire:component.subcriptions />
 
 
-
         <livewire:component.colaboradores />
 
-        <div class="bg-white dark:bg-gray-900">
-            <section class="p-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-                <p class="mb-4 text-4xl tracking-tight font-[600] text-gray-900 dark:text-white">Preguntas frecuentes</p>
-                <div class="grid grid-cols-1 gap-6 md:gap-6">
-                    <div class="flex flex-col rounded-2xl border-5 p-6 md:p-8 shadow-sm">
-                        <div class="py-2 grid gap-4">
-                            <p class="font-bold text-xl md:text-2xl">¿A partir de que edad pueden apuntarse a GoodTrav?</p>
-                            <p class="text-base md:text-lg">Desde los 11 años. <br> Aunque el viaje lo quieran realizar más adelante, empezar antes permite acumular puntos GT, ganar práctica y llegar al viaje mucho más preparado y seguro. 
-                            Eso hace que su aprendizaje en el extranjero sea mucho mayor.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col rounded-2xl border-5 p-6 md:p-8 shadow-sm">
-                        <div class="py-2 grid gap-4">
-                            <p class="font-bold text-xl md:text-2xl">¿Cómo son las clases online?</p>
-                            <p class="text-base md:text-lg">Las clases son online, impartidas por profesores nativos y bilingües. Están centradas en hablar, entender y aprender el inglés real que usarán en los viajes, por ejemplo, pedir agua en una cafeteria.
-                                 Cada lunes a las 9:00 aparece una nueva clase y los alumnos dispondrán hasta el domingo a las 23:59 de esa semana para verla.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col rounded-2xl border-5 p-6 md:p-8 shadow-sm">
-                        <div class="py-2 grid gap-4">
-                            <p class="font-bold text-xl md:text-2xl">¿Qué son los puntos GT?</p>
-                            <p class="text-base md:text-lg">Cuantos más puntos consiguen, más avanzan en su aprendizaje y más listos están para viajar. 
-                                Solo los alumnos con los puntos necesarios pueden acceder a los viajes, para asegurar que aprovechen la experiencia al máximo.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col rounded-2xl border-5 p-6 md:p-8 shadow-sm">
-                        <div class="py-2 grid gap-4">
-                            <p class="font-bold text-xl md:text-2xl">¿Cómo son los viajes GoodTrav?</p>
-                            <p class="text-base md:text-lg">Son viajes de 5 días, organizados y supervisados en todo momento por profesores nativos y bilingües.
-                            Sin riesgos, no hay familias de acogida: los alumnos viajan y duermen con su grupo y profesores, en
-                            un entorno seguro y acompañados las 24 horas del día. <br>
-                            Durante el viaje, además de visitar, practican inglés con retos que preparan y supervisan los
-                            profesores, donde van a tener que interactuar con personas locales para completarlos.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col rounded-2xl border-5 p-6 md:p-8 shadow-sm">
-                        <div class="py-2 grid gap-4">
-                            <p class="font-bold text-xl md:text-2xl">¿Quién acompaña a los alumnos?</p>
-                            <p class="text-base md:text-lg">Todo el viaje está coordinado por el equipo GoodTrav, formado por profesores nativos y bilingües y
-                            personal cualificado.
-                            Están con los alumnos desde la salida hasta el regreso, garantizando seguridad y apoyo constante.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col rounded-2xl border-5 p-6 md:p-8 shadow-sm">
-                        <div class="py-2 grid gap-4">
-                            <p class="font-bold text-xl md:text-2xl">¿Qué pasa si mi hijo quiere viajar pero aún no tiene los puntos suficientes?</p>
-                            <p class="text-base md:text-lg">Podrá seguir preparándose con las clases y retos hasta alcanzarlos. <br> Los puntos nos garantizan que todos nuestros alumnos aprovechen el viaje de verdad, 
-                            por eso es importante empezar cuanto antes.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col rounded-2xl border-5 p-6 md:p-8 shadow-sm">
-                        <div class="py-2 grid gap-4">
-                            <p class="font-bold text-xl md:text-2xl">¿Dónde se realizan los viajes?</p>
-                            <p class="text-base md:text-lg">Los destinos pueden variar en cada edición, pero siempre son países de habla inglesa.
-                            Seleccionamos lugares ideales para practicar el idioma en contextos reales, seguros y divertidos.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col rounded-2xl border-5 p-6 md:p-8 shadow-sm">
-                        <div class="py-2 grid gap-4">
-                            <p class="font-bold text-xl md:text-2xl">¿Por qué empezar ya si mi hijo quiere viajar más adelante?</p>
-                            <p class="text-base md:text-lg">Cuanto antes empiece, más puntos acumulará y más preparado estará para disfrutar y aprender durante su viaje. <br> Empezar pronto significa viajar con ventaja.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+        <livewire:component.faq />
 
         <livewire:form-contacto />
 
