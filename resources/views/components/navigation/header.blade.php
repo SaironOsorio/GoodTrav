@@ -16,9 +16,10 @@
             <div class="flex items-center gap-2 lg:order-2">
                 @auth
                     <a href="{{ route('dashboard') }}" class="text-white bg-[#ff5170] hover:bg-[#ff6f70] focus:ring-4 focus:ring-[#ff6f70] font-medium rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all">Dashboard</a>
-                @endauth
+                @else
                 <a href="{{ route('login') }}" class="text-white bg-[#ff5170] hover:bg-[#ff6f70] focus:ring-4 focus:ring-[#ff6f70] font-medium rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all">Acceder</a>
                 <a href="{{ route('register') }}" class="text-white bg-white/20 hover:bg-white/30 focus:ring-4 focus:ring-white/30 font-medium rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all">Registrarse</a>
+                @endauth
             </div>
         </div>
     </nav>

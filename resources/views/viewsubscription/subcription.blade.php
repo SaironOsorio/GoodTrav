@@ -39,9 +39,9 @@
                         @auth
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
-                        <a type="button" type="submit" class="text-white bg-[#ff5170] hover:bg-[#ff6f70] focus:ring-4 focus:ring-[#ff6f70] font-medium rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all cursor-pointer" data-test="logout-button">
+                        <button type="submit" class="text-white bg-[#ff5170] hover:bg-[#ff6f70] focus:ring-4 focus:ring-[#ff6f70] font-medium rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all cursor-pointer" data-test="logout-button">
                             {{ __('Log Out') }}
-                        </a>
+                        </button>
                         @endauth
                     </form>
                     </div>
