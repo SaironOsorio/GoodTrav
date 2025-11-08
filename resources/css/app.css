@@ -150,5 +150,156 @@ select:focus[data-flux-control] {
     cursor: grabbing !important;
 }
 
+@layer utilities {
+    /* Smooth scroll */
+    html {
+        scroll-behavior: smooth;
+    }
 
+    /* Fade in up animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    /* Animation delays */
+    .animation-delay-100 {
+        animation-delay: 0.1s;
+    }
+
+    .animation-delay-200 {
+        animation-delay: 0.2s;
+    }
+
+    .animation-delay-300 {
+        animation-delay: 0.3s;
+    }
+
+    .animation-delay-400 {
+        animation-delay: 0.4s;
+    }
+
+    .animation-delay-500 {
+        animation-delay: 0.5s;
+    }
+
+    .animation-delay-600 {
+        animation-delay: 0.6s;
+    }
+
+    /* Floating blobs */
+    @keyframes floating {
+        0%, 100% {
+            transform: translate(0, 0) scale(1);
+        }
+        25% {
+            transform: translate(10px, -10px) scale(1.05);
+        }
+        50% {
+            transform: translate(-5px, 10px) scale(0.95);
+        }
+        75% {
+            transform: translate(15px, 5px) scale(1.02);
+        }
+    }
+
+    .floating-blob {
+        animation: floating 8s ease-in-out infinite;
+    }
+
+    .blob-1 {
+        animation-delay: 0s;
+    }
+
+    .blob-2 {
+        animation-delay: 2s;
+    }
+
+    .blob-3 {
+        animation-delay: 4s;
+    }
+
+    /* Gradient animation */
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 3s ease infinite;
+    }
+
+    /* Button hover effects */
+    .btn-primary:hover {
+        transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-secondary:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Feature items hover */
+    .feature-item {
+        transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+        transform: translateX(5px);
+    }
+
+    .feature-item:hover svg {
+        transform: scale(1.2);
+        transition: transform 0.3s ease;
+    }
+
+    /* Stats counter animation */
+    .stat-item {
+        transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Slider Bar */
+::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra */
+    height: 5px; /* Altura de la barra (para scroll horizontal) */
+}
+
+/* Fondo de la barra */
+::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Color del fondo */
+    border-radius: 6px;
+}
+
+/* Color del "thumb" (la parte que se arrastra) */
+::-webkit-scrollbar-thumb {
+    background: #555657; /* Color del thumb */
+    border-radius: 6px;
+}
+
+/* Color del thumb al hacer hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #0f0f0f; /* Cambia al pasar el cursor */
+}

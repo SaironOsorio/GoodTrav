@@ -18,98 +18,319 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
-    <body class="bg-[#FDFDFC]">
+    <body class="bg-[#FDFDFC] overflow-x-hidden">
 
         <x-navigation.header />
 
-        <section class="bg-cover bg-center bg-no-repeat dark:bg-gray-900 h-[85vh]" style="background-image: url('https://www.conmishijos.com/uploads/tareas_escolares/quizpaises-1.jpg');">
-            <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 h-full flex items-center">
-                <div class="max-w-screen-md sm:text-center lg:text-left md:text-center">
-                    <p class="mb-4 tracking-tight text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-gray-900 dark:text-white">Aprende inglés, conquista nuevos retos y viaja más lejos.</p>
-                    <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 sm:justify-center lg:justify-start">
-                        <a href="{{ route('register') }}" class="text-white bg-[#5170ff] hover:bg-[#4158d0] focus:outline-none focus:ring-4 focus:ring-[#4158d0] font-medium rounded-full text-lg px-8 py-4 text-center cursor-pointer inline-block">Comenzar</a>
+
+        <section class="hero-section relative bg-cover bg-center bg-no-repeat dark:bg-gray-900 min-h-[85vh] flex items-center overflow-hidden" 
+                style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2835&auto=format&fit=crop');">
+            
+            <!-- Overlay con gradiente para mejor legibilidad -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+            
+            <!-- Elementos decorativos animados -->
+            <div class="floating-blob blob-1 absolute top-20 right-10 w-32 h-32 bg-[#70ff51] rounded-full opacity-20 blur-3xl"></div>
+            <div class="floating-blob blob-2 absolute bottom-20 left-10 w-40 h-40 bg-[#5170ff] rounded-full opacity-20 blur-3xl"></div>
+            <div class="floating-blob blob-3 absolute top-1/2 right-1/4 w-36 h-36 bg-[#ff5170] rounded-full opacity-20 blur-3xl"></div>
+
+            <div class="relative z-10 py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 h-full flex items-center">
+                <div class="max-w-screen-lg">
+                    <!-- Badge animado -->
+                    <div class="fade-in-up animation-delay-100 mb-6 inline-flex items-center gap-2 px-4 py-2 bg-[#70ff51]/20 backdrop-blur-sm border border-[#70ff51] rounded-full">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#70ff51] opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-[#70ff51]"></span>
+                        </span>
+                        <span class="text-white font-semibold text-sm">✨ Primera semana GRATIS</span>
+                    </div>
+
+                    <!-- Título principal -->
+                    <h1 class="fade-in-up animation-delay-200 mb-6 tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
+                        Aprende inglés, 
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#70ff51] via-[#5170ff] to-[#ff5170] animate-gradient">
+                            conquista nuevos retos
+                        </span>
+                        y viaja más lejos.
+                    </h1>
+
+                    <!-- Subtítulo -->
+                    <p class="fade-in-up animation-delay-300 mb-8 text-lg sm:text-xl text-gray-200 max-w-2xl">
+                        Únete a la comunidad que prepara a jóvenes para comunicarse en inglés en situaciones reales mientras descubren el mundo.
+                    </p>
+
+                    <!-- Features destacados -->
+                    <div class="fade-in-up animation-delay-400 mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
+                        <div class="feature-item flex items-center gap-2 text-white">
+                            <svg class="w-5 h-5 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-sm font-medium">Clases online</span>
+                        </div>
+                        <div class="feature-item flex items-center gap-2 text-white">
+                            <svg class="w-5 h-5 text-[#5170ff]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <span class="text-sm font-medium">Retos semanales</span>
+                        </div>
+                        <div class="feature-item flex items-center gap-2 text-white">
+                            <svg class="w-5 h-5 text-[#ff5170]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                            </svg>
+                            <span class="text-sm font-medium">Viajes seguros</span>
+                        </div>
+                    </div>
+
+                    <!-- Botones CTA -->
+                    <div class="fade-in-up animation-delay-500 flex flex-col sm:flex-row gap-4">
+                        <a href="{{ route('register') }}" 
+                        class="btn-primary group relative inline-flex items-center justify-center gap-2 text-white bg-gradient-to-r from-[#5170ff] to-[#ff5170] hover:shadow-2xl hover:shadow-[#5170ff]/50 focus:outline-none focus:ring-4 focus:ring-[#5170ff]/50 font-bold rounded-full text-lg px-8 py-4 text-center transition-all duration-300">
+                            <span>Comenzar gratis</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </a>
+                        <a href="#como-funciona" 
+                        class="btn-secondary inline-flex items-center justify-center gap-2 text-white bg-white/10 backdrop-blur-sm border-2 border-white hover:bg-white hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/50 font-semibold rounded-full text-lg px-8 py-4 text-center transition-all duration-300">
+                            Ver cómo funciona
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="fade-in-up animation-delay-600 mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl">
+                        <div class="stat-item text-center sm:text-left">
+                            <p class="text-3xl sm:text-4xl font-bold text-white">500+</p>
+                            <p class="text-sm text-gray-300">Alumnos activos</p>
+                        </div>
+                        <div class="stat-item text-center sm:text-left">
+                            <p class="text-3xl sm:text-4xl font-bold text-white">15+</p>
+                            <p class="text-sm text-gray-300">Destinos</p>
+                        </div>
+                        <div class="stat-item text-center sm:text-left">
+                            <p class="text-3xl sm:text-4xl font-bold text-white">95%</p>
+                            <p class="text-sm text-gray-300">Satisfacción</p>
+                        </div>
+                        <div class="stat-item text-center sm:text-left">
+                            <p class="text-3xl sm:text-4xl font-bold text-white">24/7</p>
+                            <p class="text-sm text-gray-300">Supervisión</p>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
             </div>
         </section>
 
         <livewire:component.card />
 
-        <div class="bg-white dark:bg-gray-900">
+        <div id="como-funciona" class="bg-gradient-to-b from-white to-gray-50 dark:bg-gray-900">
             <section class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-                <p class="mb-4 text-4xl tracking-tight font-[600] text-gray-900 dark:text-white">Así funciona</p>
-                <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 text-center gap-6 md:gap-6 items-stretch">
-                    <div class="flex flex-col items-center rounded-2xl bg-[#51c7ff] border-5 border-[#9ce0ff] p-6 flex-1 inset-shadow-sm inset-shadow-[#5170ff] shadow-xl">
-                        <div class="py-6">
-                            <img src="https://i.pinimg.com/1200x/13/51/bf/1351bf9e366c5d9f2b0be9f5c3b9f2af.jpg" alt="Asi funciona" class="w-15">
+                <!-- Header Section -->
+                <div class="text-center mb-12 fade-in-up">
+                    <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                        Así funciona
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Un proceso simple de 3 pasos para dominar el inglés mientras viajas
+                    </p>
+                </div>
+
+                <!-- Cards Grid -->
+                <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 text-left gap-6 md:gap-8 items-stretch">
+                    
+                    <!-- Card 1: Preparación -->
+                    <div class="process-card group flex flex-col rounded-3xl bg-gradient-to-br from-[#51c7ff] to-[#6ad5ff] border-2 border-[#9ce0ff] p-8 flex-1 shadow-2xl hover:shadow-[#51c7ff]/50 transition-all duration-500 transform hover:-translate-y-2 fade-in-up animation-delay-100">
+                        <!-- Número e Icono -->
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm border-2 border-white/40">
+                                <span class="text-3xl font-extrabold text-white">1</span>
+                            </div>
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
                         </div>
+
+                        <!-- Contenido -->
                         <div class="flex flex-col gap-4 flex-1">
-                            <p class="font-bold text-2xl">1. Se preparan antes de viajar.</p>
-                            <p class="font-[400] underline underline-offset-2"><span class="font-bold">Objetivo:</span> Adquirir las frases y estructuras que necesitarán para poder comunicarse en el país destino.</p>
-                            <p class="my-8">Cada lunes acceden a una nueva clase de inglés online y a un reto que deben completar con lo aprendido. Disponen hasta el domingo a las 23:59 de esa semana para realizar ambos.</p>
-                            <p class="">Aquí aprenden las expresiones que usarán en el viaje: pedir comida, comprar, orientarse…</p>
+                            <h3 class="font-extrabold text-2xl md:text-3xl text-white leading-tight">
+                                Se preparan antes de viajar
+                            </h3>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                <p class="font-semibold text-white text-sm">
+                                    🎯 <span class="font-bold">Objetivo:</span> Adquirir las frases y estructuras necesarias para comunicarse en el destino.
+                                </p>
+                            </div>
+
+                            <div class="space-y-3 text-white/95">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Cada lunes acceden a una nueva clase de inglés online y un reto semanal</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Disponen hasta el domingo a las 23:59 para completar ambos</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Aprenden expresiones prácticas: pedir comida, comprar, orientarse…</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center rounded-2xl bg-[#70ff51] border-5 border-[#99ff83] p-6 flex-1 inset-shadow-sm inset-shadow-[#418b31] shadow-xl">
-                        <div class="py-6">
-                            <img src="https://i.pinimg.com/1200x/13/51/bf/1351bf9e366c5d9f2b0be9f5c3b9f2af.jpg" alt="Asi funciona" class="w-15">
+
+                    <!-- Card 2: Puntos GT -->
+                    <div class="process-card group flex flex-col rounded-3xl bg-gradient-to-br from-[#70ff51] to-[#8aff6f] border-2 border-[#99ff83] p-8 flex-1 shadow-2xl hover:shadow-[#70ff51]/50 transition-all duration-500 transform hover:-translate-y-2 fade-in-up animation-delay-200">
+                        <!-- Número e Icono -->
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm border-2 border-white/40">
+                                <span class="text-3xl font-extrabold text-gray-900">2</span>
+                            </div>
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-9 h-9 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                            </div>
                         </div>
+
+                        <!-- Contenido -->
                         <div class="flex flex-col gap-4 flex-1">
-                            <p class="font-bold text-2xl">2. Ganan puntos GT</p>
-                            <p class="font-[400] underline underline-offset-2"><span class="font-bold">Objetivo:</span> Asegurar que lleguen al viaje con confianza y soltura, no a "probar suerte". Así el aprendizaje será mucho mayor.</p>
-                            <p>Cada clase que ven y reto que completan suma puntos GT.</p>
-                            <p>Los puntos muestran su nivel de preparación real.</p>
-                            <p>Cuantos más puntos, más preparados estarán, más avanzados serán sus retos de inglés en el país destino y, por lo tanto, más aprenderán en los viajes.</p>
-                            <p>Por eso recomendamos unirse a la comunidad GoodTrav desde los 11 años, incluso si el viaje será más adelante.</p>
+                            <h3 class="font-extrabold text-2xl md:text-3xl text-gray-900 leading-tight">
+                                Ganan puntos GT
+                            </h3>
+                            
+                            <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+                                <p class="font-semibold text-gray-900 text-sm">
+                                    🎯 <span class="font-bold">Objetivo:</span> Asegurar que lleguen al viaje con confianza real, no a "probar suerte".
+                                </p>
+                            </div>
+
+                            <div class="space-y-3 text-gray-900">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Cada clase y reto completado suma puntos GT</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Los puntos muestran su nivel de preparación real</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Más puntos = retos más avanzados en el destino = más aprendizaje</p>
+                                </div>
+                                <div class="bg-gray-900/10 rounded-lg p-3 mt-4">
+                                    <p class="text-sm font-semibold">💡 Por eso recomendamos unirse desde los 11 años, incluso si el viaje será más adelante.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center rounded-2xl bg-[#ff5170] border-5 border-[#ff8399] p-6 flex-1 inset-shadow-sm inset-shadow-[#ae3a4f] shadow-xl md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto">
-                        <div class="py-6">
-                            <img src="https://i.pinimg.com/1200x/13/51/bf/1351bf9e366c5d9f2b0be9f5c3b9f2af.jpg" alt="Asi funciona" class="w-15">
+
+                    <!-- Card 3: Viaje -->
+                    <div class="process-card group flex flex-col rounded-3xl bg-gradient-to-br from-[#ff5170] to-[#ff6f88] border-2 border-[#ff8399] p-8 flex-1 shadow-2xl hover:shadow-[#ff5170]/50 transition-all duration-500 transform hover:-translate-y-2 md:col-span-2 lg:col-span-1 md:max-w-2xl lg:max-w-none md:mx-auto fade-in-up animation-delay-300">
+                        <!-- Número e Icono -->
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm border-2 border-white/40">
+                                <span class="text-3xl font-extrabold text-white">3</span>
+                            </div>
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
                         </div>
+
+                        <!-- Contenido -->
                         <div class="flex flex-col gap-4 flex-1">
-                            <p class="font-bold text-2xl">3. Viajan y práctican lo aprendido.</p>
-                            <p class="font-[400] underline underline-offset-2"><span class="font-bold">Objetivo:</span> Practicar inglés en situaciones reales a través de retos que tienen que completar hablando con personas nativas.</p>
-                            <p>Una vez obtenidos los puntos requeridos para un destino, están listos para viajar.</p>
-                            <p>Son viajes de 5 días donde han de completar retos interactuando con hablantes nativos mientras el profesor los supervisa y corrige.</p>
-                            <p>Sin riesgos. No hay familias de acogida. Los alumnos viajan y duermen con su grupo y profesores, siempre seguros.</p>
+                            <h3 class="font-extrabold text-2xl md:text-3xl text-white leading-tight">
+                                Viajan y practican lo aprendido
+                            </h3>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                <p class="font-semibold text-white text-sm">
+                                    🎯 <span class="font-bold">Objetivo:</span> Practicar inglés en situaciones reales con hablantes nativos.
+                                </p>
+                            </div>
+
+                            <div class="space-y-3 text-white/95">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Una vez conseguidos los puntos necesarios, ¡listos para viajar!</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Viajes de 5 días completando retos con nativos</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <p>Supervisión constante de profesores cualificados</p>
+                                </div>
+                                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 mt-4 border border-white/20">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <p class="font-bold text-sm">100% Seguro</p>
+                                    </div>
+                                    <p class="text-sm">Sin familias de acogida. Alumnos viajan y duermen con su grupo y profesores 24/7.</p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                </div>
+
+                <!-- Flecha de proceso visual (solo desktop) -->
+                <div class="hidden lg:flex items-center justify-center gap-4 mt-12 fade-in-up animation-delay-400">
+                    <div class="flex items-center gap-2">
+                        <div class="w-12 h-12 rounded-full bg-[#51c7ff] flex items-center justify-center text-white font-bold">1</div>
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                        <div class="w-12 h-12 rounded-full bg-[#70ff51] flex items-center justify-center text-gray-900 font-bold">2</div>
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                        <div class="w-12 h-12 rounded-full bg-[#ff5170] flex items-center justify-center text-white font-bold">3</div>
                     </div>
                 </div>
+
             </section>
         </div>
 
         <livewire:component.opiniones />
 
-        <div class="bg-white dark:bg-gray-900">
-            <section class="py-8 px-4 mx-auto lg:max-w-screen-xl xl:max-w-4xl md:max-w-screen-md sm:py-16 lg:px-6">
-                <p class="mb-4 text-4xl tracking-tight font-[600] text-gray-900 dark:text-white">Únete a la comunidad</p>
-                <div class="flex flex-col md:grid gap-6 md:gap-6 items-stretch">
-                    <div class="flex flex-col items-start rounded-2xl bg-[#70ff51] border-5 border-[#99ff83] p-6 flex-1 inset-shadow-sm inset-shadow-[#418b31] shadow-xl">
-                        <div class="flex flex-col lg:gap-4 md:gap-2 flex-1 lg:p-8 md:p-4">
-                            <p class="font-bold lg:text-4xl md:text-2xl">GoodTrav incluye:</p>
-                            <ul class="list-disc list-inside lg:text-xl md:text-base">
-                                <li>Clases online enfocadas en prepararlos para moverse por el mundo</li>
-                                <li>Retos de inglés semanales que tienen que completar</li>
-                                <li>Puntos GT para medir su aprendizaje y progreso</li>
-                                <li class="font-bold">Acceso a viajes de inglés seguros, con profesores cualificados 24/7</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-col p-8 justify-center text-center w-full">
-                            <p class="font-bold lg:text-4xl md:text-2xl">1ª semana GRATIS</p>
-                            <p>Después 16EUR/mes o <span class="font-bold">12EUR/mes</span> <br>
-                            (si formas parte de uno de nuestros centros colaboradores)</p>
-                        </div>
-                        <div class="flex flex-col lg:p-8 md:p-4 justify-center text-center w-full">
-                            <p class="lg:text-2xl md:text-base font-bold">Cancela cuando quieras.</p>
-                        </div>
-                        <div class="flex flex-col lg:p-8 md:p-4 md:mt-4 lg:mt-1 justify-center text-center lg:w-1/2 md:w-full mx-auto">
-                            <button class="text-white bg-[#5170ff] hover:bg-[#4158d0] focus:outline-none focus:ring-4 focus:ring-[#4158d0] font-medium rounded-full text-lg px-8 py-4 text-center cursor-pointer inline-block">Quiero unirme GRATIS</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+
+        <livewire:component.subcriptions />
+
+
 
         <livewire:component.colaboradores />
 

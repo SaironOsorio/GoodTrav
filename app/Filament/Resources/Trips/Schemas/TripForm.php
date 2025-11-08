@@ -11,6 +11,7 @@ use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\Column;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
+use Illuminate\Support\Facades\Storage;
 
 class TripForm
 {
@@ -29,7 +30,12 @@ class TripForm
                             ->image()
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg'])
                             ->required()
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->deleteUploadedFileUsing(function ($file) {
+                                if ($file && Storage::disk('public')->exists($file)) {
+                                    Storage::disk('public')->delete($file);
+                                }
+                            }),
                         TextInput::make('destination')
                             ->label('Destino')
                             ->helperText('Ingresa el destino del viaje.')
@@ -62,7 +68,7 @@ class TripForm
                             ->helperText('Ingresa el precio del viaje.')
                             ->required()
                             ->numeric()
-                            ->money('EUR'),
+                            ->suffix('EUR'),
                         TextInput::make('points')
                             ->label('Puntos')
                             ->helperText('Ingresa los puntos asociados al viaje.')
@@ -120,7 +126,12 @@ class TripForm
                                     ->directory('trip-itinerary-images')
                                     ->image()
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg'])
-                                    ->required(),
+                                    ->required()
+                                    ->deleteUploadedFileUsing(function ($file) {
+                                        if ($file && Storage::disk('public')->exists($file)) {
+                                            Storage::disk('public')->delete($file);
+                                        }
+                                    }),
                             ])
                             ->minItems(1)
                             ->columnSpanFull(),
@@ -148,6 +159,11 @@ class TripForm
                                 ->directory('trip-note-images')
                                 ->image()
                                 ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg'])
+                                ->deleteUploadedFileUsing(function ($file) {
+                                if ($file && Storage::disk('public')->exists($file)) {
+                                    Storage::disk('public')->delete($file);
+                                }
+                            })
                         ])
                         ->columnSpanFull(),
             ]);
