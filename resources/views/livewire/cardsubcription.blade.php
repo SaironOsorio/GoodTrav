@@ -2,10 +2,10 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
             <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-extrabold">
                     Planes pensados para tu progreso
                 </h2>
-                <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
+                <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400 montserrat-medium">
                     Aprender inglés es más que estudiar un idioma: es abrirte al mundo. Con nuestras membresías podrás mejorar tu nivel, prepararte para viajar, trabajar o comunicarte con confianza donde quiera que vayas.
                 </p>
             </div>
@@ -18,17 +18,17 @@
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
                             </svg>
-                            <h3 class="text-2xl font-bold">¡7 Días de Prueba Gratuita!</h3>
+                            <h3 class="text-2xl font-bold poppins-bold">¡7 Días de Prueba Gratuita!</h3>
                         </div>
-                        <p class="text-lg mb-2">Prueba todas las funcionalidades sin compromiso</p>
-                        <p class="text-sm opacity-90">No se realizará ningún cargo durante los primeros 7 días. Cancela cuando quieras.</p>
+                        <p class="text-lg mb-2 montserrat-medium">Prueba todas las funcionalidades sin compromiso</p>
+                        <p class="text-sm opacity-90 montserrat-medium">No se realizará ningún cargo durante los primeros 7 días. Cancela cuando quieras.</p>
                     </div>
                 </div>
             @endif
 
             <!-- Campo de cupón mejorado -->
             <div class="max-w-md mx-auto mb-8">
-                <label for="coupon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label for="coupon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white poppins-medium">
                     ¿Tienes un cupón de descuento?
                 </label>
                 <div class="flex gap-2">
@@ -41,8 +41,14 @@
                     >
                     <button
                         wire:click="validateCoupon"
-                        class="px-4 py-2 bg-[#5170ff] text-white rounded-lg hover:bg-[#4060ef] transition-colors font-medium text-sm cursor-pointer whitespace-nowrap">
-                        Aplicar
+                        class="px-4 py-2 bg-[#5170ff] text-white rounded-lg hover:bg-[#4060ef] transition-colors font-medium text-sm cursor-pointer whitespace-nowrap poppins-medium relative">
+                        <span wire:loading.remove>Aplicar</span>
+                        <span wire:loading>
+                            <svg class="animate-spin h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                            </svg>
+                        </span>
                     </button>
                 </div>
 
@@ -51,7 +57,7 @@
                         <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
                         </svg>
-                        <p class="text-sm text-red-600 font-medium">{{ session('coupon_error') }}</p>
+                        <p class="text-sm text-red-600 font-medium montserrat-medium">{{ session('coupon_error') }}</p>
                     </div>
                 @endif
 
@@ -60,7 +66,7 @@
                         <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                         </svg>
-                        <p class="text-sm text-green-600 font-medium">{{ session('coupon_success') }}</p>
+                        <p class="text-sm text-green-600 font-medium montserrat-medium">{{ session('coupon_success') }}</p>
                     </div>
                 @endif
             </div>
@@ -138,12 +144,21 @@
 
                             <button
                                 wire:click="checkout('{{ $subscription['stripe_price_id'] }}', '{{ $couponCode ?? '' }}')"
-                                class="w-full text-black bg-[#70ff51] hover:bg-[#60e041] focus:ring-4 focus:ring-[#70ff51] font-medium rounded-lg text-sm px-6 py-3 text-center transition-all mb-3 cursor-pointer">
-                                @if(!$hasHadTrial)
-                                    Empezar prueba gratuita
-                                @else
-                                    Suscribirse ahora
-                                @endif
+                                class="w-full text-black bg-[#70ff51] hover:bg-[#60e041] focus:ring-4 focus:ring-[#70ff51] font-medium rounded-lg text-sm px-6 py-3 text-center transition-all mb-3 cursor-pointer relative">
+                                <span wire:loading.remove>
+                                    @if(!$hasHadTrial)
+                                        Empezar prueba gratuita
+                                    @else
+                                        Suscribirse ahora
+                                    @endif
+                                </span>
+                                <span wire:loading>
+                                    <svg class="animate-spin h-5 w-5 text-black inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                                    </svg>
+                                    Procesando...
+                                </span>
                             </button>
 
                             @if(!$hasHadTrial)
