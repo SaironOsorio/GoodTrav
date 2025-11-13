@@ -11,10 +11,10 @@
                     <svg class="w-5 h-5 text-[#5170ff]" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
                     </svg>
-                    <span class="text-sm font-semibold text-[#5170ff]">FAQ</span>
+                    <span class="text-sm font-semibold text-[#5170ff] poppins-bold">FAQ</span>
                 </div>
 
-                <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
                     Preguntas frecuentes
                 </h2>
                 <p class="text-lg text-gray-600 dark:text-gray-400">
@@ -51,7 +51,7 @@
                                         </svg>
                                     </div>
 
-                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-[#5170ff] transition-colors">
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-[#5170ff] transition-colors poppins-bold">
                                         {{ $question->title }}
                                     </h3>
                                 </div>
@@ -79,7 +79,7 @@
                                         <svg class="w-5 h-5 text-[#70ff51] flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                                         </svg>
-                                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed open-sans-regular">
                                             {{ $question->response }}
                                         </p>
                                     </div>
@@ -94,20 +94,12 @@
                     <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-300 mb-2">
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-300 mb-2 poppins-bold">
                         Preguntas frecuentes próximamente
                     </h3>
-                    <p class="text-gray-500 dark:text-gray-400 mb-6">
+                    <p class="text-gray-500 dark:text-gray-400 mb-6 open-sans-regular">
                         Estamos preparando las respuestas a las preguntas más comunes
                     </p>
-                    <div class="flex justify-center gap-4">
-                        <a href="tel:614189556" class="text-[#5170ff] hover:text-[#ff5170] font-semibold transition-colors">
-                            Llamar ahora →
-                        </a>
-                        <a href="mailto:info@goodtrav.com" class="text-[#5170ff] hover:text-[#ff5170] font-semibold transition-colors">
-                            Enviar email →
-                        </a>
-                    </div>
                 </div>
             @endif
         </div>
