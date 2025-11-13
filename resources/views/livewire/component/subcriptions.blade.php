@@ -10,29 +10,29 @@
                     <span class="text-sm font-semibold text-[#5170ff]">Planes</span>
                 </div>
 
-                <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-                    Elige tu plan perfecto
+                <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
+                   Comienza tu aventura con GoodTrav
                 </h2>
-                <p class="mb-5 text-lg text-gray-600 dark:text-gray-400">
-                    Comienza tu aventura con GoodTrav. Primera semana gratis, cancela cuando quieras.
+                <p class="mb-5 text-lg text-gray-600 dark:text-gray-400 montserrat-regular">
+                    Explora nuestros planes y prepárate para vivir experencias inolvidables alrededor del mundo.
                 </p>
             </div>
 
             @if($subscriptions && $subscriptions->count() > 0)
-                <!-- Grid de planes -->
-                <div class="grid gap-8 lg:grid-cols-3 sm:grid-cols-2 xl:gap-10">
+                <!-- Flex container horizontal -->
+                <div class="w-full max-w-7xl mx-auto">
                     @foreach($subscriptions as $index => $subscription)
                         @php
-                            $isPopular = $index === 1; // El segundo plan (índice 1) será el destacado
+                            $isPopular = $index === 1;
                         @endphp
-                        
-                        <div class="subscription-card fade-in-up animation-delay-{{ $index * 100 }} flex flex-col p-6 mx-auto max-w-lg text-center rounded-3xl border-2 relative
+
+                        <div class="subscription-card fade-in-up animation-delay-{{ $index * 100 }} flex flex-col md:flex-row items-center gap-8 p-8 w-full rounded-3xl border-2 relative
                             {{ $isPopular
-                                ? 'bg-gradient-to-br from-[#5170ff] to-[#ff5170] border-transparent text-white shadow-2xl hover:shadow-[#5170ff]/50 transform scale-105' 
-                                : 'bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-600 shadow-lg hover:shadow-xl' 
-                            }} 
+                                ? 'bg-gradient-to-br from-[#5170ff] to-[#ff5170] border-transparent text-white shadow-2xl hover:shadow-[#5170ff]/50 transform scale-105'
+                                : 'bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-600 shadow-lg hover:shadow-xl'
+                            }}
                             transition-all duration-300 hover:-translate-y-2">
-                            
+
                             <!-- Badge "Más popular" -->
                             @if($isPopular)
                                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -42,99 +42,149 @@
                                 </div>
                             @endif
 
-                            <!-- Título -->
-                            <h3 class="mb-4 text-2xl font-extrabold {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
-                                {{ $subscription->title }}
-                            </h3>
+                            <!-- Columna izquierda: Título, Descripción y Precio -->
+                            <div class="flex-1 text-center md:text-left">
+                                <h3 class="mb-4 text-2xl font-extrabold poppins-extrabold {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
+                                    {{ $subscription->title }}
+                                </h3>
 
-                            <!-- Descripción -->
-                            <p class="font-light sm:text-lg {{ $isPopular ? 'text-white/90' : 'text-gray-600 dark:text-gray-400' }}">
-                                {{ $subscription->description }}
-                            </p>
+                                <p class="font-light sm:text-lg montserrat-regular {{ $isPopular ? 'text-white/90' : 'text-gray-600 dark:text-gray-400' }} mb-6">
+                                    {{ $subscription->description }}
+                                </p>
 
-                            <!-- Precio -->
-                            <div class="flex justify-center items-baseline my-8">
-                                <span class="mr-2 text-5xl font-extrabold {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
-                                    €{{ ($subscription->price) }}
-                                </span>
-                                <span class="{{ $isPopular ? 'text-white/80' : 'text-gray-600 dark:text-gray-400' }}">
-                                    /{{ $subscription->duration }} mes
-                                </span>
+                                <div class="flex justify-center md:justify-start items-baseline">
+                                    <span class="mr-2 text-5xl font-extrabold montserrat-regular {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
+                                        €{{ ($subscription->price) }}
+                                    </span>
+                                    <span class="montserrat-regular {{ $isPopular ? 'text-white/80' : 'text-gray-600 dark:text-gray-400' }}">
+                                        /{{ $subscription->duration }} mes
+                                    </span>
+                                </div>
                             </div>
 
-                            <!-- Features -->
-                            <ul role="list" class="mb-8 space-y-4 text-left flex-1">
-                                @php
-                                    $features = is_array($subscription->features) 
-                                        ? $subscription->features 
-                                        : json_decode($subscription->features, true);
-                                @endphp
-                                
-                                @if($features)
-                                    @foreach($features as $featureItem)
-                                        @php
-                                            // Manejar tanto formato ["texto"] como [{"feature": "texto"}]
-                                            $featureText = is_array($featureItem) && isset($featureItem['feature']) 
-                                                ? $featureItem['feature'] 
-                                                : (is_string($featureItem) ? $featureItem : '');
-                                        @endphp
-                                        
-                                        @if($featureText)
-                                            <li class="flex items-start space-x-3">
-                                                <svg class="flex-shrink-0 w-5 h-5 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                                </svg>
-                                                <span class="{{ $isPopular ? 'text-white' : 'text-gray-600 dark:text-gray-400' }}">
-                                                    {{ $featureText }}
-                                                </span>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </ul>
+                            <!-- Columna derecha: Features -->
+                            <div class="flex-1">
+                                <ul role="list" class="space-y-4 text-left">
+                                    @php
+                                        $features = is_array($subscription->features)
+                                            ? $subscription->features
+                                            : json_decode($subscription->features, true);
+                                    @endphp
 
-                            <!-- Botón -->
-                            <a 
-                                href="{{route('register')}}"
-                                class="
-                                    {{ $isPopular
-                                        ? 'bg-white text-[#5170ff] hover:bg-gray-100 focus:ring-4 focus:ring-white/50' 
-                                        : 'bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white hover:shadow-lg hover:shadow-[#5170ff]/50 focus:ring-4 focus:ring-[#5170ff]/50' 
-                                    }} 
-                                    font-bold rounded-full text-base px-8 py-3.5 text-center transition-all duration-300 hover:scale-105 transform">
-                                Comenzar ahora
-                            </a>
+                                    @if($features)
+                                        @foreach($features as $featureItem)
+                                            @php
+                                                $featureText = is_array($featureItem) && isset($featureItem['feature'])
+                                                    ? $featureItem['feature']
+                                                    : (is_string($featureItem) ? $featureItem : '');
+                                            @endphp
 
-                            <!-- Nota adicional -->
-                            <p class="mt-4 text-xs {{ $isPopular ? 'text-white/70' : 'text-gray-500 dark:text-gray-400' }}">
-                                Cancela cuando quieras
-                            </p>
+                                            @if($featureText)
+                                                <li class="flex items-start space-x-3">
+                                                    <svg class="flex-shrink-0 w-5 h-5 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                    <span class="{{ $isPopular ? 'text-white' : 'text-gray-600 dark:text-gray-400' }} open-sans-regular">
+                                                        {{ $featureText }}
+                                                    </span>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </div>
+
+                            <!-- Columna de botón -->
+                            <div class="flex flex-col items-center md:items-end gap-4">
+                                <a
+                                    href="{{route('register')}}"
+                                    class="
+                                        {{ $isPopular
+                                            ? 'bg-white text-[#5170ff] hover:bg-gray-100 focus:ring-4 focus:ring-white/50'
+                                            : 'bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white hover:shadow-lg hover:shadow-[#5170ff]/50 focus:ring-4 focus:ring-[#5170ff]/50'
+                                        }}
+                                        font-bold rounded-full text-base px-8 py-3.5 text-center transition-all duration-300 hover:scale-105 transform whitespace-nowrap poppins-bold">
+                                    Comenzar ahora
+                                </a>
+
+                                <p class="text-xs open-sans-regular {{ $isPopular ? 'text-white/70' : 'text-gray-500 dark:text-gray-400' }}">
+                                    Cancela cuando quieras
+                                </p>
+                            </div>
                         </div>
                     @endforeach
-                </div>
+                    <br>
 
-                <!-- FAQ rápido -->
-                <div class="mt-12 max-w-3xl mx-auto text-center fade-in-up animation-delay-500">
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                        ¿Tienes preguntas? Estamos aquí para ayudarte
-                    </p>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <a href="tel:614189556" class="inline-flex items-center gap-2 text-[#5170ff] hover:text-[#ff5170] font-semibold transition-colors">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                            </svg>
-                            614189556
-                        </a>
-                        <a href="mailto:info@goodtrav.com" class="inline-flex items-center gap-2 text-[#5170ff] hover:text-[#ff5170] font-semibold transition-colors">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                            </svg>
-                            info@goodtrav.com
-                        </a>
-                    </div>
-                </div>
+                   @php
 
+                       $basePrice = $subscriptions && $subscriptions->count() ? $subscriptions->first()->price : 0;
+                       $couponPercent = 25;
+                       $discountedPrice = number_format($basePrice * (1 - $couponPercent / 100), 2);
+                       $centrosList = $contributors->map(function($contributor) {
+                           return [
+                               'name' => $contributor->name,
+                               'image' => $contributor->imagen_path,
+                           ];
+                       })->toArray();
+                   @endphp
+
+                   <div class="w-full max-w-7xl mx-auto mt-6">
+                       <div class="bg-white/80 dark:bg-gray-800 rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-gray-700 shadow-lg">
+                           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+                               <div class="flex-1">
+                                   <h3 class="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white poppins-bold">
+                                       ¿Formas parte de alguno de nuestros colaboradores?
+                                   </h3>
+                                   <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 montserrat-regular">
+                                       Si tu centro está en la lista, podrás aplicar un cupón y obtener un precio especial para tus estudiantes.
+                                   </p>
+                               </div>
+
+                               <div class="flex items-center gap-6">
+                                   <div class="text-center">
+                                       <div class="text-xs text-gray-500">Precio base</div>
+                                       <div class="text-2xl font-extrabold text-gray-900 dark:text-white">€{{ number_format($basePrice, 2) }}</div>
+                                   </div>
+                                   <div class="text-center">
+                                       <div class="text-xs text-gray-500">Con cupón ({{ $couponPercent }}%)</div>
+                                       <div class="text-2xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}</div>
+                                   </div>
+                               </div>
+                           </div>
+
+
+                           <ul class="space-y-4 w-full">
+                               @foreach($centrosList as $centro)
+                                   <li class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-600">
+                                       <div class="flex items-center gap-4">
+                                           <div class="w-12 h-12 rounded-lg flex items-center justify-center">
+                                                <img src="{{ Storage::url($centro['image']) }}" alt="{{ $centro['name']  }}">
+                                           </div>
+                                           <div>
+                                               <p class="text-sm font-semibold text-gray-800 dark:text-white montserrat-regular">{{ $centro['name'] }}</p>
+                                           </div>
+                                       </div>
+
+                                       <div class="flex items-center gap-3">
+                                           <a
+                                               href="https://wa.me/573228668871?text={{ urlencode('Hola, soy docente y quiero información para activar el descuento del centro: '.$centro['name'].' | Precio base: €'.number_format($basePrice,2).' -> Con cupón: €'.$discountedPrice) }}"
+                                               target="_blank"
+                                               rel="noopener noreferrer"
+                                               class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full shadow-sm transition-transform duration-150 transform hover:-translate-y-0.5">
+                                               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                   <path d="M21 15a2 2 0 0 1-2 2h-1l-3 3-2-2-3 3v-1a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                                               </svg>
+                                               Comenzar
+                                           </a>
+                                       </div>
+                                   </li>
+                               @endforeach
+                            </ul>
+                       </div>
+                   </div>
+
+
+                </div>
             @else
                 <!-- Estado vacío -->
                 <div class="text-center py-16">

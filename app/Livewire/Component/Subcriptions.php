@@ -4,6 +4,7 @@ namespace App\Livewire\Component;
 
 use Livewire\Component;
 use App\Models\Subcription;
+use App\Models\Contributors;
 
 class Subcriptions extends Component
 {
@@ -11,9 +12,11 @@ class Subcriptions extends Component
     public function render()
     {
         $subscriptions = Subcription::orderBy('price', 'asc')->get();
+        $contributors = Contributors::all();
 
         return view('livewire.component.subcriptions', [
-            'subscriptions' => $subscriptions
+            'subscriptions' => $subscriptions,
+            'contributors' => $contributors,
         ]);
     }
 

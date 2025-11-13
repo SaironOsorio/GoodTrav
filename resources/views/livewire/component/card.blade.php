@@ -14,13 +14,13 @@
             <!-- Banner de categorías -->
             <div class="mb-8 bg-[#5170ff] rounded-2xl p-6 border-2 border-gray-200 shadow-lg">
                 <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+                    <div class="flex items-center gap-3  backdrop-blur-sm rounded-lg px-6 py-3">
                         <div class="w-3 h-3 rounded-full bg-[#70ff51] animate-pulse"></div>
                         <p class="text-white font-bold text-lg md:text-xl montserrat-medium">
                             11-14 años: <span class="text-[#70ff51] font-extrabold poppins-bold">JUNIOR</span>
                         </p>
                     </div>
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+                    <div class="flex items-center gap-3  backdrop-blur-sm rounded-lg px-6 py-3">
                         <div class="w-3 h-3 rounded-full bg-[#ff5170] animate-pulse"></div>
                         <p class="text-white font-bold text-lg md:text-xl montserrat-medium">
                             15-18 años: <span class="text-[#ff5170] font-extrabold poppins-bold">SENIOR</span>
@@ -70,7 +70,7 @@
                                     {{ $item->title }}
                                 </p>
 
-                                
+
                                 <!-- Salida --->
                                 <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                                     <svg class="w-5 h-5 text-[#5170ff]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -81,7 +81,7 @@
                                         Salida: Bilbao
                                     </p>
                                 </div>
-                        
+
                                 <!-- Fechas -->
                                 <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                                     <svg class="w-5 h-5 text-[#5170ff]" fill="currentColor" viewBox="0 0 20 20">

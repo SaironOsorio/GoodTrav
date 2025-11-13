@@ -5,7 +5,10 @@
         <div class="bg-white rounded-xl shadow-sm p-6">
             <h3 class="font-bold text-2xl text-gray-800 mb-4">{{ __('¿Qué es GoodTrav Society?') }}</h3>
             <p class="text-gray-600 leading-relaxed">
-                {{ __('Comunidad de embajadores que comparten su preparación, progreso en GT Points y experiencias de viaje/estudio en el extranjero para inspirar a otros. Ganan puntos por sus aportaciones en redes, eventos y resolviendo dudas. Conectan con estudiantes internacionales y ayudan a nuevos participantes.') }}
+                {{ __('Comunidad creada por viajeros, para futuros viajeros. 
+                    Aquí compartirás, inspirarás y ganarás beneficios cool por ser tú. 
+                    Vive el inglés viajando, cumpliendo tus sueños y ayudando a otros a cumplir sus sueños 
+                    también') }}
             </p>
         </div>
 

@@ -60,11 +60,11 @@
                                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                                         </svg>
                                     </div>
-                                    <input type="text" wire:model="name" id="name" 
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('name') border-red-500 focus:ring-red-500 @enderror" 
+                                    <input type="text" wire:model="name" id="name"
+                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('name') border-red-500 focus:ring-red-500 @enderror"
                                            placeholder="Tu nombre completo" />
                                 </div>
-                                @error('name') 
+                                @error('name')
                                     <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -86,11 +86,11 @@
                                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                                         </svg>
                                     </div>
-                                    <input type="email" wire:model="email" id="email" 
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('email') border-red-500 focus:ring-red-500 @enderror" 
+                                    <input type="email" wire:model="email" id="email"
+                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('email') border-red-500 focus:ring-red-500 @enderror"
                                            placeholder="tu@email.com" />
                                 </div>
-                                @error('email') 
+                                @error('email')
                                     <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -112,10 +112,10 @@
                                         </svg>
                                     </div>
                                     <input type="tel" wire:model="telefono" id="telefono" inputmode="tel"
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('telefono') border-red-500 focus:ring-red-500 @enderror [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" 
+                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('telefono') border-red-500 focus:ring-red-500 @enderror [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                            placeholder="+34 600 000 000" />
                                 </div>
-                                @error('telefono') 
+                                @error('telefono')
                                     <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -130,10 +130,10 @@
                                 <label for="message" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
                                     Mensaje
                                 </label>
-                                <textarea wire:model="message" id="message" rows="5" 
-                                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all resize-none @error('message') border-red-500 focus:ring-red-500 @enderror" 
+                                <textarea wire:model="message" id="message" rows="5"
+                                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all resize-none @error('message') border-red-500 focus:ring-red-500 @enderror"
                                           placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
-                                @error('message') 
+                                @error('message')
                                     <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -146,16 +146,16 @@
                             <!-- Checkbox política -->
                             <div>
                                 <div class="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                                    <input wire:model="acepta_politica" id="remember" type="checkbox" 
+                                    <input wire:model="acepta_politica" id="remember" type="checkbox"
                                            class="w-5 h-5 mt-0.5 border-2 border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] dark:bg-gray-600 dark:border-gray-500 transition-all cursor-pointer @error('acepta_politica') border-red-500 @enderror" />
                                     <label for="remember" class="text-sm text-gray-700 dark:text-gray-300">
-                                        He leído y acepto la 
+                                        He leído y acepto la
                                         <a href="#" class="font-semibold text-[#5170ff] hover:text-[#ff5170] underline decoration-2 underline-offset-2 transition-colors">
                                             política de privacidad
                                         </a>
                                     </label>
                                 </div>
-                                @error('acepta_politica') 
+                                @error('acepta_politica')
                                     <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
@@ -166,8 +166,8 @@
                             </div>
 
                             <!-- Botón submit -->
-                            <button type="submit" 
-                                    class="w-full bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-xl px-8 py-4 hover:shadow-lg hover:shadow-[#5170ff]/50 focus:ring-4 focus:ring-[#5170ff]/50 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2" 
+                            <button type="submit"
+                                    class="w-full bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-xl px-8 py-4 hover:shadow-lg hover:shadow-[#5170ff]/50 focus:ring-4 focus:ring-[#5170ff]/50 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                     wire:loading.attr="disabled">
                                 <span wire:loading.remove>
                                     Enviar mensaje
@@ -193,7 +193,7 @@
                         </h3>
                         <div class="space-y-4">
                             <!-- Email -->
-                            <a href="mailto:info@goodtrav.com" 
+                            <a href="mailto:info@goodtrav.com"
                                class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
                                 <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#5170ff] to-[#ff5170] flex items-center justify-center flex-shrink-0">
                                     <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -210,7 +210,7 @@
                             </a>
 
                             <!-- Teléfono -->
-                            <a href="tel:+34911234567" 
+                            <a href="tel:+34911234567"
                                class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
                                 <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#70ff51] to-[#5170ff] flex items-center justify-center flex-shrink-0">
                                     <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -221,6 +221,21 @@
                                     <p class="text-sm text-gray-500 dark:text-gray-400">Teléfono</p>
                                     <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors">
                                         +34 91 123 45 67
+                                    </p>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/34911234567?text={{ urlencode('Hola, me gustaría obtener más información sobre GoodTrav.') }}"
+                            class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
+                                <div class="w-12 h-12 rounded-xl bg-[#70ff51]  flex items-center justify-center flex-shrink-0">
+                                    <svg class=" text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor">
+                                        <path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">WhatsApp</p>
+                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors">
+                                        Enviar mensaje
                                     </p>
                                 </div>
                             </a>

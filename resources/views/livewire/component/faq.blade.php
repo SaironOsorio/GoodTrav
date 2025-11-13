@@ -1,5 +1,5 @@
 <div x-data="{ openQuestion: null }">
-    <section class="bg-gradient-to-b from-gray-50 to-white dark:bg-gray-900 relative overflow-hidden">
+    <section class=" relative overflow-hidden">
         <!-- Elementos decorativos -->
         <div class="absolute top-20 left-10 w-64 h-64 bg-[#ff5170]/5 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-80 h-80 bg-[#5170ff]/5 rounded-full blur-3xl"></div>
@@ -26,10 +26,10 @@
                 <!-- Acordeón de preguntas -->
                 <div class="max-w-4xl mx-auto space-y-4">
                     @foreach($questions as $index => $question)
-                        <div 
+                        <div
                             x-data="{ isOpen: false }"
                             class="faq-item fade-in-up animation-delay-{{ $index * 100 }} bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:border-[#5170ff]/30 hover:shadow-lg">
-                            
+
                             <!-- Pregunta (botón) -->
                             <button
                                 @click="isOpen = !isOpen; openQuestion = isOpen ? {{ $question->id }} : null"
@@ -39,13 +39,13 @@
 
                                 <!-- Icono de pregunta -->
                                 <div class="flex items-center gap-4 flex-1">
-                                    <div 
+                                    <div
                                         class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
                                         :class="isOpen ? 'bg-gradient-to-r from-[#5170ff] to-[#ff5170]' : 'bg-gray-100 dark:bg-gray-700'">
-                                        <svg 
-                                            class="w-5 h-5 transition-colors duration-300" 
+                                        <svg
+                                            class="w-5 h-5 transition-colors duration-300"
                                             :class="isOpen ? 'text-white' : 'text-gray-500 dark:text-gray-400'"
-                                            fill="currentColor" 
+                                            fill="currentColor"
                                             viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
                                         </svg>
@@ -58,7 +58,7 @@
 
                                 <!-- Icono de flecha -->
                                 <div class="flex-shrink-0">
-                                    <svg 
+                                    <svg
                                         class="w-6 h-6 text-gray-500 dark:text-gray-400 transition-all duration-300"
                                         :class="{ 'rotate-180 text-[#5170ff]': isOpen }"
                                         fill="none"
@@ -70,7 +70,7 @@
                             </button>
 
                             <!-- Respuesta (panel desplegable) -->
-                            <div 
+                            <div
                                 x-show="isOpen"
                                 x-collapse
                                 class="overflow-hidden">
@@ -88,36 +88,6 @@
                         </div>
                     @endforeach
                 </div>
-
-                <!-- CTA de contacto -->
-                <div class="mt-12 max-w-4xl mx-auto fade-in-up animation-delay-400">
-                    <div class="bg-gradient-to-r from-[#5170ff]/10 to-[#ff5170]/10 rounded-2xl p-8 border border-[#5170ff]/20 text-center">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                            ¿No encuentras lo que buscas?
-                        </h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">
-                            Nuestro equipo está aquí para ayudarte con cualquier pregunta
-                        </p>
-                        <div class="flex flex-col sm:flex-row justify-center gap-4">
-                            <a href="tel:614189556"
-                               class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-full px-8 py-3.5 hover:shadow-lg hover:shadow-[#5170ff]/50 transition-all duration-300 hover:scale-105">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                                </svg>
-                                Llamar ahora
-                            </a>
-                            <a href="mailto:info@goodtrav.com"
-                               class="inline-flex items-center justify-center gap-2 bg-white dark:bg-gray-800 text-[#5170ff] font-bold rounded-full px-8 py-3.5 border-2 border-[#5170ff] hover:bg-[#5170ff] hover:text-white transition-all duration-300 hover:scale-105">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                                </svg>
-                                Enviar email
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
             @else
                 <!-- Estado vacío -->
                 <div class="text-center py-16 max-w-2xl mx-auto">
