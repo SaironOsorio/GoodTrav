@@ -10,22 +10,31 @@
             <!-- Name -->
             <flux:input
                 name="name"
-                :label="__('Nombre')"
+                :label="__('Nombre del padre/madre o tutor legal')"
                 type="text"
-                required
                 autofocus
                 autocomplete="name"
                 :placeholder="__('Nombre completo')"
             />
+
 
             <!-- Email Address -->
             <flux:input
                 name="email"
                 :label="__('Correo electrónico')"
                 type="email"
-                required
                 autocomplete="email"
                 placeholder="email@example.com"
+            />
+
+
+            <!-- Address -->
+            <flux:input
+                name="address"
+                :label="__('Dirección (Opcional)')"
+                type="text"
+                autocomplete="street-address"
+                :placeholder="__('Dirección')"
             />
 
             <!-- Phone Number -->
@@ -33,7 +42,6 @@
                 <flux:select
                     name="country_code"
                     :label="__('Código de país')"
-                    required
                     class="w-32"
                 >
                     <option value="+1">+1 Estados Unidos / Canadá</option>
@@ -62,35 +70,32 @@
 
                 </flux:select>
 
-                <flux:input
+            <flux:input
                     name="phone"
                     :label="__('Número de teléfono')"
                     type="tel"
-                    required
                     autocomplete="tel"
                     :placeholder="__('Número de teléfono')"
                     class="flex-1"
                 />
             </div>
 
+            <flux:input
+                name="student_name"
+                :label="__('Nombre del estudiante')"
+                type="text"
+                autofocus
+                autocomplete="name"
+                :placeholder="__('Nombre completo')"
+            />
+
             <!-- Date of Birth -->
             <flux:input
                 name="date_of_birth"
-                :label="__('Fecha de nacimiento')"
+                :label="__('Fecha de nacimiento del estudiante')"
                 type="date"
-                required
                 autocomplete="bday"
                 :placeholder="__('Fecha de nacimiento')"
-            />
-
-            <!-- Address -->
-            <flux:input
-                name="address"
-                :label="__('Dirección')"
-                type="text"
-                required
-                autocomplete="street-address"
-                :placeholder="__('Dirección')"
             />
 
             @php
@@ -101,7 +106,6 @@
             <flux:select
                 name="nationality"
                 :label="__('Nacionalidad')"
-                required
                 autocomplete="nationality"
             >
                 <option value="">{{ __('Seleccione su nacionalidad') }}</option>
@@ -115,7 +119,6 @@
                 name="password"
                 :label="__('Contraseña')"
                 type="password"
-                required
                 autocomplete="new-password"
                 :placeholder="__('Contraseña')"
                 viewable
@@ -126,11 +129,35 @@
                 name="password_confirmation"
                 :label="__('Confirmar contraseña')"
                 type="password"
-                required
                 autocomplete="new-password"
                 :placeholder="__('Confirmar contraseña')"
                 viewable
             />
+
+
+            <!-- Términos y condiciones -->
+            <input type="hidden" name="terms" value="0">
+            <flux:field variant="inline">
+                <flux:checkbox name="terms" wire:model="terms" value="1" />
+                <flux:label>Acepto los <a class="ml-1 text-[#5170ff] underline" href="{{ route('privacity') }}">Términos y la Política de Privacidad.</a></flux:label>
+                <flux:error name="terms" />
+            </flux:field>
+
+            <!-- Autorización de audio -->
+            <input type="hidden" name="audio" value="0">
+            <flux:field variant="inline">
+                <flux:checkbox name="audio" wire:model="audio" value="1" />
+                <flux:label>Autorizo el tratamiento de los datos personales y la grabación de voz de mi hijo/a.</flux:label>
+                <flux:error name="audio" />
+            </flux:field>
+
+            <!-- Confirmación de tutor legal -->
+            <input type="hidden" name="autor" value="0"> 
+            <flux:field variant="inline">
+                <flux:checkbox name="autor" wire:model="autor" value="1" />
+                <flux:label>Confirmo que soy el padre/madre/tutor legal.</flux:label>
+                <flux:error name="autor" />
+            </flux:field>
 
             <div class="flex items-center justify-end">
                 <flux:button type="submit" variant="primary" class="w-full cursor-pointer" data-test="register-user-button">

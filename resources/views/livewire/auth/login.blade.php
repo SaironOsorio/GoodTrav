@@ -1,6 +1,6 @@
 <x-layouts.auth>
     <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Inicie sesión en su cuenta.')" :description="__('Ingrese su correo electrónico y contraseña a continuación para iniciar sesión.')" />
+        <x-auth-header :title="__('Iniciar Seccion.')" :description="__('Ingrese su correo electrónico y contraseña a continuación para iniciar sesión.')" />
 
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />

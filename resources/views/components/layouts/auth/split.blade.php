@@ -7,7 +7,7 @@
         <div class="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
             <div class="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-e dark:border-neutral-800">
                 <div class="absolute inset-0 ">
-                    <img src="https://www.bbva.es/content/dam/public-web/bbvaes/images/finanzas-vistazo/ef/cuentas/menores/2400x1600/2400x1600-viajes-de-estudios.jpg" alt="GoodTrav" class="absolute inset-0 h-full w-full object-cover opacity-80" />
+                    <img src="{{ asset('assets/images/bg_auth.png') }}" alt="GoodTrav" class="absolute inset-0 h-full w-full object-cover opacity-80" />
                 </div>
                 <a href="{{ route('home') }}" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
                     <span class="flex h-40 w-40 items-center justify-center rounded-md">
@@ -16,13 +16,14 @@
                 </a>
 
                 @php
-                    [$message, $author] = str(Illuminate\Foundation\Inspiring::quotes()->random())->explode('-');
+                    $message = "Sin emoción no hay aprendizaje" ;
+                    $author = "Francisco Mora, doctor en Neurociencia"
                 @endphp
 
                 <div class="relative z-20 mt-auto">
-                    <blockquote class="space-y-2">
-                        <flux:heading size="lg">&ldquo;{{ trim($message) }}&rdquo;</flux:heading>
-                        <footer><flux:heading>{{ trim($author) }}</flux:heading></footer>
+                    <blockquote class="space-y-2 ">
+                        <flux:heading  class="text-white poppins-bold" size="lg">&ldquo;{{ trim($message) }}&rdquo;</flux:heading>
+                        <footer><flux:heading class="text-white montserrat-medium">{{ trim($author) }}</flux:heading></footer>
                     </blockquote>
                 </div>
             </div>
