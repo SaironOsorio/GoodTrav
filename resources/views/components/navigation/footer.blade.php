@@ -1,4 +1,4 @@
-<footer class="bg-[#5170ff] border-t-2 border-[#ff5170]">
+<footer class="bg-[#5170ff]">
     <div class="container p-6 mx-auto">
         <div class="lg:flex">
             <div class="w-full -mx-6 lg:w-2/5">
