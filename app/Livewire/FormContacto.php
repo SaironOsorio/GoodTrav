@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormMail;
+use Illuminate\Support\Facades\Log;
 
 class FormContacto extends Component
 {
@@ -40,18 +42,21 @@ class FormContacto extends Component
         $this->validate();
 
         try {
-            // Aquí puedes agregar la lógica para enviar el email
-            // Mail::to('info@goodtrav.com')->send(new ContactFormMail($this->name, $this->email, $this->telefono, $this->message));
-            
-            // O guardar en base de datos si tienes una tabla de contactos
-            
+
+            Mail::to('info@goodtrav.com')->send(new ContactFormMail($this->name, $this->email, $this->telefono, $this->message));
+
             $this->enviado = true;
             $this->reset(['name', 'email', 'telefono', 'message', 'acepta_politica']);
-            
+
+
             session()->flash('success', 'Mensaje enviado correctamente. Te responderemos pronto.');
         } catch (\Exception $e) {
             $this->error = 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.';
+            Log::error('Error al enviar el formulario de contacto: ' . $e->getMessage());
+        } finally {
+            $this->reset(['name', 'email', 'telefono', 'message', 'acepta_politica']);
         }
+
     }
 
     public function render()

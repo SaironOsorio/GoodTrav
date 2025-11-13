@@ -13,13 +13,13 @@
                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                     </svg>
-                    <span class="text-sm font-semibold text-[#5170ff]">Contacto</span>
+                    <span class="text-sm font-semibold text-[#5170ff] poppins-bold">Contacto</span>
                 </div>
 
-                <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
                     ¿Tienes dudas?
                 </h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400">
+                <p class="text-lg text-gray-600 dark:text-gray-400 open-sans-regular">
                     Si tienes alguna pregunta, no dudes en contactarnos. Escríbenos un mensaje y con gusto te respondemos
                 </p>
             </div>
@@ -51,7 +51,7 @@
 
                             <!-- Campo Nombre -->
                             <div>
-                                <label for="name" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                                <label for="name" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white open-sans-medium">
                                     Nombre completo
                                 </label>
                                 <div class="relative">
@@ -76,7 +76,7 @@
 
                             <!-- Campo Email -->
                             <div>
-                                <label for="email" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                                <label for="email" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white open-sans-medium">
                                     Correo electrónico
                                 </label>
                                 <div class="relative">
@@ -102,7 +102,7 @@
 
                             <!-- Campo Teléfono -->
                             <div>
-                                <label for="telefono" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                                <label for="telefono" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white open-sans-medium">
                                     Teléfono de contacto
                                 </label>
                                 <div class="relative">
@@ -127,7 +127,7 @@
 
                             <!-- Campo Mensaje -->
                             <div>
-                                <label for="message" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                                <label for="message" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white open-sans-medium">
                                     Mensaje
                                 </label>
                                 <textarea wire:model="message" id="message" rows="5"
@@ -148,9 +148,9 @@
                                 <div class="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
                                     <input wire:model="acepta_politica" id="remember" type="checkbox"
                                            class="w-5 h-5 mt-0.5 border-2 border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] dark:bg-gray-600 dark:border-gray-500 transition-all cursor-pointer @error('acepta_politica') border-red-500 @enderror" />
-                                    <label for="remember" class="text-sm text-gray-700 dark:text-gray-300">
+                                    <label for="remember" class="text-sm text-gray-700 dark:text-gray-300 open-sans-medium">
                                         He leído y acepto la
-                                        <a href="#" class="font-semibold text-[#5170ff] hover:text-[#ff5170] underline decoration-2 underline-offset-2 transition-colors">
+                                        <a href="{{ route('privacity') }}" class="font-semibold text-[#5170ff] hover:text-[#ff5170] underline decoration-2 underline-offset-2 transition-colors poppins-bold">
                                             política de privacidad
                                         </a>
                                     </label>
@@ -167,7 +167,7 @@
 
                             <!-- Botón submit -->
                             <button type="submit"
-                                    class="w-full bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-xl px-8 py-4 hover:shadow-lg hover:shadow-[#5170ff]/50 focus:ring-4 focus:ring-[#5170ff]/50 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                    class="w-full bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-xl px-8 py-4 hover:shadow-lg hover:shadow-[#5170ff]/50 focus:ring-4 focus:ring-[#5170ff]/50 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
                                     wire:loading.attr="disabled">
                                 <span wire:loading.remove>
                                     Enviar mensaje
@@ -202,8 +202,8 @@
                                     </svg>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#5170ff] transition-colors">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Email</p>
+                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#5170ff] transition-colors open-sans-medium">
                                         info@goodtrav.com
                                     </p>
                                 </div>
@@ -218,8 +218,8 @@
                                     </svg>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">Teléfono</p>
-                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Teléfono</p>
+                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors open-sans-medium">
                                         +34 91 123 45 67
                                     </p>
                                 </div>
@@ -233,8 +233,8 @@
                                     </svg>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">WhatsApp</p>
-                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">WhatsApp</p>
+                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors open-sans-medium">
                                         Enviar mensaje
                                     </p>
                                 </div>
@@ -250,20 +250,20 @@
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white open-sans-medium">
                                 Horario de atención
                             </h3>
                         </div>
                         <div class="space-y-2 text-gray-600 dark:text-gray-400">
                             <p class="flex justify-between">
-                                <span class="font-semibold">Lunes - Viernes:</span>
+                                <span class="font-semibold open-sans-medium">Lunes - Viernes:</span>
                                 <span>9:00 - 18:00</span>
                             </p>
-                            <p class="flex justify-between">
+                            <p class="flex justify-between open-sans-medium">
                                 <span class="font-semibold">Sábados:</span>
                                 <span>10:00 - 14:00</span>
                             </p>
-                            <p class="flex justify-between">
+                            <p class="flex justify-between open-sans-medium">
                                 <span class="font-semibold">Domingos:</span>
                                 <span>Cerrado</span>
                             </p>
@@ -277,8 +277,8 @@
                                 <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
                             </svg>
                             <div>
-                                <p class="font-bold text-gray-900 dark:text-white">Respuesta en 24h</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">Te respondemos en menos de un día hábil</p>
+                                <p class="font-bold text-gray-900 dark:text-white open-sans-medium">Respuesta en 24h</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 open-sans-medium">Te respondemos en menos de un día hábil</p>
                             </div>
                         </div>
                     </div>
