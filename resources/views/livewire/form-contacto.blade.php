@@ -192,8 +192,16 @@
                             Otros métodos de contacto
                         </h3>
                         <div class="space-y-4">
+
+                            @php
+                                $socialMedia = \App\Models\Socialmedia::first();
+                                $email = $socialMedia ? $socialMedia->email : 'info@goodtrav.com';
+                                $phone = $socialMedia ? $socialMedia->phone : '+34911234567';
+                                $whatsApp = $socialMedia ? $socialMedia->whats_app : '+34911234567';
+
+                            @endphp
                             <!-- Email -->
-                            <a href="mailto:info@goodtrav.com"
+                            <a href="mailto:{{ $email }}"
                                class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
                                 <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#5170ff] to-[#ff5170] flex items-center justify-center flex-shrink-0">
                                     <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -204,13 +212,13 @@
                                 <div class="flex-1">
                                     <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Email</p>
                                     <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#5170ff] transition-colors open-sans-medium">
-                                        info@goodtrav.com
+                                        {{ $email }}
                                     </p>
                                 </div>
                             </a>
 
                             <!-- Teléfono -->
-                            <a href="tel:+34911234567"
+                            <a href="tel:{{ $phone }}"
                                class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
                                 <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#70ff51] to-[#5170ff] flex items-center justify-center flex-shrink-0">
                                     <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -220,12 +228,12 @@
                                 <div class="flex-1">
                                     <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Teléfono</p>
                                     <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors open-sans-medium">
-                                        +34 91 123 45 67
+                                        +{{ $phone }}
                                     </p>
                                 </div>
                             </a>
 
-                            <a href="https://wa.me/34911234567?text={{ urlencode('Hola, me gustaría obtener más información sobre GoodTrav.') }}"
+                            <a href="https://wa.me/{{ $whatsApp }}?text={{ urlencode('Hola, me gustaría obtener más información sobre GoodTrav.') }}"
                             class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
                                 <div class="w-12 h-12 rounded-xl bg-[#70ff51]  flex items-center justify-center flex-shrink-0">
                                     <svg class=" text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor">

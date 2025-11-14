@@ -8,7 +8,7 @@
         </div>
 
         <div class="flex-1 min-w-0">
-            <h3 class="text-lg sm:text-xl font-bold truncate open-sans-bold">{{ $user->name }}</h3>
+            <h3 class="text-lg sm:text-xl font-bold truncate open-sans-bold">{{ $user->student_name }}</h3>
             <p class="text-xs sm:text-sm text-white/80 truncate open-sans-regular">{{ $ageCategory }} · {{ $years }} - {{ $level }}</p>
         </div>
     </div>

@@ -85,6 +85,8 @@ class User extends Authenticatable implements FilamentUser
             'is_on_trial' => 'boolean',
             'trial_ends_at' => 'datetime',
             'is_admin' => 'boolean',
+            'video_watched_at' => 'datetime',
+            'has_watched_weekly_video' => 'boolean',
         ];
     }
 

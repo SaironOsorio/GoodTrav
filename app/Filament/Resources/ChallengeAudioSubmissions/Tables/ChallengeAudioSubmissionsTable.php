@@ -21,7 +21,7 @@ class ChallengeAudioSubmissionsTable
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
+                Tables\Columns\TextColumn::make('user.student_name')
                     ->label('Usuario')
                     ->searchable()
                     ->sortable()

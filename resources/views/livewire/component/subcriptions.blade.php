@@ -166,8 +166,12 @@
                                        </div>
 
                                        <div class="flex items-center gap-3">
+                                            @php
+                                                $socialMedia = \App\Models\Socialmedia::first();
+                                                $whatsApp = $socialMedia->whats_app ?? '614189556';
+                                            @endphp
                                            <a
-                                               href="https://wa.me/573228668871?text={{ urlencode('Hola, soy docente y quiero información para activar el descuento del centro: '.$centro['name'].' | Precio base: €'.number_format($basePrice,2).' -> Con cupón: €'.$discountedPrice) }}"
+                                               href="https://wa.me/{{ $whatsApp }}?text={{ urlencode('Hola, soy docente y quiero información para activar el descuento del centro: '.$centro['name'].' | Precio base: €'.number_format($basePrice,2).' -> Con cupón: €'.$discountedPrice) }}"
                                                target="_blank"
                                                rel="noopener noreferrer"
                                                class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full shadow-sm transition-transform duration-150 transform hover:-translate-y-0.5">

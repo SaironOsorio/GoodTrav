@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
 use Illuminate\Support\Facades\Log;
+use App\Models\Socialmedia;
 
 class FormContacto extends Component
 {
@@ -43,7 +44,10 @@ class FormContacto extends Component
 
         try {
 
-            Mail::to('info@goodtrav.com')->send(new ContactFormMail($this->name, $this->email, $this->telefono, $this->message));
+            $socialMedia = Socialmedia::first();
+            $recipientEmail = $socialMedia ? $socialMedia->email : 'info@goodtrav.com';
+
+            Mail::to($recipientEmail)->send(new ContactFormMail($this->name, $this->email, $this->telefono, $this->message));
 
             $this->enviado = true;
             $this->reset(['name', 'email', 'telefono', 'message', 'acepta_politica']);

@@ -9,8 +9,14 @@
 
                     <p class="max-w-sm mt-2 text-white font-medium">No solo aprendas inglés, vive la experiencia de comunicarte con el mundo.</p>
 
+                    @php
+                        $socialMedia = \App\Models\Socialmedia::first();
+                        $tiktok = $socialMedia?->tiktok ?? 'goodtrap';
+                        $instagram = $socialMedia?->instagram ?? 'goodtrap';
+                    @endphp
+
                     <div class="flex mt-6 -mx-2">
-                        <a href="#"
+                        <a href="https://www.instagram.com/{{ $instagram }}" target="_blank"
                             class="mx-2 text-white transition-colors duration-300"
                             aria-label="Instagram">
                             <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -18,7 +24,7 @@
                             </svg>
                         </a>
 
-                        <a href="#"
+                        <a href="https://www.tiktok.com/search/user?q={{ $tiktok }}" target="_blank"
                             class="mx-2 text-white transition-colors duration-300"
                             aria-label="TikTok">
                             <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -47,9 +53,14 @@
                     </div>
 
                     <div>
+                        @php
+                            $socialMedia = \App\Models\Socialmedia::first();
+                            $phone = $socialMedia->phone ?? '614189556';
+                            $email = $socialMedia->email ?? 'example@email.com';
+                        @endphp
                         <h3 class="text-white font-bold uppercase">Contact</h3>
-                        <a href="tel:+15266548965" class="block mt-2 text-sm text-white font-medium hover:underline">+1 526 654 8965</a>
-                        <a href="mailto:example@email.com" class="block mt-2 text-sm text-white font-medium hover:underline">example@email.com</a>
+                        <a href="tel:{{ $phone }}" class="block mt-2 text-sm text-white font-medium hover:underline">{{ $phone }}</a>
+                        <a href="mailto:{{ $email }}" class="block mt-2 text-sm text-white font-medium hover:underline">{{ $email }}</a>
                     </div>
                 </div>
             </div>
