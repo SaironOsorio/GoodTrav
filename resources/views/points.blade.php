@@ -82,28 +82,7 @@
                     @endif
                 </div>
             </div>
-
-            <!-- Seguirnos en redes -->
-            <div class="flex gap-4 mb-6">
-                <div class="w-16 h-16 bg-gray-100 rounded-xl flex-shrink-0"></div>
-                <div class="flex-1">
-                    <h4 class="font-semibold text-lg mb-1 poppins-bold">{{ __('Seguirnos en redes') }}</h4>
-                    <p class="text-gray-600 text-sm mb-2 montserrat-medium">{{ __('+500 IG y +500 TikTok (una sola vez)') }}</p>
-                    @php
-                        $socialMedia = \App\Models\Socialmedia::first();
-                        $tiktok = trim($socialMedia?->tiktok ?? 'goodtrap');
-                        $instagram = trim($socialMedia?->instagram ?? 'goodtrap');
-                    @endphp
-                    <div class="flex gap-2">
-                        <a href="https://www.tiktok.com/search/user?q={{ $tiktok }}" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition cursor-pointer">
-                            {{ __('TikTok +500') }}
-                        </a>
-                        <a href="https://www.instagram.com/{{ $instagram }}" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition cursor-pointer">
-                            {{ __('IG +500') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <livewire:points-social />
         </div>
     </div>
 </x-layouts.app>

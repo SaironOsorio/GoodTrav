@@ -48,6 +48,8 @@ class User extends Authenticatable implements FilamentUser
         'current_study_id',
         'is_society',
         'society_code',
+        'is_tiktok',
+        'is_instagram',
     ];
 
     /**
@@ -87,6 +89,8 @@ class User extends Authenticatable implements FilamentUser
             'is_admin' => 'boolean',
             'video_watched_at' => 'datetime',
             'has_watched_weekly_video' => 'boolean',
+            'is_tiktok' => 'boolean',
+            'is_instagram' => 'boolean',
         ];
     }
 
