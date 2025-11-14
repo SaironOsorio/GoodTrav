@@ -15,7 +15,7 @@
 
     {{-- Image --}}
     <div class="relative aspect-videorounded-lg mb-4 overflow-hidden">
-        <img src="http://127.0.0.1:8000/storage/studies/images/01K9AFC49HDG4KGQSNNKZDGG7D.jpg" alt="Retos semanales" class="object-cover w-full h-full">
+        <img src="{{ $imagePath }}" alt="Retos semanales" class="object-cover w-full h-full">
     </div>
 
     {{-- Action Button --}}

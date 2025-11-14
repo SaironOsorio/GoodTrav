@@ -25,32 +25,26 @@ class StudyForm
             ->tabs([
                 Tab::make('Clase')
                     ->schema([
-                        FileUpload::make('url_video')
+                        TextInput::make('url_video')
                             ->label('Video de la clase')
-                            ->helperText('Sube un video de la clase en formato MP4, AVI, MOV, WMV, FLV o MKV. Tamaño máximo: 2GB')
-                            ->maxParallelUploads(1)
+                            ->helperText('Ingresa la URL del video de la clase (YouTube)')
+                            ->required(),
+                        FileUpload::make('image')
+                            ->label('Imagen del Reto')
+                            ->helperText('Sube una imagen representativa para el reto. Formatos aceptados: JPG, PNG. Tamaño máximo: 5MB')
                             ->maxFiles(1)
                             ->acceptedFileTypes([
-                                'video/mp4',
-                                'video/avi',
-                                'video/mov',
-                                'video/wmv',
-                                'video/flv',
-                                'video/mkv',
-                                'video/x-msvideo',
-                                'video/quicktime',
-                                'video/x-ms-wmv',
-                                'video/x-flv',
-                                'video/x-matroska',
+                                'image/jpeg',
+                                'image/png',
                             ])
                             ->disk('public')
-                            ->directory('studies/videos')
+                            ->directory('studies/images')
                             ->visibility('public')
-                            ->maxSize(2097152) // 2GB en KB (2 * 1024 * 1024)
+                            ->maxSize(5120) // 5MB en KB (5 * 1024)
+                            ->image()
+                            ->imageCropAspectRatio('16:9')
+                            ->imageResizeMode('cover')
                             ->uploadProgressIndicatorPosition('left')
-                            ->previewable(false)
-                            ->openable()
-                            ->uploadingMessage('Subiendo video... Esto puede tardar varios minutos.')
                             ->removeUploadedFileButtonPosition('right')
                             ->deleteUploadedFileUsing(function ($file) {
                                 if ($file && Storage::disk('public')->exists($file)) {
@@ -58,7 +52,7 @@ class StudyForm
                                 }
                             })
                             ->required(),
-                        FileUpload::make('image')
+                        FileUpload::make('image_reto')
                             ->label('Imagen de la clase')
                             ->helperText('Sube una imagen representativa para la clase. Formatos aceptados: JPG, PNG. Tamaño máximo: 5MB')
                             ->maxFiles(1)

@@ -148,4 +148,10 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasOne(Society::class);
     }
+
+    public function completedChallenges()
+    {
+        return $this->belongsToMany(Challenge::class, 'challenge_user', 'user_id', 'challenge_code', 'id', 'code')
+            ->withTimestamps();
+    }
 }

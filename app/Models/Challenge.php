@@ -81,4 +81,16 @@ class Challenge extends Model
             }
         });
     }
+
+    public function audioSubmissions()
+    {
+        return $this->hasMany(ChallengeAudioSubmission::class, 'challenge_code', 'code');
+    }
+
+    public function getUserSubmission($userId)
+    {
+        return $this->audioSubmissions()
+                    ->where('user_id', $userId)
+                    ->first();
+    }
 }

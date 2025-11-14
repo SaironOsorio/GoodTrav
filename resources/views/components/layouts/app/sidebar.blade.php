@@ -44,12 +44,19 @@
                 <img src="{{ asset('assets/images/GoodTrav.png') }}" alt="Logo" class="w-full h-auto" />
             </a>
 
-            <nav class="px-4 space-y-2">
+            <br/>
+            <br/>
+
+
+            <nav class="px-4 space-y-2 open-sans-regular">
                 <a href="{{ route('dashboard') }}"
                    class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('dashboard') ? 'bg-white/20' : '' }}"
                    wire:navigate>
-                    <span class="text-base font-medium">Inicio</span>
+                    <span class="text-base font-medium">Home</span>
                 </a>
+
+                <br/>
+
 
                 <a href="{{ route('study') }}"
                    class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('study') ? 'bg-white/20' : '' }}"
@@ -57,11 +64,15 @@
                     <span class="text-base font-medium">Study</span>
                 </a>
 
+                <br/>
+
                 <a href="{{ route('points') }}"
                    class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('points') ? 'bg-white/20' : '' }}"
                    wire:navigate>
                     <span class="text-base font-medium">GT Points</span>
                 </a>
+
+                <br/>
 
                 <a href="{{ route('trips') }}"
                    class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('trips') || request()->routeIs('trip.detail') ? 'bg-white/20' : '' }}"
@@ -69,22 +80,22 @@
                     <span class="text-base font-medium">Trips</span>
                 </a>
 
-                <a href="{{ route('forum') }}"
-                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('forum') ? 'bg-white/20' : '' }}"
-                   wire:navigate>
-                    <span class="text-base font-medium">Foro</span>
-                </a>
+                <br/>
 
                 <a href="{{ route('profile.edit') }}"
                    class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('profile.edit') || request()->routeIs('billing') ||  request()->routeIs('user-password.edit') ? 'bg-white/20' : '' }}"
                    wire:navigate>
-                    <span class="text-base font-medium">Información de la cuenta</span>
+                    <span class="text-base font-medium">Info & Help</span>
                 </a>
 
+                <br/>
+
                 <a href="{{ route('society') }}"
-                   class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('society') ? 'bg-white/20' : '' }}"
-                   wire:navigate>
-                    <span class="text-base font-medium">GoodTrav Society</span>
+                class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('society') ? 'bg-white/20' : '' }}"
+                wire:navigate>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-[#ffec45] to-[#2ed8f7] bg-clip-text text-transparent poppins-bold">
+                        GoodTrav Society
+                    </span>
                 </a>
             </nav>
 

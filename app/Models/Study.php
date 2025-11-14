@@ -15,6 +15,7 @@ class Study extends Model
         'url_video',
         'notes',
         'points',
+        'image_reto',
     ];
 
     protected $casts = [
