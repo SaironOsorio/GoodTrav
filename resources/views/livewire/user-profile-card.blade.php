@@ -1,4 +1,3 @@
-{{-- filepath: d:\Projects\goodtrap\resources\views\livewire\user-profile-card.blade.php --}}
 <div class="bg-gradient-to-br from-[#5170ff] to-[#6b8aff] rounded-2xl p-4 sm:p-6 text-white shadow-lg w-full">
     {{-- Header con avatar y nombre --}}
     <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
@@ -9,8 +8,8 @@
         </div>
 
         <div class="flex-1 min-w-0">
-            <h3 class="text-lg sm:text-xl font-bold truncate">{{ $user->name }}</h3>
-            <p class="text-xs sm:text-sm text-white/80 truncate">{{ $ageCategory }} · {{ $years }} - {{ $level }}</p>
+            <h3 class="text-lg sm:text-xl font-bold truncate open-sans-bold">{{ $user->name }}</h3>
+            <p class="text-xs sm:text-sm text-white/80 truncate open-sans-regular">{{ $ageCategory }} · {{ $years }} - {{ $level }}</p>
         </div>
     </div>
 
