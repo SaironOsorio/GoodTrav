@@ -1,13 +1,20 @@
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+<div>
+    {{-- Imagen Hero --}}
+    <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
+        <div class="w-full h-[400px] md:h-[500px] bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 flex items-center justify-center rounded-2xl md:rounded-3xl">
+            <img src="https://www.josebernalte.com/wp-content/uploads/2016/10/16112016_blackfriday.jpg" class="object-cover w-full h-full rounded-2xl md:rounded-3xl" alt="" />
+        </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
     <!-- Sección izquierda -->
     <div class="space-y-6">
         <!-- ¿Qué es GoodTrav Society? -->
         <div class="bg-white rounded-xl shadow-sm p-6">
             <h3 class="font-bold text-2xl text-gray-800 mb-4">{{ __('¿Qué es GoodTrav Society?') }}</h3>
             <p class="text-gray-600 leading-relaxed">
-                {{ __('Comunidad creada por viajeros, para futuros viajeros. 
-                    Aquí compartirás, inspirarás y ganarás beneficios cool por ser tú. 
-                    Vive el inglés viajando, cumpliendo tus sueños y ayudando a otros a cumplir sus sueños 
+                {{ __('Comunidad creada por viajeros, para futuros viajeros.
+                    Aquí compartirás, inspirarás y ganarás beneficios cool por ser tú.
+                    Vive el inglés viajando, cumpliendo tus sueños y ayudando a otros a cumplir sus sueños
                     también') }}
             </p>
         </div>
@@ -165,8 +172,8 @@
             </div>
         @endif
     </div>
+    </div>
 </div>
-
 <script>
     document.addEventListener('livewire:init', () => {
         Livewire.on('code-copied', (event) => {

@@ -155,13 +155,8 @@
 
     {{-- GoodTrav Society Bonus --}}
     <div class="px-4 md:px-8 py-12 md:py-16">
-        <div class="max-w-7xl mx-auto bg-gradient-to-br from-green-300 via-green-400 to-green-500 rounded-2xl md:rounded-3xl p-6 md:p-12 lg:p-16">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 text-center mb-2 md:mb-3">
-                GoodTrav Society Bonus
-            </h2>
-            <p class="text-center text-gray-800 mb-8 md:mb-12 text-base md:text-lg">
-                ¡Forma parte de GoodTrav Society y disfruta de las ventajas exclusivas!
-            </p>
+        <div class="max-w-7xl mx-auto  rounded-2xl md:rounded-3xl p-6 md:p-12 lg:p-16">
+            <img src="https://www.josebernalte.com/wp-content/uploads/2016/10/16112016_blackfriday.jpg" alt="">
         </div>
     </div>
 
