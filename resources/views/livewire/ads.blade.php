@@ -10,8 +10,8 @@
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">
                         {{ $content->title }}
                     </h3>
-                    <button type="button" 
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-colors" 
+                    <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-colors"
                             data-modal-hide="default-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -19,7 +19,7 @@
                         <span class="sr-only">Cerrar modal</span>
                     </button>
                 </div>
-                
+
                 <!-- Modal body -->
                 <div class="p-4 md:p-5 bg-gray-50 dark:bg-gray-900">
                     @if($content->image_path)
@@ -31,10 +31,10 @@
                         @if($isVideo)
                             <!-- Video -->
                             <div class="relative rounded-xl overflow-hidden bg-black">
-                                <video 
-                                    class="w-full h-auto max-h-[70vh] object-contain" 
-                                    controls 
-                                    autoplay 
+                                <video
+                                    class="w-full h-auto max-h-[70vh] object-contain"
+                                    controls
+                                    autoplay
                                     muted
                                     loop>
                                     <source src="{{ Storage::url($content->image_path) }}" type="video/{{ $extension }}">
@@ -44,8 +44,8 @@
                         @else
                             <!-- Imagen -->
                             <div class="relative rounded-xl overflow-hidden">
-                                <img 
-                                    src="{{ Storage::url($content->image_path) }}" 
+                                <img
+                                    src="{{ Storage::url($content->image_path) }}"
                                     alt="{{ $content->title }}"
                                     class="w-full h-auto max-h-[70vh] object-contain rounded-xl">
                             </div>
@@ -59,20 +59,7 @@
                         </div>
                     @endif
                 </div>
-                
-                <!-- Modal footer -->
-                <div class="flex flex-col sm:flex-row items-center gap-3 p-4 md:p-5 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <a href="https://www.jetsmart.com" 
-                       target="_blank"
-                       class="w-full sm:w-auto text-center bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-lg px-6 py-3 hover:shadow-lg hover:shadow-[#5170ff]/50 transition-all duration-300 hover:scale-105">
-                        Ir al sitio oficial →
-                    </a>
-                    <button data-modal-hide="default-modal" 
-                            type="button" 
-                            class="w-full sm:w-auto text-gray-900 dark:text-white bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 font-bold rounded-lg px-6 py-3 transition-all duration-300">
-                        Continuar en el sitio
-                    </button>
-                </div>
+
             </div>
         </div>
     </div>
@@ -87,11 +74,9 @@
                 const modal = document.getElementById('default-modal');
 
                 if (!hasVisited && modal) {
-                    // Mostrar modal
                     modal.classList.remove('hidden');
                     modal.classList.add('flex');
 
-                    // Prevenir scroll del body
                     document.body.style.overflow = 'hidden';
 
                     const closeButtons = document.querySelectorAll('[data-modal-hide="default-modal"]');
@@ -99,22 +84,18 @@
                     closeButtons.forEach(button => {
                         button.addEventListener('click', function(e) {
                             e.preventDefault();
-                            
-                            // Ocultar modal
+
                             modal.classList.add('hidden');
                             modal.classList.remove('flex');
-                            
-                            // Restaurar scroll del body
+
                             document.body.style.overflow = '';
 
-                            // Marcar como visitado solo si hace clic en "Continuar"
                             if (this.classList.contains('w-full') && this.tagName === 'BUTTON') {
                                 localStorage.setItem('hasVisitedBefore', 'true');
                             }
                         });
                     });
 
-                    // Cerrar con ESC
                     document.addEventListener('keydown', function(e) {
                         if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
                             modal.classList.add('hidden');
@@ -123,7 +104,6 @@
                         }
                     });
 
-                    // Cerrar al hacer clic fuera del modal
                     modal.addEventListener('click', function(e) {
                         if (e.target === modal) {
                             modal.classList.add('hidden');
