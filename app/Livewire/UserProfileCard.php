@@ -9,14 +9,29 @@ class UserProfileCard extends Component
 {
     public $user;
     public $points;
-    public $nextMilestone = 30000;
+    public $nextMilestone;
     public $progressPercentage;
 
     public function mount()
     {
         $this->user = Auth::user();
         $this->points = $this->user->gt_points ?? 0;
+        $this->nextMilestone = $this->calculateNextMilestone();
         $this->calculateProgress();
+    }
+
+    public function calculateNextMilestone()
+    {
+
+        $milestones = [30000, 50000, 100000, 200000, 500000];
+
+        foreach ($milestones as $milestone) {
+            if ($this->points < $milestone) {
+                return $milestone;
+            }
+        }
+
+        return end($milestones);
     }
 
     public function calculateProgress()
@@ -27,9 +42,9 @@ class UserProfileCard extends Component
     public function getUserLevel()
     {
         if ($this->points >= 0) return 'Principiante';
-        if ($this->points < 20000) return 'Intermedio';
-        if ($this->points < 30000) return 'Avanzado';
-        if ($this->points < 50000) return 'Experto';
+        if ($this->points < 30000) return 'Intermedio';
+        if ($this->points < 50000) return 'Avanzado';
+        if ($this->points < 100000) return 'Experto';
         return 'Maestro';
     }
 
