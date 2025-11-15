@@ -5,6 +5,7 @@
             <flux:navlist.item :href="route('profile.edit')" wire:navigate>{{ __('Perfil') }}</flux:navlist.item>
             <flux:navlist.item :href="route('billing')" wire:navigate>{{ __('Facturación') }}</flux:navlist.item>
             <flux:navlist.item :href="route('user-password.edit')" wire:navigate>{{ __('Contraseña') }}</flux:navlist.item>
+            <flux:navlist.item wire:navigate>{{ __('Soporte') }}</flux:navlist.item>
         </flux:navlist>
     </div>
 

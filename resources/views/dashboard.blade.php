@@ -12,7 +12,9 @@
             @livewire('weekly-challenges-card')
 
         </div>
+        <br>
         <div class="relative h-full flex-1 overflow-hidden rounded-xl">
+            <livewire:referealcode />
         </div>
     </div>
 </x-layouts.app>

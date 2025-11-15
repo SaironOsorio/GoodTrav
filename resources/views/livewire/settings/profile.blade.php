@@ -14,6 +14,7 @@ new class extends Component {
     public string $phone = '';
     public string $address = '';
     public string $date_of_birth = '';
+    public string $student_name = '';
 
     /**
      * Mount the component.
@@ -27,6 +28,7 @@ new class extends Component {
         $this->phone = Auth::user()->phone ?? '';
         $this->address = Auth::user()->address ?? '';
         $this->date_of_birth = Auth::user()->date_of_birth ?? '';
+        $this->student_name = Auth::user()->student_name ?? '';
 
     }
 
@@ -39,7 +41,7 @@ new class extends Component {
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-
+            'student_name' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'string',
@@ -49,11 +51,15 @@ new class extends Component {
                 Rule::unique(User::class)->ignore($user->id)
             ],
             'nationality' => ['required', 'exists:countries,id'],
-            'country_code' => ['required', 'string', 'max:5'],
+            'country_code' => ['required', 'string'],
             'phone' => ['required', 'string', 'max:20'],
             'address' => ['nullable', 'string', 'max:255'],
             'date_of_birth' => ['nullable', 'date'],
         ]);
+
+        $validated['country_id'] = $validated['nationality'];
+        unset($validated['nationality']);
+
 
         $user->fill($validated);
 
@@ -88,31 +94,21 @@ new class extends Component {
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <x-settings.layout :heading="__('Perfil Usuario')" :subheading="__('Actualiza la información de perfil y la dirección de correo electrónico de tu cuenta.')">
+    <x-settings.layout :heading="__('Cuenta')" :subheading="__('Actualiza la información de perfil.')" >
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <flux:input wire:model="name" :label="__('Nombre')" type="text" required autofocus autocomplete="name" />
+            <flux:input wire:model="name" :label="__('Nombre del padre/madre o tutor legal')" type="text" required autofocus autocomplete="name" />
 
-            <div>
-                <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" />
+            <flux:input wire:model="student_name" :label="__('Nombre del Estudiante')" type="text" required autocomplete="student_name" />
 
-                @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail &&! auth()->user()->hasVerifiedEmail())
-                    <div>
-                        <flux:text class="mt-4">
-                            {{ __('Tu dirección de correo electrónico no está verificada.') }}
-
-                            <flux:link class="text-sm cursor-pointer" wire:click.prevent="resendVerificationNotification">
-                                {{ __('Haz clic aquí para reenviar el correo electrónico de verificación.') }}
-                            </flux:link>
-                        </flux:text>
-
-                        @if (session('status') === 'verification-link-sent')
-                            <flux:text class="mt-2 font-medium !dark:text-green-400 !text-green-600">
-                                {{ __('Se ha enviado un nuevo enlace de verificación a tu dirección de correo electrónico.') }}
-                            </flux:text>
-                        @endif
-                    </div>
-                @endif
-            </div>
+            <!-- Date of Birth -->
+            <flux:input
+                wire:model="date_of_birth"
+                name="date_of_birth"
+                :label="__('Fecha de Nacimiento del estudiante')"
+                type="date"
+                autocomplete="bday"
+                :placeholder="__('Fecha de Nacimiento')"
+            />
 
             @php
                 $countries = App\Models\Country::all();
@@ -183,20 +179,10 @@ new class extends Component {
             <flux:input
                 wire:model="address"
                 name="address"
-                :label="__('Dirección')"
+                :label="__('Dirección (Opcional)')"
                 type="text"
                 autocomplete="street-address"
                 :placeholder="__('Dirección')"
-            />
-
-            <!-- Date of Birth -->
-            <flux:input
-                wire:model="date_of_birth"
-                name="date_of_birth"
-                :label="__('Fecha de Nacimiento')"
-                type="date"
-                autocomplete="bday"
-                :placeholder="__('Fecha de Nacimiento')"
             />
 
 
@@ -217,6 +203,14 @@ new class extends Component {
             <livewire:settings.payment-method />
         </div>
 
-        <livewire:settings.delete-user-form />
+
+        <div class="my-6 border-t border-neutral-200 pt-6">
+            <livewire:settings.delete-user-form />
+        </div>
+
+        <div class="my-6 border-t border-neutral-200 pt-6">
+            <livewire:settings.cancelled />
+        </div>
+
     </x-settings.layout>
 </section>

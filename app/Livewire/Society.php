@@ -63,56 +63,7 @@ class Society extends Component
         session()->flash('message', __('Código copiado al portapapeles'));
     }
 
-    public function applyReferralCode()
-    {
 
-        if (empty($this->referralCode)) {
-            session()->flash('error', __('Por favor ingresa un código de referido'));
-            return;
-        }
-
-        $currentUser = Auth::user();
-        /** @var User $currentUser */
-
-        if ($currentUser->referral_code) {
-            session()->flash('error', __('Ya has usado un código de referido anteriormente'));
-            return;
-        }
-
-
-        $referrer = User::where('society_code', $this->referralCode)->first();
-
-        if (!$referrer) {
-            session()->flash('error', __('Código de referido no válido'));
-            return;
-        }
-
-
-        if ($referrer->id === $currentUser->id) {
-            session()->flash('error', __('No puedes usar tu propio código de referido'));
-            return;
-        }
-
-
-        $society = SocietyModel::where('user_id', $referrer->id)->first();
-        if ($society) {
-            $society->increment('user_count');
-        }
-
-        $currentUser->increment('gt_points', 500);
-
-
-        $currentUser->referral_code = $this->referralCode;
-        $currentUser->save();
-
-
-        $referrer->increment('gt_points', 500);
-
-        session()->flash('message', __('¡Código aplicado exitosamente! Has ganado 500 puntos'));
-
-        $this->referralCode = '';
-        $this->mount();
-    }
 
     public function render()
     {
