@@ -302,7 +302,7 @@ class StudyPage extends Component
                 'submitted_at' => now(),
             ]);
 
-            session()->flash('message', '¡Audio enviado! Espera la revisión del administrador 🎙️');
+            session()->flash('message', '¡Audio enviado! Espera la revisión del profesor 🎙️');
 
             $this->audioFile = null;
             $this->uploadingChallengeCode = null;

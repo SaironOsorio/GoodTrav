@@ -142,7 +142,7 @@
 
                                     {{-- Mensaje informativo --}}
                                     <p id="unlockMessage" class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
-                                        📺 Ve al menos el <strong>95%</strong> del video para desbloquear el botón y ganar <strong class="text-[#4ade80]">{{ $study->points }} puntos</strong>
+                                        📺 Ve al menos el <strong>80%</strong> del video para desbloquear el botón y ganar <strong class="text-[#4ade80]">{{ $study->points }} puntos</strong>
                                     </p>
                                 @endif
                             </div>
@@ -235,7 +235,7 @@
                                                                 <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-yellow-600"></div>
                                                                 <p class="text-sm font-semibold text-yellow-800 dark:text-yellow-200">En revisión</p>
                                                             </div>
-                                                            <p class="text-xs text-yellow-600 dark:text-yellow-400 mb-2">Tu audio está siendo revisado por el admin</p>
+                                                            <p class="text-xs text-yellow-600 dark:text-yellow-400 mb-2">Tu audio está siendo revisado por el profesor</p>
                                                         @elseif($submission->status === 'approved')
                                                             <div class="flex items-center gap-2 mb-2">
                                                                 <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -435,7 +435,7 @@
                         <h4 class="text-lg font-semibold mb-4">Estadísticas</h4>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
-                                <span class="text-sm opacity-90">Desafíos completados</span>
+                                <span class="text-sm opacity-90">Retos completados</span>
                                 <span class="text-2xl font-bold">{{ $completedCount }}/{{ $challenges ? $challenges->count() : 0 }}</span>
                             </div>
                             <div class="w-full bg-white/20 rounded-full h-2">
