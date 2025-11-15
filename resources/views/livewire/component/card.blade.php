@@ -78,7 +78,7 @@
                                     </svg>
 
                                     <p class="text-sm font-medium open-sans-regular">
-                                        Salida: Bilbao
+                                        Salida: {{ $item->city }}
                                     </p>
                                 </div>
 

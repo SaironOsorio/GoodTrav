@@ -22,12 +22,18 @@ class Trip extends Model
         'itinerary',
         'note',
         'path_image_note',
+        'card_description_one',
+        'card_description_two',
+        'plazas_available',
+        'requirements',
+        'city',
     ];
 
     protected $casts = [
         'itinerary' => 'array',
         'start_date' => 'date',
         'end_date' => 'date',
+        'plazas_available' => 'integer',
     ];
 
 

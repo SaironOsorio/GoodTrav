@@ -41,6 +41,10 @@ class TripForm
                             ->helperText('Ingresa el destino del viaje.')
                             ->required()
                             ->maxLength(255),
+                        TextInput::make('city')
+                            ->label('Ciudad')
+                            ->helperText('Ingresa la ciudad de salida del viaje.')
+                            ->maxLength(255),
                         DatePicker::make('start_date')
                             ->label('Fecha de Inicio')
                             ->helperText('Selecciona la fecha de inicio del viaje.')
@@ -138,6 +142,34 @@ class TripForm
                     ])
                     ->columnSpanFull(),
 
+                    Section::make('Condiciones del Viaje')
+                        ->description('Agrega las condiciones y términos del viaje.')
+                        ->schema([
+                            RichEditor::make('card_description_one')
+                                ->label('Descripción de la Tarjeta Uno')
+                                ->helperText('Proporciona la primera descripción detallada para la tarjeta del viaje.')
+                                ->toolbarButtons([
+                                    ['bold', 'italic', 'underline', 'link'],
+                                    ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                    ['undo', 'redo'],
+                                ])
+                                ->required()
+                                ->maxLength(2000)
+                                ->columnSpanFull(),
+                            RichEditor::make('card_description_two')
+                                ->label('Descripción de la Tarjeta Dos')
+                                ->helperText('Proporciona la segunda descripción detallada para la tarjeta del viaje.')
+                                ->toolbarButtons([
+                                    ['bold', 'italic', 'underline', 'link'],
+                                    ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                    ['undo', 'redo'],
+                                ])
+                                ->required()
+                                ->maxLength(2000)
+                                ->columnSpanFull(),
+                        ])
+                        ->columnSpanFull(),
+
                     Section::make('Notas')
                         ->description('Agrega notas adicionales sobre el viaje.')
                         ->schema([
@@ -164,6 +196,27 @@ class TripForm
                                     Storage::disk('public')->delete($file);
                                 }
                             })
+                        ])
+                        ->columnSpanFull(),
+                    Section::make('Disponibilidad y Requisitos')
+                        ->description('Define la disponibilidad y los requisitos para el viaje.')
+                        ->schema([
+                            TextInput::make('plazas_available')
+                                ->label('Plazas Disponibles')
+                                ->helperText('Ingresa el número de plazas disponibles para el viaje.')
+                                ->required()
+                                ->numeric(),
+                            RichEditor::make('requirements')
+                                ->label('Requisitos')
+                                ->helperText('Proporciona los requisitos necesarios para participar en el viaje.')
+                                ->toolbarButtons([
+                                    ['bold', 'italic', 'underline', 'link'],
+                                    ['h2', 'h3','orderedList'],
+                                    ['undo', 'redo'],
+                                ])
+                                ->required()
+                                ->maxLength(2000)
+                                ->columnSpanFull(),
                         ])
                         ->columnSpanFull(),
             ]);
