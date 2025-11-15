@@ -3,6 +3,7 @@
         <livewire:ads />
         <h1 class="font-bold text-4xl text-[#5170ff] poppins-bold">{{ __('Welcome back, :name!', ['name' => auth()->user()->student_name]) }}</h1>
         <h2 class="font-light text-2xl montserrat-regular">{{ __('Your summary of progress, lessons and challenges') }}</h2>
+        <br>
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
             @livewire('user-profile-card')
 
