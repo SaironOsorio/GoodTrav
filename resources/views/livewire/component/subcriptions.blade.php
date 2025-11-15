@@ -131,12 +131,17 @@
                    <div class="w-full max-w-7xl mx-auto mt-6">
                        <div class="bg-white/80 dark:bg-gray-800 rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-gray-700 shadow-lg">
                            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+                                @php
+                                    $setting = App\Models\Setting::first();
+                                    $title = $setting->title_contributors_list_title ?? '¿Formas parte de alguno de nuestros colaboradores?';
+                                    $description = $setting->title_contributors_list_subtitle ?? 'Si tu centro está en la lista, podrás aplicar un cupón y obtener un precio especial para tus estudiantes.';
+                                @endphp
                                <div class="flex-1">
                                    <h3 class="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white poppins-bold">
-                                       ¿Formas parte de alguno de nuestros colaboradores?
+                                       {{ $title }}
                                    </h3>
                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 montserrat-regular">
-                                       Si tu centro está en la lista, podrás aplicar un cupón y obtener un precio especial para tus estudiantes.
+                                       {{ $description }}
                                    </p>
                                </div>
 

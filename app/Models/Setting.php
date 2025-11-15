@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Setting extends Model
+{
+    protected $fillable = [
+        'url_youtube_landing',
+        'title_contributors_list_title',
+        'title_contributors_list_subtitle',
+        'title_contributors_new_title',
+        'title_contributors_new_subtitle',
+        'title_contributors_price_base',
+        'title_contributors_price_new',
+    ];
+
+    protected $casts = [
+        'title_contributors_price_base' => 'integer',
+        'title_contributors_price_new' => 'integer',
+    ];
+}

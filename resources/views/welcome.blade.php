@@ -296,14 +296,18 @@
                                 <div class="w-3 h-3 rounded-full bg-green-500"></div>
                             </div>
                             <div class="flex-1 bg-gray-700 rounded-lg px-4 py-1.5 mx-4">
-                                <p class="text-xs text-gray-400 truncate">app.goodtrav.com/dashboard</p>
+                                <p class="text-xs text-gray-400 truncate">goodtrav.com/dashboard</p>
                             </div>
                         </div>
 
                         <div class="relative bg-white dark:bg-gray-800 rounded-b-2xl overflow-hidden" style="padding-bottom: 56.25%;">
+                            @php
+                                $setting = App\Models\Setting::first();
+                                $videoUrl = $setting->url_youtube_landing ?? 'https://www.youtube.com/embed/HFy1WUcA';
+                            @endphp
                             <iframe
                                 class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+                                src="{{ $videoUrl }}"
                                 title="Descubre GoodTrav"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

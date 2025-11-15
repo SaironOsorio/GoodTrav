@@ -158,12 +158,22 @@
 
                                 <!-- Contenido -->
                                 <div class="flex-1 text-center md:text-left">
+
+                                    @php
+                                        $setting = App\Models\Setting::first();
+                                        $title = $setting->title_contributors_new_title ?? '🎓 ¿Eres profesor o coordinador de grupos?';
+                                        $description = $setting->title_contributors_new_description ?? 'Únete a nuestra comunidad educativa y obtén descuentos especiales al traer a tus estudiantes. Ofrecemos condiciones exclusivas para instituciones y grupos organizados.';
+                                        $pricebase = $setting->title_contributors_price_base ?? '€16/mes';
+                                        $pricenew = $setting->title_contributors_price_new ?? '€12/mes';
+
+                                        $discount = (($pricebase - $pricenew) / $pricebase) * 100;
+                                        $discount = round($discount, 0); // Redondear sin decimales
+                                    @endphp
                                     <h3 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2 poppins-bold">
-                                        🎓 ¿Eres profesor o coordinador de grupos?
+                                        {{ $title }}
                                     </h3>
                                     <p class="text-base md:text-lg text-gray-700 mb-4 montserrat-regular">
-                                        Únete a nuestra comunidad educativa y obtén <span class="font-bold text-[#5170ff]">descuentos especiales</span> al traer a tus estudiantes.
-                                        Ofrecemos condiciones exclusivas para instituciones y grupos organizados.
+                                        {{ $description }}
                                     </p>
 
                                     <!-- Precio con descuento -->
@@ -172,7 +182,7 @@
                                             <!-- Precio anterior tachado -->
                                             <div class="flex flex-col items-start">
                                                 <span class="text-sm text-gray-500 montserrat-regular">Precio base:</span>
-                                                <span class="text-2xl line-through text-gray-400 montserrat-regular">€16/mes</span>
+                                                <span class="text-2xl line-through text-gray-400 montserrat-regular">€{{ $pricebase }}/mes</span>
                                             </div>
 
                                             <!-- Flecha -->
@@ -183,35 +193,27 @@
                                             <!-- Nuevo precio -->
                                             <div class="flex flex-col items-start">
                                                 <span class="text-sm text-[#5170ff] font-bold montserrat-regular">Precio para grupos:</span>
-                                                <span class="text-3xl font-extrabold text-[#5170ff] montserrat-regular">€12/mes</span>
+                                                <span class="text-3xl font-extrabold text-[#5170ff] montserrat-regular">€{{ $pricenew }}/mes</span>
                                             </div>
 
                                             <!-- Badge de ahorro -->
                                             <div class="bg-[#70ff51] text-gray-900 font-bold px-3 py-2 rounded-lg shadow-lg">
                                                 <div class="text-xs">AHORRA</div>
-                                                <div class="text-lg">25%</div>
+                                                <div class="text-lg">{{ $discount }}%</div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <!-- Beneficios -->
-                                    <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-                                        <span class="inline-flex items-center gap-1 bg-white px-3 py-1.5 rounded-full text-sm font-semibold text-gray-700 shadow-sm">
-                                            ✓ Descuentos por volumen
-                                        </span>
-                                        <span class="inline-flex items-center gap-1 bg-white px-3 py-1.5 rounded-full text-sm font-semibold text-gray-700 shadow-sm">
-                                            ✓ Soporte prioritario
-                                        </span>
-                                        <span class="inline-flex items-center gap-1 bg-white px-3 py-1.5 rounded-full text-sm font-semibold text-gray-700 shadow-sm">
-                                            ✓ Material exclusivo
-                                        </span>
                                     </div>
                                 </div>
 
                                 <!-- Botón de acción -->
                                 <div class="flex-shrink-0">
+
+                                    @php
+                                        $socialMedia = \App\Models\Socialmedia::first();
+                                        $email = $socialMedia->email ?? 'info@goodtrav.com';
+                                    @endphp
                                     <a
-                                        href="mailto:info@goodtrav.com"
+                                        href="mailto:{{ $email }}"
                                         class="inline-flex items-center gap-2 bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-full px-8 py-4 text-base transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5170ff]/50 poppins-bold">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
