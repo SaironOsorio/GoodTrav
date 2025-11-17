@@ -38,7 +38,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Blue,
             ])
-            ->font('League Spartan', provider: GoogleFontProvider::class)
+            ->font('poppins', provider: GoogleFontProvider::class)
             ->maxContentWidth(Width::Full)
             ->defaultThemeMode(ThemeMode::Light)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')

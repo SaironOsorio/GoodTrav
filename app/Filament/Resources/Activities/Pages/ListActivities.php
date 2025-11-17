@@ -45,11 +45,4 @@ class ListActivities extends ListRecords
 
         ];
     }
-
-    protected function getHeaderWidgets(): array
-    {
-        return [
-            EventCountWidget::class,
-        ];
-    }
 }
