@@ -154,22 +154,25 @@
 
 
     {{-- GoodTrav Society Bonus --}}
-    <div class="px-4 md:px-8 py-12 md:py-16">
+    <div class="px-4 md:px-8 py-12 md:py-16" x-data="{ open: false }">
         <div class="max-w-7xl mx-auto  rounded-2xl md:rounded-3xl p-6 md:p-12 lg:p-16">
             <img src="https://www.josebernalte.com/wp-content/uploads/2016/10/16112016_blackfriday.jpg" alt="">
         </div>
     </div>
 
     {{-- Cómo apuntarse --}}
-    <div class="px-4 md:px-8 py-12 md:py-16 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#5170ff] text-center mb-8 md:mb-12 poppins-extrabold">
-                Cómo apuntarse
-            </h2>
+{{-- Cómo apuntarse --}}
+<div class="px-4 md:px-8 py-12 md:py-16 bg-white" 
+    x-data="{ open: false }"
+    @reservation-saved.window="open = false; setTimeout(() => { window.location.reload(); }, 1500)">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#5170ff] text-center mb-8 md:mb-12 poppins-extrabold">
+            Cómo apuntarse
+        </h2>
 
-            <div class="bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-100 p-6 md:p-8 lg:p-12">
+        <div class="bg-white rounded-xl md:rounded-2xl shadow-lg border border-gray-100 p-6 md:p-8 lg:p-12">
 
-            <div class=" space-y-10 prose prose-sm md:prose-base max-w-none text-gray-700 open-sans-regular">
+            <div class="space-y-10 prose prose-sm md:prose-base max-w-none text-gray-700 open-sans-regular">
                 <style>
                     .prose ol {
                         list-style-type: decimal !important;
@@ -187,14 +190,221 @@
                 {!! $trip->requirements !!}
             </div>
 
-                <div class="mt-6 md:mt-8 text-center">
-                    <button class="bg-[#5170ff] hover:bg-[#4060ef] text-white font-semibold px-6 md:px-8 py-2.5 md:py-3 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-sm md:text-base">
-                        Solicitar plaza ahora
+            <div class="mt-6 md:mt-8 text-center">
+                <button
+                    @click="open = true"
+                    class="bg-[#5170ff] hover:bg-[#4060ef] text-white font-semibold px-6 md:px-8 py-2.5 md:py-3 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-sm md:text-base cursor-pointer">
+                    Solicitar plaza ahora
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal --}}
+    <div
+        x-show="open"
+        x-cloak
+        @click.away="open = false"
+        class="fixed inset-0 z-50 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+    >
+        {{-- Overlay --}}
+        <div
+            x-show="open"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0  backdrop-blur-sm bg-black/50 transition-opacity"
+            @click="open = false"
+        ></div>
+
+        {{-- Modal Content --}}
+        <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+            <div
+                x-show="open"
+                x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl"
+                @click.stop
+            >
+                {{-- Header --}}
+                <div class="bg-gradient-to-r from-[#5170ff] to-[#4060ef] px-6 py-4 flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-white poppins-bold" id="modal-title">
+                        Solicitar Plaza - {{ $trip->title }}
+                    </h3>
+                    <button
+                        @click="open = false"
+                        class="text-white hover:text-gray-200 transition-colors"
+                    >
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                {{-- Body --}}
+                <div class="bg-white px-6 py-6 relative">
+                    <div 
+                        wire:loading 
+                        wire:target="submitReservation"
+                        class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10 rounded-lg"
+                    >
+                        <div class="text-center">
+                            <svg class="animate-spin h-12 w-12 text-[#5170ff] mx-auto mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <p class="text-[#5170ff] font-semibold">Procesando tu solicitud...</p>
+                        </div>
+                    </div>
+                    {{-- FORM Livewire --}}
+                    <form id="reserveForm" wire:submit.prevent="submitReservation" class="space-y-6">
+                        {{-- Nombre completo --}}
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre completo *</label>
+                            <input type="text" wire:model.defer="full_name" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#5170ff]">
+                        </div>
+
+                        {{-- Email --}}
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Correo electrónico *</label>
+                            <input type="email" wire:model.defer="email" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#5170ff]">
+                        </div>
+
+                        {{-- Teléfono --}}
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Teléfono *</label>
+                            <input type="tel" wire:model.defer="phone" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#5170ff]">
+                        </div>
+
+                        {{-- Select de descuento (tu bloque existente permanece; solo añadimos wire:model) --}}
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Descuento GoodTrav Society</label>
+                            @php
+                                $society = \App\Models\Society::where('user_id', Auth::id())->first();
+                                $refCount = $society?->user_count ?? 0;
+                                $isMember = $society !== null; // Verificar si existe el registro
+
+                                // Umbrales => porcentaje
+                                $discountRules = [
+                                    5  => 5,
+                                    10  => 10,
+                                    15  => 15,
+                                    20  => 20,
+                                    50  => 50,
+                                ];
+
+                                $availableDiscounts = [];
+                                foreach ($discountRules as $needed => $percent) {
+                                    if ($refCount >= $needed) {
+                                        $availableDiscounts[$needed] = $percent;
+                                    }
+                                }
+                            @endphp
+                            
+                            @if ($isMember && count($availableDiscounts) > 0)
+                                <div class="mb-2 text-xs text-gray-500">
+                                    Referidos: <span class="font-semibold">{{ $refCount }}</span>
+                                </div>
+                                <select wire:model.defer="gts_member" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#5170ff]">
+                                    <option value="">Sin descuento</option>
+                                    @foreach ($availableDiscounts as $needed => $percent)
+                                        <option value="{{ $percent }}">{{ $percent }}% de descuento ({{ $needed }} referidos)</option>
+                                    @endforeach
+                                </select>
+                            @elseif($isMember)
+                                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                    <p class="text-sm text-yellow-800">
+                                        <strong>Eres miembro de GoodTrav Society</strong><br>
+                                        Tienes {{ $refCount }} referidos. Necesitas al menos 10 para obtener descuentos.
+                                    </p>
+                                </div>
+                                <input type="hidden" wire:model.defer="gts_member" value="">
+                            @else
+                                <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                                    <p class="text-sm text-gray-600">
+                                        No eres miembro de GoodTrav Society. 
+                                        <a href="{{ route('society') }}" class="text-[#5170ff] hover:underline font-semibold">Únete aquí</a>
+                                    </p>
+                                </div>
+                                <input type="hidden" wire:model.defer="gts_member" value="">
+                            @endif
+                        </div>
+
+                        {{-- Fecha/hora llamada --}}
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Agenda tu llamada * Selecciona fecha y hora diferente a la actual</label>
+                            <input type="datetime-local" wire:model.defer="date_call" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#5170ff]">
+                        </div>
+
+                        {{-- Términos --}}
+                        <div class="flex items-start">
+                            <input type="checkbox" wire:model.defer="terms" required class="mt-1 h-4 w-4 text-[#5170ff] border-gray-300 rounded">
+                            <label class="ml-3 text-sm text-gray-600">Acepto los términos y la política de privacidad</label>
+                        </div>
+
+                        {{-- Errores --}}
+                        @error('full_name') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
+                        @error('email') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
+                        @error('phone') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
+                        @error('gts_member') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
+                        @error('date_call') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
+                        @error('terms') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
+                    </form>
+                </div>
+
+                {{-- Footer --}}
+                <div class="bg-gray-50 px-6 py-4 flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
+                    <button
+                        @click="open = false"
+                        type="button"
+                        class="w-full sm:w-auto px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-semibold hover:bg-gray-100 transition cursor-pointer"
+                    >
+                        Cancelar
+                    </button>
+                    <button
+                        type="submit"
+                        form="reserveForm"
+                        wire:loading.attr="disabled"
+                        wire:target="submitReservation"
+                        class="w-full sm:w-auto px-6 py-3 bg-[#5170ff] hover:bg-[#4060ef] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                        {{-- Spinner (solo visible mientras carga) --}}
+                        <svg 
+                            wire:loading 
+                            wire:target="submitReservation"
+                            class="animate-spin h-5 w-5 text-white" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24"
+                        >
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+
+                        {{-- Texto que cambia --}}
+                        <span wire:loading.remove wire:target="submitReservation">
+                            Enviar solicitud
+                        </span>
+                        <span wire:loading wire:target="submitReservation">
+                            Enviando...
+                        </span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
+
+<style>
+    [x-cloak] { display: none !important; }
+</style>

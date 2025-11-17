@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Reserver;
 use App\Models\Trip;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class Tripinfo extends Component
 {
@@ -36,7 +37,7 @@ class Tripinfo extends Component
             return 'Sin categoría';
         }
 
-        $age = \Carbon\Carbon::parse(Auth::user()->date_of_birth)->age;
+        $age = Carbon::parse(Auth::user()->date_of_birth)->age;
 
         if ($age >= 11 && $age <= 14) {
             return 'Junior';
@@ -55,6 +56,24 @@ class Tripinfo extends Component
 
     public function render()
     {
-        return view('livewire.tripinfo');
+        $user = Auth::user();
+
+        $reserver = Reserver::where('user_id', $user->id)
+            ->whereNotIn('status', ['canceled', 'cancelled'])
+            ->join('trips', 'reservers.trip_id', '=', 'trips.id')
+            ->select('reservers.*', 'trips.destination', 'trips.image_path', 'trips.start_date', 'trips.end_date', 'trips.points', 'trips.price')
+            ->get();
+
+        $trips = Trip::where('start_date', '>=', Carbon::now())
+            ->orderBy('start_date', 'asc')
+            ->get();
+
+        $userAgeCategory = $this->getUserAgeCategory($user->birthdate);
+
+        return view('livewire.tripinfo', [
+            'reserver' => $reserver,
+            'trips' => $trips,
+            'userAgeCategory' => $userAgeCategory,
+        ]);
     }
 }

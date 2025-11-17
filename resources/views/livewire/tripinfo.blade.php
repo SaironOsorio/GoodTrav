@@ -12,48 +12,33 @@
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 @foreach ($reserver as $item)
                     <div class="group relative bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden dark:bg-gray-800 dark:border-gray-700">
-                        <div class="relative overflow-hidden">
-                            <img
-                                class="w-full h-56 object-cover rounded-t-2xl group-hover:scale-110 transition-transform duration-500"
-                                src="{{ asset('storage/' . $item->image_path) }}"
-                                alt="{{ $item->destination }}"
-                                loading="lazy"
-                            />
-                            <div class="absolute top-4 right-4 poppins-bold">
-                                <span class="px-4 py-2 bg-green-500 text-white font-bold text-sm rounded-full shadow-lg">
-                                    RESERVADO
-                                </span>
-                            </div>
-                        </div>
 
+                        <div class="absolute top-4 right-4 poppins-bold">
+                            <span class="px-4 py-2 bg-green-500 text-white font-bold text-sm rounded-full shadow-lg">
+                                {{ $item->status }}
+                            </span>
+                        </div>
+                        <br>
+                        <br>
                         <div class="p-6 space-y-3">
                             <h5 class="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white poppins-bold text-center">
-                                {{ strtoupper($item->destination) }}
+                                {{ strtoupper($item->name_trip) }}
                             </h5>
 
-
-                            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                                <svg class="w-5 h-5 text-[#5170ff]" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-sm font-medium open-sans-regular">
-                                    {{ \Carbon\Carbon::parse($item->start_date)->locale('es')->format('d/m/Y') }} - {{ \Carbon\Carbon::parse($item->end_date)->locale('es')->format('d/m/Y') }}
-                                </p>
-                            </div>
 
                             <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                                 <svg class="w-5 h-5 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                                 </svg>
                                 <p class="text-sm font-medium open-sans-regular">
-                                    <span class="font-bold">{{ number_format($item->points) }}</span> Puntos GT
+                                    <span class="font-bold">{{ number_format($item->total_points) }}</span> Puntos GT
                                 </p>
                             </div>
 
                             <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
                                 <div>
                                     <p class="text-xs text-gray-500 open-sans-regular">Precio</p>
-                                    <p class="text-3xl font-bold text-[#5170ff] open-sans-regular">€{{ number_format($item->price, 2) }}</p>
+                                    <p class="text-3xl font-bold text-[#5170ff] open-sans-regular">€{{ number_format($item->total_price, 2) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -140,8 +125,40 @@
                                     {{ $trip->title }}
                             </p>
 
+                            @php
+                                $user = Auth::user();
+                                $canAccess = true;
+                                $message = '';
+
+                                $userRank = strtolower($userAgeCategory);
+                                $tripRank = strtolower($trip->rank);
+
+                                if ($userRank !== $tripRank) {
+                                    $canAccess = false;
+                                    $message = "No puedes acceder: eres {$userAgeCategory}.";
+                                }
+
+                                if ($user->gt_points < $trip->points) {
+                                    $canAccess = false;
+                                    $message = "No tienes suficientes puntos (" . number_format($user->gt_points) . "/" . number_format($trip->points) . " requeridos).";
+                                }
+
+                                if ($trip->plazas_available <= 0) {
+                                    $canAccess = false;
+                                    $message = "No hay plazas disponibles.";
+                                }
+
+                                $isReserved = $reserver->where('trip_id', $trip->id)
+                                    ->whereNotIn('status', ['canceled', 'cancelled'])
+                                    ->isNotEmpty();
+                            @endphp
+
                             <p class="text-lg italic font-normal text-gray-700 dark:text-gray-300 -mt-2 text-center">
-                                    {{ $trip->plazas_available }} plazas disponibles
+                                    @if($trip->plazas_available > 0)
+                                        <span class="text-green-600 font-semibold">{{ $trip->plazas_available }} plazas disponibles</span>
+                                    @else
+                                        <span class="text-red-600 font-semibold">Sin plazas disponibles</span>
+                                    @endif
                             </p>
 
 
@@ -199,9 +216,14 @@
                                     <p class="text-3xl font-bold text-[#5170ff] open-sans-regular">€{{ number_format($trip->price, 2) }}</p>
                                 </div>
 
+                                {{-- Botones --}}
                                 @if($isReserved)
                                     <button disabled class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-green-500 rounded-lg cursor-not-allowed poppins-bold">
                                         Reservado
+                                    </button>
+                                @elseif($trip->plazas_available <= 0)
+                                    <button disabled class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-gray-500 bg-gray-300 dark:bg-zinc-700 rounded-lg cursor-not-allowed poppins-bold">
+                                        Sin plazas
                                     </button>
                                 @elseif(!$canAccess)
                                     <button disabled class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-gray-500 bg-gray-300 dark:bg-zinc-700 rounded-lg cursor-not-allowed poppins-bold">

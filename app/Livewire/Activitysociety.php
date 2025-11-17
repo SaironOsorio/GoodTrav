@@ -37,7 +37,7 @@ class Activitysociety extends Component
         $this->LoadActivitiesPost();
         $this->LoadActiviesEvents();
 
-        $this->count_user = Society::where('user_id', Auth::id())->count();
+        $this->count_user = Society::where('user_id', Auth::id())->value('user_count') ?? 0;
 
         // Verificar actividades pendientes DESPUÉS de cargar los estados completados
         $this->pendingActivity = Activity::where('user_id', Auth::id())

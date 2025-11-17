@@ -69,9 +69,14 @@ class Trip extends Model
         return $slug;
     }
 
-        public function getRouteKeyName()
+    public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reserver::class, 'trip_id');
     }
 
 }
