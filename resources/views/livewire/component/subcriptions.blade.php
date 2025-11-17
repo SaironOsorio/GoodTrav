@@ -20,13 +20,13 @@
 
             @if($subscriptions && $subscriptions->count() > 0)
                 <!-- Flex container horizontal -->
-                <div class="w-full max-w-7xl mx-auto">
+                <div class="w-full max-w-7xl mx-auto ">
                     @foreach($subscriptions as $index => $subscription)
                         @php
                             $isPopular = $index === 1;
                         @endphp
 
-                        <div class="subscription-card fade-in-up animation-delay-{{ $index * 100 }} flex flex-col md:flex-row items-center gap-8 p-8 w-full rounded-3xl border-2 relative
+                        <div class="bg-gradient-to-br from-[#5170ff]/10 via-[#ff5170]/10 to-[#70ff51]/10 subscription-card fade-in-up animation-delay-{{ $index * 100 }} flex flex-col md:flex-row items-center gap-8 p-8 w-full rounded-3xl border-2 relative
                             {{ $isPopular
                                 ? 'bg-gradient-to-br from-[#5170ff] to-[#ff5170] border-transparent text-white shadow-2xl hover:shadow-[#5170ff]/50 transform scale-105'
                                 : 'bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-600 shadow-lg hover:shadow-xl'
@@ -44,19 +44,15 @@
 
                             <!-- Columna izquierda: Título, Descripción y Precio -->
                             <div class="flex-1 text-center md:text-left">
-                                <h3 class="mb-4 text-2xl font-extrabold poppins-extrabold {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
+                                <h3 class="mb-4 text-4xl font-extrabold poppins-extrabold {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
                                     {{ $subscription->title }}
                                 </h3>
 
-                                <p class="font-light sm:text-lg montserrat-regular {{ $isPopular ? 'text-white/90' : 'text-gray-600 dark:text-gray-400' }} mb-6">
-                                    {{ $subscription->description }}
-                                </p>
-
-                                <div class="flex justify-center md:justify-start items-baseline">
-                                    <span class="mr-2 text-5xl font-extrabold montserrat-regular {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
+                                <div class="flex justify-center md:justify-start items-baseline mt-4">
+                                    <span class="mr-2 text-7xl font-extrabold montserrat-regular {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
                                         €{{ ($subscription->price) }}
                                     </span>
-                                    <span class="montserrat-regular {{ $isPopular ? 'text-white/80' : 'text-gray-600 dark:text-gray-400' }}">
+                                    <span class="montserrat-regular text-4xl {{ $isPopular ? 'text-white/80' : 'text-gray-600 dark:text-gray-400' }}">
                                         /{{ $subscription->duration }} mes
                                     </span>
                                 </div>
@@ -84,7 +80,7 @@
                                                     <svg class="flex-shrink-0 w-5 h-5 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
                                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                                     </svg>
-                                                    <span class="{{ $isPopular ? 'text-white' : 'text-gray-600 dark:text-gray-400' }} open-sans-regular">
+                                                    <span class="{{ $isPopular ? 'text-white' : 'text-black dark:text-gray-400' }} open-sans-regular">
                                                         {{ $featureText }}
                                                     </span>
                                                 </li>
@@ -107,7 +103,7 @@
                                     Comenzar ahora
                                 </a>
 
-                                <p class="text-xs open-sans-regular {{ $isPopular ? 'text-white/70' : 'text-gray-500 dark:text-gray-400' }}">
+                                <p class="text-xs open-sans-regular {{ $isPopular ? 'text-white/70' : 'text-black dark:text-gray-400' }}">
                                     Cancela cuando quieras
                                 </p>
                             </div>
@@ -129,7 +125,7 @@
                    @endphp
 
                    <div class="w-full max-w-7xl mx-auto mt-6">
-                       <div class="bg-white/80 dark:bg-gray-800 rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-gray-700 shadow-lg">
+                       <div class="bg-gradient-to-br from-[#5170ff]/10 via-[#ff5170]/10 to-[#70ff51]/10 rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-gray-700 shadow-lg">
                            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
                                 @php
                                     $setting = App\Models\Setting::first();
@@ -137,10 +133,10 @@
                                     $description = $setting->title_contributors_list_subtitle ?? 'Si tu centro está en la lista, podrás aplicar un cupón y obtener un precio especial para tus estudiantes.';
                                 @endphp
                                <div class="flex-1">
-                                   <h3 class="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white poppins-bold">
+                                   <h3 class="text-xl md:text-3xl font-extrabold text-gray-900 dark:text-white poppins-bold">
                                        {{ $title }}
                                    </h3>
-                                   <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 montserrat-regular">
+                                   <p class=" text-black text-sm dark:text-gray-300 mt-1 montserrat-regular">
                                        {{ $description }}
                                    </p>
                                </div>
@@ -148,11 +144,11 @@
                                <div class="flex items-center gap-6">
                                    <div class="text-center">
                                        <div class="text-xs text-gray-500">Precio base</div>
-                                       <div class="text-2xl font-extrabold text-gray-900 dark:text-white">€{{ number_format($basePrice, 2) }}</div>
+                                       <div class="text-xl line-through font-extrabold text-gray-900 dark:text-white">€{{ number_format($basePrice, 2) }}/mes</div>
                                    </div>
                                    <div class="text-center">
-                                       <div class="text-xs text-gray-500">Con cupón ({{ $couponPercent }}%)</div>
-                                       <div class="text-2xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}</div>
+                                       <div class="text-xs text-gray-500">Precio colaboradores ({{ $couponPercent }}%)</div>
+                                       <div class="text-4xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
                                    </div>
                                </div>
                            </div>
@@ -176,19 +172,25 @@
                                                 $whatsApp = $socialMedia->whats_app ?? '614189556';
                                             @endphp
                                            <a
-                                               href="https://wa.me/{{ $whatsApp }}?text={{ urlencode('Hola, soy docente y quiero información para activar el descuento del centro: '.$centro['name'].' | Precio base: €'.number_format($basePrice,2).' -> Con cupón: €'.$discountedPrice) }}"
+                                               href="https://wa.me/{{ $whatsApp }}?text={{ urlencode('Hola, soy estudiante y quiero información para activar el descuento del centro: '.$centro['name'].' | Precio base: €'.number_format($basePrice,2).' -> Con cupón: €'.$discountedPrice) }}"
                                                target="_blank"
                                                rel="noopener noreferrer"
-                                               class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full shadow-sm transition-transform duration-150 transform hover:-translate-y-0.5">
-                                               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                   <path d="M21 15a2 2 0 0 1-2 2h-1l-3 3-2-2-3 3v-1a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                                               </svg>
-                                               Comenzar
+                                               class="inline-flex items-center gap-2 bg-[#5170ff] hover:bg-[#5972e0] text-white px-4 py-2 rounded-full shadow-sm transition-transform duration-150 transform hover:-translate-y-0.5">
+                                               Solicitar cupón aquí
                                            </a>
                                        </div>
                                    </li>
                                @endforeach
                             </ul>
+                            <div class="flex items-center gap-3 mt-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                                </svg>
+
+                                <h5 class="font-black">
+                                    Centros verificados que nos aconsejan y confían en nosotros.
+                                </h5>
+                            </div>
                        </div>
                    </div>
 

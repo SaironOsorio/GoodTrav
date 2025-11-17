@@ -323,15 +323,15 @@
         </section>
 
 
-        <section class="bg-[#5170ff]">
+        <section class="bg-gradient-to-br from-purple-600 to-blue-500">
             <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 items-center">
                 <!-- Texto principal -->
                 <div class="mr-auto place-self-center lg:col-span-7">
                     <blockquote class="max-w-2xl mb-4 text-xl md:text-2xl xl:text-3xl font-extrabold tracking-tight leading-tight text-white poppins-bold">
                         "Aquí convertimos a nuestros alumnos en personas independientes y capaces de moverse solos por el mundo"
                     </blockquote>
-                    <p class="max-w-2xl mb-6 font-light text-[#99ff83] lg:mb-8 md:text-lg lg:text-xl montserrat-regular">
-                        Nerea<br>Fundadora de GoodTrav
+                    <p class="max-w-2xl mb-6 font-light text-white lg:mb-8 md:text-lg lg:text-xl montserrat-regular">
+                        Nerea<br>Filóloga y fundadora de GoodTrav
                     </p>
                 </div>
 

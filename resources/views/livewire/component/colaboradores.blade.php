@@ -145,64 +145,23 @@
                 @endif
 
                 <div class="mt-8 fade-in-up animation-delay-400">
-                        <div class="bg-gradient-to-br from-[#5170ff]/10 via-[#ff5170]/10 to-[#70ff51]/10 rounded-3xl p-8 border-2 border-[#5170ff]/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="bg-[#5170ff] rounded-3xl p-8 border-2 border-black shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                             <div class="flex flex-col md:flex-row items-center gap-6">
-                                <!-- Icono -->
-                                <div class="flex-shrink-0">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-[#5170ff] to-[#ff5170] rounded-2xl flex items-center justify-center shadow-lg">
-                                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-                                        </svg>
-                                    </div>
-                                </div>
 
                                 <!-- Contenido -->
                                 <div class="flex-1 text-center md:text-left">
 
                                     @php
                                         $setting = App\Models\Setting::first();
-                                        $title = $setting->title_contributors_new_title ?? '🎓 ¿Eres profesor o coordinador de grupos?';
+                                        $title = $setting->title_contributors_new_title ?? ' ¿Eres profesor o coordinador de grupos?';
                                         $description = $setting->title_contributors_new_description ?? 'Únete a nuestra comunidad educativa y obtén descuentos especiales al traer a tus estudiantes. Ofrecemos condiciones exclusivas para instituciones y grupos organizados.';
-                                        $pricebase = $setting->title_contributors_price_base ?? '€16/mes';
-                                        $pricenew = $setting->title_contributors_price_new ?? '€12/mes';
-
-                                        $discount = (($pricebase - $pricenew) / $pricebase) * 100;
-                                        $discount = round($discount, 0); // Redondear sin decimales
                                     @endphp
-                                    <h3 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2 poppins-bold">
+                                    <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-2 poppins-bold">
                                         {{ $title }}
                                     </h3>
-                                    <p class="text-base md:text-lg text-gray-700 mb-4 montserrat-regular">
+                                    <p class="text-base md:text-lg text-white mb-4 montserrat-regular">
                                         {{ $description }}
                                     </p>
-
-                                    <!-- Precio con descuento -->
-                                    <div class="flex flex-wrap items-center gap-4 justify-center md:justify-start mb-4">
-                                        <div class="flex items-center gap-3">
-                                            <!-- Precio anterior tachado -->
-                                            <div class="flex flex-col items-start">
-                                                <span class="text-sm text-gray-500 montserrat-regular">Precio base:</span>
-                                                <span class="text-2xl line-through text-gray-400 montserrat-regular">€{{ $pricebase }}/mes</span>
-                                            </div>
-
-                                            <!-- Flecha -->
-                                            <svg class="w-6 h-6 text-[#5170ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                                            </svg>
-
-                                            <!-- Nuevo precio -->
-                                            <div class="flex flex-col items-start">
-                                                <span class="text-sm text-[#5170ff] font-bold montserrat-regular">Precio para grupos:</span>
-                                                <span class="text-3xl font-extrabold text-[#5170ff] montserrat-regular">€{{ $pricenew }}/mes</span>
-                                            </div>
-
-                                            <!-- Badge de ahorro -->
-                                            <div class="bg-[#70ff51] text-gray-900 font-bold px-3 py-2 rounded-lg shadow-lg">
-                                                <div class="text-xs">AHORRA</div>
-                                                <div class="text-lg">{{ $discount }}%</div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <!-- Botón de acción -->
@@ -214,7 +173,7 @@
                                     @endphp
                                     <a
                                         href="mailto:{{ $email }}"
-                                        class="inline-flex items-center gap-2 bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-full px-8 py-4 text-base transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5170ff]/50 poppins-bold">
+                                        class="inline-flex items-center gap-2 bg-[#70ff51] text-black font-bold rounded-full px-8 py-4 text-base transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5170ff]/50 poppins-bold">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                         </svg>
