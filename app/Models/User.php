@@ -50,6 +50,8 @@ class User extends Authenticatable implements FilamentUser
         'society_code',
         'is_tiktok',
         'is_instagram',
+        'has_received_post_points',
+        'has_received_event_points',
     ];
 
     /**
@@ -91,6 +93,8 @@ class User extends Authenticatable implements FilamentUser
             'has_watched_weekly_video' => 'boolean',
             'is_tiktok' => 'boolean',
             'is_instagram' => 'boolean',
+            'has_received_post_points' => 'boolean',
+            'has_received_event_points' => 'boolean',
         ];
     }
 
@@ -159,5 +163,10 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->belongsToMany(Challenge::class, 'challenge_user', 'user_id', 'challenge_code', 'id', 'code')
             ->withTimestamps();
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
     }
 }

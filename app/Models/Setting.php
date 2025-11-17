@@ -14,10 +14,12 @@ class Setting extends Model
         'title_contributors_new_subtitle',
         'title_contributors_price_base',
         'title_contributors_price_new',
+        'event_count',
     ];
 
     protected $casts = [
         'title_contributors_price_base' => 'integer',
         'title_contributors_price_new' => 'integer',
+        'event_count' => 'integer',
     ];
 }
