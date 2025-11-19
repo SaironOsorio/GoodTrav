@@ -11,7 +11,11 @@
                 </div>
                 <a href="{{ route('home') }}" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
                     <span class="flex h-40 w-40 items-center justify-center rounded-md">
-                        <img src="{{ asset('assets/images/GoodTrav.png') }}" alt="goodtrav logo" class="w-full h-auto" />
+                        @php
+                            $settings = \App\Models\Setting::first();
+                            $logoPath = $settings && $settings->image_path_authentication ? asset('storage/' . $settings->image_path_authentication) : asset('assets/images/GoodTrav.png');
+                        @endphp
+                        <img src="{{ $logoPath }}" alt="goodtrav logo" class="w-full h-auto" />
                     </span>
                 </a>
 
