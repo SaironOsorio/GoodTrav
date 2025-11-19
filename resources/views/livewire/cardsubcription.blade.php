@@ -132,7 +132,8 @@
                                             <span class="font-semibold">Hoy:</span> €0
                                         </div>
                                     @endif
-                                    <span class="text-6xl font-bold text-white">€{{ $subscription->price }}</span>
+                                    <span class="text-8xl font-bold text-white">€0</span>
+                                    <span class="text-sm font-medium text-white opacity-80">después €20</span>
                                     @if(!$hasHadTrial)
                                         <p class="text-white text-sm mt-2 opacity-90">
                                             después de 7 días

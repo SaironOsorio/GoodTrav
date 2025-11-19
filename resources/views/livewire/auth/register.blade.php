@@ -1,6 +1,6 @@
 <x-layouts.auth>
     <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Crear una cuenta')" :description="__('Ingrese sus datos a continuación para crear su cuenta.')" />
+        <x-auth-header :title="__('Crear una cuenta')" :description="__('Ingresa tu datos a continuación para crear tu cuenta.')" />
 
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
@@ -147,12 +147,12 @@
             <input type="hidden" name="audio" value="0">
             <flux:field variant="inline">
                 <flux:checkbox name="audio" wire:model="audio" value="1" />
-                <flux:label>Autorizo el tratamiento de los datos personales y la grabación de voz de mi hijo/a.</flux:label>
+                <flux:label>Autorizo el tratamiento de los datos personales y la grabación de voz de mi hijo/a con fines educativos.</flux:label>
                 <flux:error name="audio" />
             </flux:field>
 
             <!-- Confirmación de tutor legal -->
-            <input type="hidden" name="autor" value="0"> 
+            <input type="hidden" name="autor" value="0">
             <flux:field variant="inline">
                 <flux:checkbox name="autor" wire:model="autor" value="1" />
                 <flux:label>Confirmo que soy el padre/madre/tutor legal.</flux:label>
