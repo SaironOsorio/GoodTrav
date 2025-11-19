@@ -13,6 +13,7 @@ use Filament\Schemas\Components\Section;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Components\FileUpload;
 
 
 class Setting extends Page implements HasForms
@@ -38,8 +39,8 @@ class Setting extends Page implements HasForms
     {
         return $schema
             ->schema([
-                Section::make('Configuración General')
-                    ->description('Ajusta las configuraciones generales de la aplicación. Estos valores se utilizan en varias partes del sitio web. Secciones (Descubre Goodtrav, Lista de colaboradores con descuento, Unirse a la colaboradores)')
+                Section::make('YouTube Landing')
+                    ->description('Configura la URL del video de YouTube para la página principal.')
                     ->schema([
                         Forms\Components\TextInput::make('url_youtube_landing')
                             ->label('URL YouTube Landing')
@@ -47,7 +48,12 @@ class Setting extends Page implements HasForms
                             ->url()
                             ->placeholder('https://www.youtube.com/watch?v=XXXXXXX')
                             ->maxLength(255),
+                    ])
+                    ->columns(1),
 
+                Section::make('Lista de Colaboradores')
+                    ->description('Configura los títulos y subtítulos para la sección de lista de colaboradores.')
+                    ->schema([
                         Forms\Components\TextInput::make('title_contributors_list_title')
                             ->label('Título Lista de Colaboradores')
                             ->helperText('Ingrese el título para la sección de lista de colaboradores.')
@@ -57,7 +63,12 @@ class Setting extends Page implements HasForms
                             ->label('Subtítulo Lista de Colaboradores')
                             ->helperText('Ingrese el subtítulo para la sección de lista de colaboradores.')
                             ->maxLength(255),
+                    ])
+                    ->columns(2),
 
+                Section::make('Nuevo Colaborador')
+                    ->description('Configura los títulos, subtítulos y precios para la sección de nuevo colaborador.')
+                    ->schema([
                         Forms\Components\TextInput::make('title_contributors_new_title')
                             ->label('Título Nuevo Colaborador')
                             ->helperText('Ingrese el título para la sección de nuevo colaborador.')
@@ -78,16 +89,47 @@ class Setting extends Page implements HasForms
                             ->helperText('Ingrese el precio para la sección de nuevo colaborador.')
                             ->numeric(),
                     ])
-                    ->footer(
-                        Action::make('save')
-                            ->label('Guardar Configuración')
-                            ->button()
-                            ->color('primary')
-                            ->action('save')
-                    )
                     ->columns(2),
+
+                Section::make('Suscripciones')
+                    ->description('Configura los textos relacionados con las suscripciones.')
+                    ->schema([
+                        Forms\Components\TextInput::make('subcription_title')
+                            ->label('Título de Suscripción')
+                            ->helperText('Ingrese el título para la sección de suscripciones.')
+                            ->maxLength(255),
+
+                        Forms\Components\Textarea::make('subcription_description')
+                            ->label('Descripción de Suscripción')
+                            ->helperText('Ingrese la descripción para la sección de suscripciones.')
+                            ->rows(4),
+                    ])
+                    ->columns(1),
+
+                Section::make('Autenticación')
+                    ->description('Configura la imagen utilizada en la autenticación.')
+                    ->schema([
+                        FileUpload::make('image_path_authentication')
+                            ->label('Imagen de Autenticación')
+                            ->helperText('Suba una imagen para la sección de autenticación.')
+                            ->image()
+                            ->directory('authentication-images')
+                            ->maxSize(1024), // Tamaño máximo en KB
+                    ])
+                    ->columns(1),
             ])
             ->statePath('data');
+    }
+
+    protected function getActions(): array
+    {
+        return [
+            Action::make('save')
+                ->label('Guardar Configuración')
+                ->button()
+                ->color('primary')
+                ->action('save'),
+        ];
     }
 
     public function save(): void

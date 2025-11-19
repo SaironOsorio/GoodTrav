@@ -15,6 +15,9 @@ class Setting extends Model
         'title_contributors_price_base',
         'title_contributors_price_new',
         'event_count',
+        'subcription_title',
+        'subcription_description',
+        'image_path_authentication',
     ];
 
     protected $casts = [
