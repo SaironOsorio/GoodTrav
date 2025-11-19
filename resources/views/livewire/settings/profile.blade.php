@@ -96,7 +96,7 @@ new class extends Component {
 
     <x-settings.layout :heading="__('Cuenta')" :subheading="__('Actualiza la información de perfil.')" >
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <flux:input wire:model="name" :label="__('Nombre del padre/madre o tutor legal')" type="text" required autofocus autocomplete="name" />
+            <flux:input  wire:model="name" :label="__('Nombre del padre/madre o tutor legal')" type="text" required autofocus autocomplete="name" />
 
             <flux:input wire:model="student_name" :label="__('Nombre del Estudiante')" type="text" required autocomplete="student_name" />
 
