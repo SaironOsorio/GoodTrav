@@ -468,7 +468,6 @@
                                                 @if($challenge['is_audio'])
                                                     <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                                                    </svg>
                                                 @elseif($challenge['type'] === 'quiz')
                                                     <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -488,11 +487,14 @@
                                                 <h4 class="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{{ $challenge['title'] }}</h4>
                                                 <p class="text-xs text-green-600 dark:text-green-400 font-medium">✓ +{{ $challenge['points'] }} puntos obtenidos</p>
 
-                                                {{-- Si es audio aprobado, mostrar reproductor --}}
+                                                {{-- Si es audio aprobado, mostrar reproductor y retroalimentación --}}
                                                 @if($challenge['is_audio'] && $challenge['audio_submission'] && $challenge['audio_submission']->status === 'approved')
                                                     <audio controls class="w-full mt-2 h-8" preload="metadata">
                                                         <source src="{{ Storage::url($challenge['audio_submission']->audio_path) }}" type="audio/mpeg">
                                                     </audio>
+                                                    @if($challenge['audio_submission']->admin_feedback)
+                                                        <p class="mt-2 text-sm text-green-700 dark:text-green-300">{{ $challenge['audio_submission']->admin_feedback }}</p>
+                                                    @endif
                                                 @endif
                                             </div>
                                         </div>

@@ -16,13 +16,13 @@ class ChallengeAudioSubmissionForm
                 ->schema([
                     Forms\Components\TextInput::make('user.name')
                         ->label('Usuario')
-                        ->default(fn ($record) => $record?->user?->name)
+                        ->default(fn($record) => $record?->user?->name)
                         ->disabled()
                         ->dehydrated(false),
 
                     Forms\Components\TextInput::make('challenge.title')
                         ->label('Reto')
-                        ->default(fn ($record) => $record?->challenge?->title)
+                        ->default(fn($record) => $record?->challenge?->title)
                         ->disabled()
                         ->dehydrated(false),
 
@@ -36,8 +36,9 @@ class ChallengeAudioSubmissionForm
                 ->schema([
                     Forms\Components\Placeholder::make('audio_preview')
                         ->label('Reproductor')
-                        ->content(fn ($record) => $record ?
-                            new \Illuminate\Support\HtmlString('
+                        ->content(
+                            fn($record) => $record ?
+                                new \Illuminate\Support\HtmlString('
                                 <div class="space-y-3">
                                     <audio controls class="w-full" preload="metadata" controlsList="nodownload">
                                         <source src="' . Storage::url($record->audio_path) . '" type="audio/mpeg">
@@ -50,7 +51,7 @@ class ChallengeAudioSubmissionForm
                                     </div>
                                 </div>
                             ')
-                            : new \Illuminate\Support\HtmlString('<p class="text-sm text-gray-500">No hay audio disponible</p>')
+                                : new \Illuminate\Support\HtmlString('<p class="text-sm text-gray-500">No hay audio disponible</p>')
                         ),
                 ]),
 
@@ -76,10 +77,10 @@ class ChallengeAudioSubmissionForm
 
                     Forms\Components\Textarea::make('admin_feedback')
                         ->label('Comentarios para el estudiante')
-                        ->placeholder('Explica por qué fue rechazado el audio (pronunciación, claridad, contenido, etc.)...')
+                        ->placeholder('Explica por qué fue rechazado o aprobado el audio (pronunciación, claridad, contenido, etc.)...')
                         ->rows(4)
-                        ->visible(fn ($get) => $get('status') === 'rejected')
-                        ->required(fn ($get) => $get('status') === 'rejected')
+                        ->visible(fn($get) => in_array($get('status'), ['approved', 'rejected']))
+                        ->required(fn($get) => in_array($get('status'), ['approved', 'rejected']))
                         ->helperText('Este mensaje será visible para el estudiante')
                         ->maxLength(500),
                 ])
