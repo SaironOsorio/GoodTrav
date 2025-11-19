@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Mail\ReservationCreated;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Socialmedia;
 
 
 class Detailtrip extends Component
@@ -102,7 +103,8 @@ class Detailtrip extends Component
                 'phone_called_at' => $this->date_call,
             ];
 
-            Mail::to('reservas@ejemplo.com')->send(new ReservationCreated($reservationDetails));
+            $socialMediaContacts = Socialmedia::pluck('email')->toArray();
+            Mail::to($socialMediaContacts)->send(new ReservationCreated($reservationDetails));
 
             DB::commit();
 
