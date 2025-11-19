@@ -46,10 +46,10 @@
 
                     <div>
                         <h3 class="text-white font-bold uppercase">Horario</h3>
-                        <span class="block mt-2 text-sm text-white font-medium">Lunes a Jueves</span>
-                        <span class="block mt-2 text-sm text-white font-medium">8:00 - 28:00</span>
-                        <span class="block mt-2 text-sm text-white font-medium">Viernes</span>
-                        <span class="block mt-2 text-sm text-white font-medium">8:00 - 15:00</span>
+                        <span class="block mt-2 text-sm text-white font-medium">Lunes a Viernes</span>
+                        <span class="block mt-2 text-sm text-white font-medium">9:00 - 18:00</span>
+                        <span class="block mt-2 text-sm text-white font-medium">Sabado a Domingo</span>
+                        <span class="block mt-2 text-sm text-white font-medium">Cerrado</span>
                     </div>
 
                     <div>

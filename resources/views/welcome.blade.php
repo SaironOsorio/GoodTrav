@@ -68,7 +68,7 @@
                         Así funciona
                     </h2>
                     <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto montserrat-medium">
-                        Un proceso simple de 3 pasos para dominar el inglés mientras viajas
+                        Un proceso simple de 3 pasos para dominar el inglés mientras viajas.
                     </p>
                 </div>
 
@@ -323,23 +323,8 @@
         </section>
 
 
-        <section class="bg-gradient-to-br from-indigo-500 to-blue-500">
-            <div class="grid max-w-screen-xl px-4 py-16 mx-auto lg:gap-8 xl:gap-0 lg:py-24 lg:grid-cols-12 items-center">
-                <!-- Texto principal -->
-                <div class="mr-auto place-self-center lg:col-span-7 text-center lg:text-left">
-                    <blockquote class="max-w-2xl mb-6 text-2xl md:text-3xl xl:text-4xl font-bold tracking-tight leading-tight text-white poppins-bold">
-                        "Aquí convertimos a nuestros alumnos en personas independientes y capaces de moverse solos por el mundo"
-                    </blockquote>
-                    <p class="max-w-2xl mb-6 font-light text-white text-base md:text-lg montserrat-regular opacity-90">
-                        Nerea<br>
-                        Filóloga y fundadora de GoodTrav
-                    </p>
-                </div>
-                <!-- Imagen decorativa -->
-                <div class="lg:col-span-5 flex justify-center lg:justify-end">
-                    <img src="{{ asset('assets/images/Nerea-bg.png') }}" alt="Nerea - Fundadora de GoodTrav" class="w-full max-w-md lg:max-w-lg h-auto object-contain">
-                </div>
-            </div>
+        <section class="w-full h-auto overflow-hidden">
+            <img src="{{ asset('assets/images/banner.svg') }}" alt="" class="w-full h-auto object-cover">
         </section>
 
 

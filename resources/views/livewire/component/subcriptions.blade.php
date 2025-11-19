@@ -49,10 +49,10 @@
                                 </h3>
 
                                 <div class="flex justify-center md:justify-start items-baseline mt-4">
-                                    <span class="mr-2 text-7xl font-extrabold montserrat-regular {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
+                                    <span class="mr-2 text-4xl font-extrabold montserrat-regular {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
                                         €{{ ($subscription->price) }}
                                     </span>
-                                    <span class="montserrat-regular text-4xl {{ $isPopular ? 'text-white/80' : 'text-gray-600 dark:text-gray-400' }}">
+                                    <span class="montserrat-regular text-xl {{ $isPopular ? 'text-white/80' : 'text-gray-600 dark:text-gray-400' }}">
                                         /{{ $subscription->duration }} mes
                                     </span>
                                 </div>
@@ -103,7 +103,7 @@
                                     Comenzar ahora
                                 </a>
 
-                                <p class="text-xs open-sans-regular {{ $isPopular ? 'text-white/70' : 'text-black dark:text-gray-400' }}">
+                                <p class="text-xs open-sans-regular mr-8 {{ $isPopular ? 'text-white/70' : 'text-black dark:text-gray-400' }}">
                                     Cancela cuando quieras
                                 </p>
                             </div>
@@ -148,7 +148,7 @@
                                    </div>
                                    <div class="text-center">
                                        <div class="text-xs text-gray-500">Precio colaboradores ({{ $couponPercent }}%)</div>
-                                       <div class="text-4xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
+                                       <div class="text-5xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
                                    </div>
                                </div>
                            </div>

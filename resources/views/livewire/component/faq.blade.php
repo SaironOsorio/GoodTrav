@@ -18,7 +18,7 @@
                     Preguntas frecuentes
                 </h2>
                 <p class="text-lg text-gray-600 dark:text-gray-400">
-                    Resolvemos tus dudas sobre GoodTrav
+                    Resolvemos tus dudas sobre GoodTrav.
                 </p>
             </div>
 

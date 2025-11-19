@@ -4,7 +4,7 @@
         <!-- Elementos decorativos de fondo -->
         <div class="absolute top-20 left-10 w-64 h-64 bg-[#5170ff]/5 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-80 h-80 bg-[#70ff51]/5 rounded-full blur-3xl"></div>
-        
+
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 relative z-10">
             <!-- Header mejorado -->
             <div class="mx-auto mb-12 max-w-screen-sm lg:mb-16 fade-in-up">
@@ -14,15 +14,15 @@
                     </svg>
                     <span class="text-sm font-semibold text-[#5170ff]">Testimonios</span>
                 </div>
-                
+
                 <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">
                     Lo que dicen nuestras familias
                 </h2>
                 <p class="text-lg text-gray-600 dark:text-gray-400">
-                    Experiencias reales de padres y alumnos que ya forman parte de GoodTrav
+                    Experiencias reales de padres y alumnos que ya forman parte de GoodTrav.
                 </p>
-            </div> 
-            
+            </div>
+
             @if(count($opiniones) > 0)
                 @if(count($opiniones) > 3)
                     <!-- Carousel infinito mejorado -->
@@ -30,7 +30,7 @@
                         <!-- Gradientes laterales para efecto fade -->
                         <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent dark:from-gray-900 z-10 pointer-events-none"></div>
                         <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent dark:from-gray-900 z-10 pointer-events-none"></div>
-                        
+
                         <div class="overflow-hidden">
                             <div class="flex testimonial-carousel" style="animation: scroll 30s linear infinite;">
                                 @foreach (array_merge($opiniones, $opiniones) as $index => $opinion)
@@ -47,7 +47,7 @@
 
                                         <!-- Comillas decorativas -->
                                         <div class="text-[#5170ff]/20 text-6xl font-serif leading-none mb-2">"</div>
-                                        
+
                                         <!-- Opinión -->
                                         <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6 min-h-[100px]">
                                             {{ $opinion['opinion'] }}
@@ -56,8 +56,8 @@
                                         <!-- Avatar y nombre -->
                                         <div class="flex items-center gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                                             <div class="relative">
-                                                <img class="w-12 h-12 rounded-full object-cover ring-2 ring-[#5170ff]/20" 
-                                                     src="https://ui-avatars.com/api/?name={{ urlencode($opinion['nombre']) }}&background=5170ff&color=fff&size=128" 
+                                                <img class="w-12 h-12 rounded-full object-cover ring-2 ring-[#5170ff]/20"
+                                                     src="https://ui-avatars.com/api/?name={{ urlencode($opinion['nombre']) }}&background=5170ff&color=fff&size=128"
                                                      alt="{{ $opinion['nombre'] }}">
                                                 <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-[#70ff51] rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center">
                                                     <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -97,7 +97,7 @@
 
                                 <!-- Comillas decorativas -->
                                 <div class="text-[#5170ff]/20 text-6xl font-serif leading-none mb-2">"</div>
-                                
+
                                 <!-- Opinión -->
                                 <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6">
                                     {{ $opinion['opinion'] }}
@@ -106,8 +106,8 @@
                                 <!-- Avatar y nombre -->
                                 <div class="flex items-center gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                                     <div class="relative">
-                                        <img class="w-12 h-12 rounded-full object-cover ring-2 ring-[#5170ff]/20" 
-                                             src="https://ui-avatars.com/api/?name={{ urlencode($opinion['nombre']) }}&background=5170ff&color=fff&size=128" 
+                                        <img class="w-12 h-12 rounded-full object-cover ring-2 ring-[#5170ff]/20"
+                                             src="https://ui-avatars.com/api/?name={{ urlencode($opinion['nombre']) }}&background=5170ff&color=fff&size=128"
                                              alt="{{ $opinion['nombre'] }}">
                                         <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-[#70ff51] rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center">
                                             <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">

@@ -20,7 +20,7 @@
                     ¿Tienes dudas?
                 </h2>
                 <p class="text-lg text-gray-600 dark:text-gray-400 open-sans-regular">
-                    Si tienes alguna pregunta, no dudes en contactarnos. Escríbenos un mensaje y con gusto te respondemos
+                    Si tienes alguna pregunta, no dudes en contactarnos. Escríbenos un mensaje y con gusto te respondemos.
                 </p>
             </div>
 
@@ -264,15 +264,11 @@
                         </div>
                         <div class="space-y-2 text-gray-600 dark:text-gray-400">
                             <p class="flex justify-between">
-                                <span class="font-semibold open-sans-medium">Lunes - Viernes:</span>
+                                <span class="font-semibold open-sans-medium">Lunes a Viernes:</span>
                                 <span>9:00 - 18:00</span>
                             </p>
                             <p class="flex justify-between open-sans-medium">
-                                <span class="font-semibold">Sábados:</span>
-                                <span>10:00 - 14:00</span>
-                            </p>
-                            <p class="flex justify-between open-sans-medium">
-                                <span class="font-semibold">Domingos:</span>
+                                <span class="font-semibold">Sabados a Domingo</span>
                                 <span>Cerrado</span>
                             </p>
                         </div>
