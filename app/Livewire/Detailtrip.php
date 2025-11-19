@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Reserver;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Mail\ReservationCreated;
+use Illuminate\Support\Facades\Mail;
 
 
 class Detailtrip extends Component
@@ -17,8 +19,8 @@ class Detailtrip extends Component
     public $full_name = '';
     public $email = '';
     public $phone = '';
-    public $gts_member = null;     
-    public $date_call = null;      
+    public $gts_member = null;
+    public $date_call = null;
     public $terms = false;
 
 
@@ -46,7 +48,7 @@ class Detailtrip extends Component
             'full_name' => 'required|string|max:255',
             'email'     => 'required|email',
             'phone'     => 'required|string|max:50',
-            'gts_member'=> 'nullable|integer|min:0|max:100',
+            'gts_member' => 'nullable|integer|min:0|max:100',
             'date_call' => 'required|date|after:now',
             'terms'     => 'accepted',
         ]);
@@ -84,17 +86,29 @@ class Detailtrip extends Component
                 'total_price'    => $this->trip->price,
                 'discount'       => $this->gts_member,
                 'status'         => 'pending',
-                'phone_called_at'=> $this->date_call,
+                'phone_called_at' => $this->date_call,
             ]);
 
-
             $this->trip->decrement('plazas_available');
+
+            // Enviar correo con los detalles de la reserva
+            $reservationDetails = [
+                'name_trip'      => $this->trip->title,
+                'date_trip'      => $this->trip->start_date,
+                'full_name'      => $this->full_name,
+                'email'          => $this->email,
+                'phone'          => $this->phone,
+                'discount'       => $this->gts_member,
+                'phone_called_at' => $this->date_call,
+            ];
+
+            Mail::to('reservas@ejemplo.com')->send(new ReservationCreated($reservationDetails));
 
             DB::commit();
 
 
             $this->dispatch('reservation-saved');
-        
+
             $this->reset(['gts_member', 'date_call', 'terms']);
         } catch (\Exception $e) {
             DB::rollBack();
