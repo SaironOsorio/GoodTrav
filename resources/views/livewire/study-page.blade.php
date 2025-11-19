@@ -169,7 +169,7 @@
                             <div class="mb-4">
                                 <h5 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 open-sans-medium">Descripción</h5>
                                 <div class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed prose prose-sm dark:prose-invert max-w-none open-sans-regular">
-                                    {!! $study->description !!}
+                                    {!! $study->description  !!}
                                 </div>
                             </div>
                         @endif
@@ -196,7 +196,7 @@
             <div id="retos-semanales" class="grid gap-6 md:grid-cols-2">
                 {{-- Lista de desafíos activos --}}
             <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Desafíos activos</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Retos Disponibles</h3>
 
                     @if($challenges && $challenges->where('is_completed', false)->count() > 0)
                         <div class="space-y-4">

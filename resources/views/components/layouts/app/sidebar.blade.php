@@ -37,7 +37,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky stashable class="bg-[#5170ff] border-e border-[#5170ff] text-white" data-test="sidebar">
+        <flux:sidebar sticky stashable class="w-80 bg-[#5170ff] border-e border-[#5170ff] text-white" data-test="sidebar">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
@@ -93,10 +93,11 @@
                 <a href="{{ route('society') }}"
                 class="flex items-center px-4 py-3 rounded-lg bg-white hover:bg-white transition-colors {{ request()->routeIs('society') ? 'bg-white' : '' }}"
                 wire:navigate>
-                    <span class="text-base font-bold  bg-gradient-to-br from-pink-500 to-orange-400 bg-clip-text text-transparent poppins-extrabold">
+                    <span class="text-2xl font-extrabold bg-gradient-to-br from-pink-500 to-orange-400 bg-clip-text text-transparent poppins-extrabold">
                         GoodTrav Society
                     </span>
                 </a>
+
             </nav>
 
             <flux:spacer />
