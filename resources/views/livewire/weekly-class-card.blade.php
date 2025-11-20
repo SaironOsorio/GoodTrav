@@ -3,13 +3,13 @@
     <div class="mb-4 flex items-start justify-between">
         <div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-1 poppins-bold">Clase de la Semana</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 montserrat-regular">{{ $formattedDateRange }}</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 montserrat-regular">{{ $formattedDateRange ?? 'No Date Available' }}</p>
         </div>
 
         {{-- Total Points Badge --}}
         <div class="bg-gradient-to-r from-[#5170ff] to-purple-500 text-white px-4 py-2 rounded-lg text-center shadow-lg flex-shrink-0">
-            <div class="text-2xl font-bold poppins-bold">{{ $points }}</div>
-            <div class="text-xs opacity-90 montserrat-regular">/ {{ $points }} pts</div>
+            <div class="text-2xl font-bold poppins-bold">{{ $points  ?? 0}}</div>
+            <div class="text-xs opacity-90 montserrat-regular">/ {{ $points ?? 0 }} pts</div>
         </div>
     </div>
 
