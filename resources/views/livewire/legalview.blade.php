@@ -11,7 +11,7 @@
             </div>
 
             <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
-               Aviso legal 
+               Aviso legal
             </h1>
             <p class="text-lg text-gray-600 dark:text-gray-400">
                 Información sobre el uso de Aviso legal en GoodTrav
@@ -37,7 +37,11 @@
                         prose-table:border-collapse prose-table:w-full
                         prose-th:bg-gray-100 dark:prose-th:bg-gray-700 prose-th:p-3 prose-th:text-left prose-th:font-bold
                         prose-td:border prose-td:border-gray-300 dark:prose-td:border-gray-600 prose-td:p-3">
-                {!! $legal->first()->content_legal !!}
+                        @if($legal->first() && $legal->first()->content_legal)
+                            {!! $legal->first()->content_legal !!}
+                        @else
+                            <p class="text-gray-500 dark:text-gray-400">No hay contenido disponible en este momento.</p>
+                        @endif
             </div>
         </div>
 
