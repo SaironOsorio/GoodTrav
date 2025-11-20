@@ -287,3 +287,11 @@
         </div>
     </section>
 </div>
+
+@push('styles')
+@supports (-webkit-touch-callout: none) {
+    .ios-overflow-fix {
+        overflow: visible !important;
+    }
+}
+@endpush
