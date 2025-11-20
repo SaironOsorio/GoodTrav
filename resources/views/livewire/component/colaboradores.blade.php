@@ -5,194 +5,45 @@
         <div class="absolute bottom-20 right-10 w-80 h-80 bg-[#5170ff]/5 rounded-full blur-3xl"></div>
 
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 relative z-10">
-            <!-- Header -->
-            <div class="mx-auto max-w-screen-sm mb-8 lg:mb-16 fade-in-up">
-                <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
-                    Centros colaboradores
-                </h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 montserrat-medium">
-                    Trabajamos con las mejores instituciones educativas.
-                </p>
-            </div>
+            <div class="mt-8 fade-in-up animation-delay-400">
+                    <div class="bg-[#5170ff] rounded-3xl p-8 border-2 border-black shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="flex flex-col md:flex-row items-center gap-6">
 
-            @if($colaboradores && $colaboradores->count() > 0)
-                <!-- Carousel para móvil (siempre) -->
-                <div class="relative overflow-hidden block md:hidden mb-8">
-                    <!-- Gradientes laterales -->
-                    <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50 to-transparent dark:from-gray-900 z-10 pointer-events-none"></div>
-                    <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-50 to-transparent dark:from-gray-900 z-10 pointer-events-none"></div>
+                            <!-- Contenido -->
+                            <div class="flex-1 text-center md:text-left">
 
-                    <div class="overflow-hidden">
-                        <div class="flex colaboradores-carousel" style="animation: scroll 30s linear infinite;">
-                            @foreach (array_merge($colaboradores->toArray(), $colaboradores->toArray()) as $colaborador)
-                            <div class="flex-shrink-0 w-full px-4">
-                                <div class="colaborador-card group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
-                                    <!-- Logo -->
-                                    <div class="mb-4 flex justify-center">
-                                        <div class="w-32 h-32 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-700 flex items-center justify-center p-4">
-                                            <img src="{{ Storage::url($colaborador['imagen_path']) }}"
-                                                 alt="{{ $colaborador['name'] }}"
-                                                 class="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300">
-                                        </div>
-                                    </div>
-
-                                    <!-- Nombre -->
-                                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 open-sans-bold">
-                                        {{ $colaborador['name'] }}
-                                    </h3>
-
-                                    <!-- URL -->
-                                    @if($colaborador['url'])
-                                    <a href="{{ $colaborador['url'] }}"
-                                       target="_blank"
-                                       class="inline-flex items-center gap-2 text-[#5170ff] hover:text-[#ff5170] font-semibold transition-colors">
-                                        <span>Visitar sitio web</span>
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                                        </svg>
-                                    </a>
-                                    @endif
-                                </div>
+                                @php
+                                    $setting = App\Models\Setting::first();
+                                    $title = $setting->title_contributors_new_title ?? ' ¿Eres profesor o coordinador de grupos?';
+                                    $description = $setting->title_contributors_new_description ?? 'Únete a nuestra comunidad educativa y obtén descuentos especiales al traer a tus estudiantes. Ofrecemos condiciones exclusivas para instituciones y grupos organizados.';
+                                @endphp
+                                <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-2 poppins-bold">
+                                    {{ $title }}
+                                </h3>
+                                <p class="text-base md:text-lg text-white mb-4 montserrat-regular">
+                                    {{ $description }}
+                                </p>
                             </div>
-                            @endforeach
+
+                            <!-- Botón de acción -->
+                            <div class="flex-shrink-0">
+
+                                @php
+                                    $socialMedia = \App\Models\Socialmedia::first();
+                                    $email = $socialMedia->email ?? 'info@goodtrav.com';
+                                @endphp
+                                <a
+                                    href="mailto:{{ $email }}"
+                                    class="inline-flex items-center gap-2 bg-[#70ff51] text-black font-bold rounded-full px-8 py-4 text-base transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5170ff]/50 poppins-bold">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                    Solicitar información
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Desktop: Carousel si hay más de 4, Grid si hay 4 o menos -->
-                @if($colaboradores->count() > 4)
-                    <div class="relative overflow-hidden hidden md:block">
-                        <!-- Gradientes laterales -->
-                        <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50 to-transparent dark:from-gray-900 z-10 pointer-events-none"></div>
-                        <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-50 to-transparent dark:from-gray-900 z-10 pointer-events-none"></div>
-
-                        <div class="overflow-hidden">
-                            <div class="flex colaboradores-carousel" style="animation: scroll 40s linear infinite;">
-                                @foreach (array_merge($colaboradores->toArray(), $colaboradores->toArray()) as $colaborador)
-                                <div class="flex-shrink-0 w-1/2 lg:w-1/4 px-4">
-                                    <div class="colaborador-card group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full">
-                                        <!-- Logo -->
-                                        <div class="mb-4 flex justify-center">
-                                            <div class="w-32 h-32 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-700 flex items-center justify-center p-4">
-                                                <img src="{{ Storage::url($colaborador['imagen_path']) }}"
-                                                     alt="{{ $colaborador['name'] }}"
-                                                     class="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300">
-                                            </div>
-                                        </div>
-
-                                        <!-- Nombre -->
-                                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                                            {{ $colaborador['name'] }}
-                                        </h3>
-
-                                        <!-- URL -->
-                                        @if($colaborador['url'])
-                                        <a href="{{ $colaborador['url'] }}"
-                                           target="_blank"
-                                           class="inline-flex items-center gap-2 text-[#5170ff] hover:text-[#ff5170] font-semibold transition-colors text-sm">
-                                            <span>Visitar sitio web</span>
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                                            </svg>
-                                        </a>
-                                        @endif
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    <!-- Grid estático para 4 o menos -->
-                    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 hidden md:grid max-w-5xl mx-auto">
-                        @foreach ($colaboradores as $index => $colaborador)
-                        <div class="colaborador-card fade-in-up animation-delay-{{ $index * 100 }} group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
-                            <!-- Logo -->
-                            <div class="mb-4 flex justify-center">
-                                <div class="w-32 h-32 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-700 flex items-center justify-center p-4">
-                                    <img src="{{ Storage::url($colaborador->imagen_path) }}"
-                                         alt="{{ $colaborador->name }}"
-                                         class="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300">
-                                </div>
-                            </div>
-
-                            <!-- Nombre -->
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                                {{ $colaborador->name }}
-                            </h3>
-
-                            <!-- URL -->
-                            @if($colaborador->url)
-                            <a href="{{ $colaborador->url }}"
-                               target="_blank"
-                               class="inline-flex items-center gap-2 text-[#5170ff] hover:text-[#ff5170] font-semibold transition-colors text-sm">
-                                <span>Visitar sitio web</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                                </svg>
-                            </a>
-                            @endif
-                        </div>
-                        @endforeach
-                    </div>
-                @endif
-
-                <div class="mt-8 fade-in-up animation-delay-400">
-                        <div class="bg-[#5170ff] rounded-3xl p-8 border-2 border-black shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                            <div class="flex flex-col md:flex-row items-center gap-6">
-
-                                <!-- Contenido -->
-                                <div class="flex-1 text-center md:text-left">
-
-                                    @php
-                                        $setting = App\Models\Setting::first();
-                                        $title = $setting->title_contributors_new_title ?? ' ¿Eres profesor o coordinador de grupos?';
-                                        $description = $setting->title_contributors_new_description ?? 'Únete a nuestra comunidad educativa y obtén descuentos especiales al traer a tus estudiantes. Ofrecemos condiciones exclusivas para instituciones y grupos organizados.';
-                                    @endphp
-                                    <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-2 poppins-bold">
-                                        {{ $title }}
-                                    </h3>
-                                    <p class="text-base md:text-lg text-white mb-4 montserrat-regular">
-                                        {{ $description }}
-                                    </p>
-                                </div>
-
-                                <!-- Botón de acción -->
-                                <div class="flex-shrink-0">
-
-                                    @php
-                                        $socialMedia = \App\Models\Socialmedia::first();
-                                        $email = $socialMedia->email ?? 'info@goodtrav.com';
-                                    @endphp
-                                    <a
-                                        href="mailto:{{ $email }}"
-                                        class="inline-flex items-center gap-2 bg-[#70ff51] text-black font-bold rounded-full px-8 py-4 text-base transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5170ff]/50 poppins-bold">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                        </svg>
-                                        Solicitar información
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-            @else
-                <!-- Estado vacío -->
-                <div class="text-center py-16">
-                    <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                    </svg>
-                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-300 mb-2">
-                        Próximamente colaboradores
-                    </h3>
-                    <p class="text-gray-500 dark:text-gray-400">
-                        Estamos estableciendo alianzas con instituciones educativas
-                    </p>
-                </div>
-            @endif
         </div>
     </section>
 </div>
