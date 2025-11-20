@@ -32,8 +32,8 @@ class WeeklyClassCard extends Component
 
 
             Carbon::setLocale('es');
-            $start = Carbon::parse($this->study->start_date);
-            $end = Carbon::parse($this->study->end_date);
+            $start = Carbon::parse($this->study->start_date ?? now());
+            $end = Carbon::parse($this->study->end_date ?? now());
 
             $this->startDate = $start;
             $this->endDate = $end;

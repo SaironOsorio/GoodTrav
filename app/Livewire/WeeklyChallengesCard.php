@@ -32,8 +32,8 @@ class WeeklyChallengesCard extends Component
         $study = Study::with('challenges')->first();
 
         Carbon::setLocale('es');
-        $start = Carbon::parse($study->start_date);
-        $end = Carbon::parse($study->end_date);
+        $start = Carbon::parse($study->start_date ?? now());
+        $end = Carbon::parse($study->end_date ?? now());
 
         $this->startDate = $start;
         $this->endDate = $end;
