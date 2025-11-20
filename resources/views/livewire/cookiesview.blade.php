@@ -37,7 +37,11 @@
                         prose-table:border-collapse prose-table:w-full
                         prose-th:bg-gray-100 dark:prose-th:bg-gray-700 prose-th:p-3 prose-th:text-left prose-th:font-bold
                         prose-td:border prose-td:border-gray-300 dark:prose-td:border-gray-600 prose-td:p-3">
-                {!! $cookies->first()->content_cookies !!}
+                    @if($cookies->first() && $cookies->first()->content_cookies)
+                        {!! $cookies->first()->content_cookies !!}
+                    @else
+                        <p class="text-gray-500 dark:text-gray-400">No hay contenido disponible en este momento.</p>
+                    @endif
             </div>
         </div>
 
