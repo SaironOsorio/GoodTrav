@@ -28,13 +28,14 @@
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
                 <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-700 p-6 sm:p-8 lg:p-10 space-y-6">
                         <form wire:submit.prevent="submit" class="space-y-6">
-                            <!-- Mensajes de estado -->
+
+                            <!-- Mensajes -->
                             @if (session()->has('success'))
                                 <div class="p-4 rounded-xl bg-gradient-to-r from-[#70ff51]/10 to-[#70ff51]/5 border border-[#70ff51]/30 flex items-start gap-3">
                                     <svg class="w-5 h-5 text-[#70ff51] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                     </svg>
-                                    <p class="text-sm font-medium text-gray-900 dark:text-white">{{ session('success') }}</p>
+                                    <p class="text-base font-medium text-gray-900 dark:text-white">{{ session('success') }}</p>
                                 </div>
                             @endif
 
@@ -43,13 +44,13 @@
                                     <svg class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
                                     </svg>
-                                    <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $error }}</p>
+                                    <p class="text-base font-medium text-gray-900 dark:text-white">{{ $error }}</p>
                                 </div>
                             @endif
 
-                            <!-- Campo Nombre -->
+                            <!-- NOMBRE -->
                             <div>
-                                <label for="name" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white open-sans-medium">
+                                <label for="name" class="block mb-2 text-base font-bold text-gray-900 dark:text-white open-sans-medium">
                                     Nombre completo
                                 </label>
                                 <div class="relative">
@@ -59,11 +60,11 @@
                                         </svg>
                                     </div>
                                     <input type="text" wire:model="name" id="name"
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('name') border-red-500 focus:ring-red-500 @enderror"
-                                           placeholder="Tu nombre completo" />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 py-3 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all"
+                                        placeholder="Tu nombre completo" />
                                 </div>
                                 @error('name')
-                                    <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
+                                    <p class="mt-2 text-base text-red-500 flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                         </svg>
@@ -72,9 +73,9 @@
                                 @enderror
                             </div>
 
-                            <!-- Campo Email -->
+                            <!-- EMAIL -->
                             <div>
-                                <label for="email" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white open-sans-medium">
+                                <label for="email" class="block mb-2 text-base font-bold text-gray-900 dark:text-white open-sans-medium">
                                     Correo electrónico
                                 </label>
                                 <div class="relative">
@@ -85,22 +86,14 @@
                                         </svg>
                                     </div>
                                     <input type="email" wire:model="email" id="email"
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('email') border-red-500 focus:ring-red-500 @enderror"
-                                           placeholder="tu@email.com" />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 py-3 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all"
+                                        placeholder="tu@email.com" />
                                 </div>
-                                @error('email')
-                                    <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
-                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                        </svg>
-                                        {{ $message }}
-                                    </p>
-                                @enderror
                             </div>
 
-                            <!-- Campo Teléfono -->
+                            <!-- TELÉFONO -->
                             <div>
-                                <label for="telefono" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white open-sans-medium">
+                                <label for="telefono" class="block mb-2 text-base font-bold text-gray-900 dark:text-white open-sans-medium">
                                     Teléfono de contacto
                                 </label>
                                 <div class="relative">
@@ -110,66 +103,40 @@
                                         </svg>
                                     </div>
                                     <input type="tel" wire:model="telefono" id="telefono" inputmode="tel"
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all @error('telefono') border-red-500 focus:ring-red-500 @enderror [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                                           placeholder="+34 600 000 000" />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full pl-12 py-3 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all"
+                                        placeholder="+34 600 000 000" />
                                 </div>
-                                @error('telefono')
-                                    <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
-                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                        </svg>
-                                        {{ $message }}
-                                    </p>
-                                @enderror
                             </div>
 
-                            <!-- Campo Mensaje -->
+                            <!-- MENSAJE -->
                             <div>
-                                <label for="message" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white open-sans-medium">
+                                <label for="message" class="block mb-2 text-base font-bold text-gray-900 dark:text-white open-sans-medium">
                                     Mensaje
                                 </label>
                                 <textarea wire:model="message" id="message" rows="5"
-                                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all resize-none @error('message') border-red-500 focus:ring-red-500 @enderror"
-                                          placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
-                                @error('message')
-                                    <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
-                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                        </svg>
-                                        {{ $message }}
-                                    </p>
-                                @enderror
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-xl focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] block w-full py-3 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white transition-all resize-none"
+                                    placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
                             </div>
 
-                            <!-- Checkbox política -->
+                            <!-- CHECKBOX -->
                             <div>
                                 <div class="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
                                     <input wire:model="acepta_politica" id="remember" type="checkbox"
-                                           class="w-5 h-5 mt-0.5 border-2 border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-[#5170ff] focus:border-[#5170ff] dark:bg-gray-600 dark:border-gray-500 transition-all cursor-pointer @error('acepta_politica') border-red-500 @enderror" />
-                                    <label for="remember" class="text-sm text-gray-700 dark:text-gray-300 open-sans-medium">
+                                        class="w-5 h-5 mt-0.5 border-2 border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-[#5170ff] dark:bg-gray-600 dark:border-gray-500 cursor-pointer" />
+                                    <label for="remember" class="text-base text-gray-700 dark:text-gray-300 open-sans-medium">
                                         He leído y acepto la
-                                        <a href="{{ route('privacity') }}" class="font-semibold text-[#5170ff] hover:text-[#ff5170] underline decoration-2 underline-offset-2 transition-colors poppins-bold">
+                                        <a href="{{ route('privacity') }}" class="font-semibold text-[#5170ff] hover:text-[#ff5170] underline decoration-2 underline-offset-2">
                                             política de privacidad
                                         </a>
                                     </label>
                                 </div>
-                                @error('acepta_politica')
-                                    <p class="mt-2 text-sm text-red-500 flex items-center gap-1">
-                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                        </svg>
-                                        {{ $message }}
-                                    </p>
-                                @enderror
                             </div>
 
-                            <!-- Botón submit -->
+                            <!-- BOTÓN -->
                             <button type="submit"
-                                    class="w-full bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-xl px-8 py-4 hover:shadow-lg hover:shadow-[#5170ff]/50 focus:ring-4 focus:ring-[#5170ff]/50 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
-                                    wire:loading.attr="disabled">
-                                <span wire:loading.remove>
-                                    Enviar mensaje
-                                </span>
+                                class="w-full bg-gradient-to-r from-[#5170ff] to-[#ff5170] text-white font-bold rounded-xl px-8 py-4 hover:shadow-lg hover:shadow-[#5170ff]/50 focus:ring-4 focus:ring-[#5170ff]/50 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+                                wire:loading.attr="disabled">
+                                <span wire:loading.remove>Enviar mensaje</span>
                                 <span wire:loading class="flex items-center gap-2">
                                     <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -178,6 +145,7 @@
                                     Enviando...
                                 </span>
                             </button>
+
                         </form>
                     </div>
                     <!-- Información de contacto -->
