@@ -25,9 +25,8 @@
             </div>
 
             <!-- Contenedor principal -->
-            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-                    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-700 p-8 lg:p-10 space-y-6">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-700 p-6 sm:p-8 lg:p-10 space-y-6">
                         <form wire:submit.prevent="submit" class="space-y-6">
                             <!-- Mensajes de estado -->
                             @if (session()->has('success'))
@@ -283,7 +282,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
