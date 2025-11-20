@@ -15,7 +15,11 @@
 
     {{-- Image --}}
     <div class="relative aspect-videorounded-lg mb-4 overflow-hidden">
-        <img src="{{ Storage::url($imagePath) ?? asset('assets/images/image.svg') }}" alt="Retos semanales" class="object-cover w-full h-full">
+        @if (empty($imagePath))
+        <img src="{{ asset('assets/images/image.svg')  }}" alt="Retos semanales" class="object-cover w-full h-full">
+        @else
+        <img src="{{ $imagePath }}" alt="Retos semanales" class="object-cover w-full h-full">
+        @endif
     </div>
 
     {{-- Action Button --}}
