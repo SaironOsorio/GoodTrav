@@ -281,28 +281,6 @@ select:focus[data-flux-control] {
     }
 }
 
-/* Slider Bar */
-::-webkit-scrollbar {
-    width: 10px; /* Ancho de la barra */
-    height: 5px; /* Altura de la barra (para scroll horizontal) */
-}
-
-/* Fondo de la barra */
-::-webkit-scrollbar-track {
-    background: #f0f0f0; /* Color del fondo */
-    border-radius: 6px;
-}
-
-/* Color del "thumb" (la parte que se arrastra) */
-::-webkit-scrollbar-thumb {
-    background: #555657; /* Color del thumb */
-    border-radius: 6px;
-}
-
-/* Color del thumb al hacer hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #0f0f0f; /* Cambia al pasar el cursor */
-}
 
 .poppins-regular {
   font-family: "Poppins", sans-serif;
