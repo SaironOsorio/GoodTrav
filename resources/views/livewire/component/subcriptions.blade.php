@@ -148,7 +148,7 @@
                                    </div>
                                    <div class="text-center">
                                        <div class="text-xs text-gray-500">Precio colaboradores ({{ $couponPercent }}%)</div>
-                                       <div class="text-5xl md:text-xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
+                                       <div class="text-xl  font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
                                    </div>
                                </div>
                            </div>
