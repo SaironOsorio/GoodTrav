@@ -1,6 +1,6 @@
 <!-- filepath: d:\Projects\goodtrap\resources\views\livewire\form-contacto.blade.php -->
 <div>
-    <section class="bg-gradient-to-b from-white to-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section class="bg-gradient-to-b from-white to-gray-50 dark:bg-gray-900 relative overflow-hidden will-change-transform">
         <!-- Elementos decorativos -->
         <div class="absolute top-20 left-10 w-64 h-64 bg-[#5170ff]/5 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-80 h-80 bg-[#ff5170]/5 rounded-full blur-3xl"></div>
