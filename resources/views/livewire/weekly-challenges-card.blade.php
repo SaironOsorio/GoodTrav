@@ -15,7 +15,7 @@
 
     {{-- Image --}}
     <div class="relative aspect-videorounded-lg mb-4 overflow-hidden">
-        <img src="{{ $imagePath ?? asset('image.svg') }}" alt="Retos semanales" class="object-cover w-full h-full">
+        <img src="{{ $imagePath ? $imagePath : asset('image.svg') }}" alt="Retos semanales" class="object-cover w-full h-full">
     </div>
 
     {{-- Action Button --}}

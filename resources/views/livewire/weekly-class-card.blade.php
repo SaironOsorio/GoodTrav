@@ -16,7 +16,7 @@
     {{-- Video Preview Area --}}
     <div class="relative aspect-video  dark:bg-zinc-800 rounded-lg mb-4 flex items-center justify-center  dark:border-zinc-700">
         <div class="text-center">
-             <img src="{{ asset('storage/' . $image) ?? asset('image.svg') }}" alt="">
+             <img src="{{ $image ? asset('storage/' . $image) : asset('image.svg') }}" alt="">
         </div>
     </div>
 
