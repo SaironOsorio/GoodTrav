@@ -16,7 +16,11 @@
     {{-- Video Preview Area --}}
     <div class="relative aspect-video  dark:bg-zinc-800 rounded-lg mb-4 flex items-center justify-center  dark:border-zinc-700">
         <div class="text-center">
-             <img src="{{ Storage::url($image) ?? asset('assets/images/image.svg') }}" alt="Clase de la Semana" class="object-cover w-full h-full">
+            @if (empty($image))
+                <img src="{{ asset('assets/images/image.svg')  }}" alt="Clase de la Semana" class="object-cover w-full h-full">
+            @else
+                <img src="{{ Storage::url($image)}}" alt="Clase de la Semana" class="object-cover w-full h-full">
+            @endif
         </div>
     </div>
 
