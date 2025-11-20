@@ -25,10 +25,9 @@
             </div>
 
             <!-- Contenedor principal -->
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-                <!-- Formulario -->
-                <div class="fade-in-up">
-                    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-700 p-8 lg:p-10">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-700 p-8 lg:p-10 space-y-6">
                         <form wire:submit.prevent="submit" class="space-y-6">
                             <!-- Mensajes de estado -->
                             @if (session()->has('success'))
@@ -182,108 +181,106 @@
                             </button>
                         </form>
                     </div>
-                </div>
-
-                <!-- Información de contacto -->
-                <div class="fade-in-up animation-delay-200 space-y-6">
-                    <!-- Otros métodos de contacto -->
-                    <div class="bg-gradient-to-br from-[#5170ff]/10 to-[#ff5170]/10 rounded-3xl p-8 border-2 border-[#5170ff]/20">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                            Otros métodos de contacto
-                        </h3>
-                        <div class="space-y-4">
-
-                            @php
-                                $socialMedia = \App\Models\Socialmedia::first();
-                                $email = $socialMedia ? $socialMedia->email : 'info@goodtrav.com';
-                                $phone = $socialMedia ? $socialMedia->phone : '+34911234567';
-                                $whatsApp = $socialMedia ? $socialMedia->whats_app : '+34911234567';
-
-                            @endphp
-                            <!-- Email -->
-                            <a href="mailto:{{ $email }}"
-                               class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
-                                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#5170ff] to-[#ff5170] flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                                    </svg>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Email</p>
-                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#5170ff] transition-colors open-sans-medium">
-                                        {{ $email }}
-                                    </p>
-                                </div>
-                            </a>
-
-                            <!-- Teléfono -->
-                            <a href="tel:{{ $phone }}"
-                               class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
-                                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#70ff51] to-[#5170ff] flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                                    </svg>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Teléfono</p>
-                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors open-sans-medium">
-                                        +{{ $phone }}
-                                    </p>
-                                </div>
-                            </a>
-
-                            <a href="https://wa.me/{{ $whatsApp }}?text={{ urlencode('Hola, me gustaría obtener más información sobre GoodTrav.') }}"
-                            class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
-                                <div class="w-12 h-12 rounded-xl bg-[#70ff51]  flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd"/>
-                                        <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z"/>
-                                    </svg>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">WhatsApp</p>
-                                    <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors open-sans-medium">
-                                        Enviar mensaje
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Horario de atención -->
-                    <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 border-2 border-gray-100 dark:border-gray-700 shadow-lg">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-[#70ff51]/20 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white open-sans-medium">
-                                Horario de atención
+                    <!-- Información de contacto -->
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-[#5170ff]/10 to-[#ff5170]/10 rounded-3xl p-8 border-2 border-[#5170ff]/20">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                                Otros métodos de contacto
                             </h3>
-                        </div>
-                        <div class="space-y-2 text-gray-600 dark:text-gray-400">
-                            <p class="flex justify-between">
-                                <span class="font-semibold open-sans-medium">Lunes a Viernes:</span>
-                                <span>9:00 - 18:00</span>
-                            </p>
-                            <p class="flex justify-between open-sans-medium">
-                                <span class="font-semibold">Sabados a Domingo</span>
-                                <span>Cerrado</span>
-                            </p>
-                        </div>
-                    </div>
+                            <div class="space-y-4">
 
-                    <!-- Respuesta rápida -->
-                    <div class="bg-gradient-to-br from-[#70ff51]/10 to-[#70ff51]/5 rounded-3xl p-6 border-2 border-[#70ff51]/20">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-8 h-8 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
-                            </svg>
-                            <div>
-                                <p class="font-bold text-gray-900 dark:text-white open-sans-medium">Respuesta en 24h</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 open-sans-medium">Te respondemos en menos de un día hábil</p>
+                                @php
+                                    $socialMedia = \App\Models\Socialmedia::first();
+                                    $email = $socialMedia ? $socialMedia->email : 'info@goodtrav.com';
+                                    $phone = $socialMedia ? $socialMedia->phone : '+34911234567';
+                                    $whatsApp = $socialMedia ? $socialMedia->whats_app : '+34911234567';
+
+                                @endphp
+                                <!-- Email -->
+                                <a href="mailto:{{ $email }}"
+                                class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
+                                    <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#5170ff] to-[#ff5170] flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Email</p>
+                                        <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#5170ff] transition-colors open-sans-medium">
+                                            {{ $email }}
+                                        </p>
+                                    </div>
+                                </a>
+
+                                <!-- Teléfono -->
+                                <a href="tel:{{ $phone }}"
+                                class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
+                                    <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#70ff51] to-[#5170ff] flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Teléfono</p>
+                                        <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors open-sans-medium">
+                                            +{{ $phone }}
+                                        </p>
+                                    </div>
+                                </a>
+
+                                <a href="https://wa.me/{{ $whatsApp }}?text={{ urlencode('Hola, me gustaría obtener más información sobre GoodTrav.') }}"
+                                class="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 group">
+                                    <div class="w-12 h-12 rounded-xl bg-[#70ff51]  flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd"/>
+                                            <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 open-sans-medium">WhatsApp</p>
+                                        <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors open-sans-medium">
+                                            Enviar mensaje
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Horario de atención -->
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 border-2 border-gray-100 dark:border-gray-700 shadow-lg">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-[#70ff51]/20 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white open-sans-medium">
+                                    Horario de atención
+                                </h3>
+                            </div>
+                            <div class="space-y-2 text-gray-600 dark:text-gray-400">
+                                <p class="flex justify-between">
+                                    <span class="font-semibold open-sans-medium">Lunes a Viernes:</span>
+                                    <span>9:00 - 18:00</span>
+                                </p>
+                                <p class="flex justify-between open-sans-medium">
+                                    <span class="font-semibold">Sabados a Domingo</span>
+                                    <span>Cerrado</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Respuesta rápida -->
+                        <div class="bg-gradient-to-br from-[#70ff51]/10 to-[#70ff51]/5 rounded-3xl p-6 border-2 border-[#70ff51]/20">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-8 h-8 text-[#70ff51]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                                </svg>
+                                <div>
+                                    <p class="font-bold text-gray-900 dark:text-white open-sans-medium">Respuesta en 24h</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 open-sans-medium">Te respondemos en menos de un día hábil</p>
+                                </div>
                             </div>
                         </div>
                     </div>
