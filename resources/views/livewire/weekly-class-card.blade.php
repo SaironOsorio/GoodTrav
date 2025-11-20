@@ -27,7 +27,7 @@
     {{-- Action Button --}}
     <a href="{{ route('study') }}"
        class="inline-flex items-center justify-center w-full px-4 py-2.5 bg-[#ff5170] hover:bg-[#e04466] text-black font-medium rounded-lg transition-colors poppins-bold cursor-pointer"
-       wire:navigate>
+       >
         Ir a la clase
     </a>
 </div>

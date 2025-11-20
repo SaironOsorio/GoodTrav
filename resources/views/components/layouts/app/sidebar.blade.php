@@ -60,7 +60,7 @@
 
                 <a href="{{ route('study') }}"
                    class="flex items-center px-4 py-3 rounded-lg text-white hover:bg-white/10 transition-colors {{ request()->routeIs('study') ? 'bg-white/20' : '' }}"
-                   wire:navigate>
+                   >
                     <span class="text-base font-medium montserrat-bold">Study</span>
                 </a>
 

@@ -20,7 +20,7 @@
 
     {{-- Action Button --}}
     @if($totalCount > 0)
-        <a href="{{ route('study') }}" wire:navigate
+        <a href="{{ route('study') }}" 
             class="w-full block px-6 py-3 bg-[#5170ff] hover:bg-[#4060ef] text-white text-sm font-semibold rounded-lg transition-all duration-300 text-center inline-flex items-center justify-center gap-2 poppins-bold">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
