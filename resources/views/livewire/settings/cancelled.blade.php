@@ -54,12 +54,18 @@ new class extends Component {
     {
         Auth::user()->sendEmailVerificationNotification();
         $this->showVerificationMessage = true;
-
-        $this->dispatch('hideVerificationMessage')->later(5000);
     }
 
     #[On('hideVerificationMessage')]
     public function hideVerificationMessage(): void
+    {
+        $this->showVerificationMessage = false;
+    }
+
+    /**
+     * Reset verification message after successful send.
+     */
+    public function resetVerificationMessage(): void
     {
         $this->showVerificationMessage = false;
     }
@@ -102,7 +108,10 @@ new class extends Component {
 
                 <!-- Mensaje de verificación enviada -->
                 @if ($showVerificationMessage)
-                    <div class="p-3 bg-green-50 border border-green-200 rounded animate-pulse">
+                    <div class="p-3 bg-green-50 border border-green-200 rounded animate-pulse"
+                         x-data="{ show: true }"
+                         x-show="show"
+                         x-init="setTimeout(() => show = false, 5000)">
                         <p class="text-sm text-green-800">
                             {{ __('✓ Se ha enviado un nuevo enlace de verificación a tu correo.') }}
                         </p>
