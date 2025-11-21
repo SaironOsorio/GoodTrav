@@ -106,7 +106,7 @@
 
                         <!-- Botones CTA -->
                         <div class="fade-in-up animation-delay-500 flex flex-col sm:flex-row gap-4">
-                            <a href="{{ route('register') }}" onclick="return checkMobileBeforeLogin(event)"
+                            <a href="{{ route('register') }}"
                             class="btn-primary group relative inline-flex items-center justify-center gap-2 text-white bg-[#5170ff] hover:shadow-2xl hover:shadow-[#5170ff]/50 focus:outline-none focus:ring-4 focus:ring-[#5170ff]/50 font-bold rounded-full text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 text-center transition-all duration-300 poppins-bold hover:scale-105">
                                 <span>Comenzar gratis</span>
                                 <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -432,35 +432,7 @@
             });
         });
 
-        // Funciones de bloqueo móvil (si no están ya definidas en el header)
-        if (typeof checkMobileBeforeLogin === 'undefined') {
-            function isMobileDevice() {
-                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase()) ||
-                       (window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
-            }
 
-            function checkMobileBeforeLogin(event) {
-                if (isMobileDevice()) {
-                    event.preventDefault();
-                    const modal = document.getElementById('mobileWarningModal');
-                    if (modal) {
-                        modal.classList.remove('hidden');
-                        document.body.style.overflow = 'hidden';
-                    }
-                    return false;
-                }
-                return true;
-            }
-
-            function closeMobileWarning() {
-                const modal = document.getElementById('mobileWarningModal');
-                if (modal) {
-                    modal.classList.add('hidden');
-                    document.body.style.overflow = '';
-                }
-            }
-        }
         </script>
     </body>
 </html>
