@@ -20,7 +20,7 @@
                 </h3>
 
                 <p class="text-gray-600 dark:text-gray-300 mb-6 open-sans-regular">
-                    Para disfrutar de una experiencia completa y evitar problemas en dispositivos móviles, te recomendamos iniciar tu aventura desde un ordenador.
+                    Para disfrutar de una experiencia completa y evitar problemas en dispositivos móviles, te recomendamos acceder desde un ordenador o tablet.
                 </p>
 
                 <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 mb-6">
