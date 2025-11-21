@@ -20,7 +20,7 @@
                 </h3>
 
                 <p class="text-gray-600 dark:text-gray-300 mb-6 open-sans-regular">
-                    Comienza tu aventura en un ordenador.
+                    Para disfrutar de una experiencia completa y evitar problemas en dispositivos móviles, te recomendamos iniciar tu aventura desde un ordenador.
                 </p>
 
                 <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 mb-6">
@@ -29,31 +29,13 @@
                     </p>
                     <div class="flex justify-center gap-4">
                         <div class="text-center">
-                            <div class="w-12 h-12 mx-auto mb-2 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center shadow-sm">
-                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" fill="#4285F4"/>
-                                    <circle cx="12" cy="12" r="7" fill="#FBBC05"/>
-                                    <circle cx="12" cy="12" r="4" fill="#34A853"/>
-                                    <circle cx="12" cy="12" r="1" fill="#EA4335"/>
-                                </svg>
-                            </div>
                             <span class="text-xs text-gray-600 dark:text-gray-300">Chrome</span>
                         </div>
                         <div class="text-center">
-                            <div class="w-12 h-12 mx-auto mb-2 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center shadow-sm">
-                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                                    <path d="M3.5 12.5C3.5 7.81 7.31 4 12 4c4.69 0 8.5 3.81 8.5 8.5S16.69 21 12 21c-4.69 0-8.5-3.81-8.5-8.5z" fill="#0078D4"/>
-                                </svg>
-                            </div>
-                            <span class="text-xs text-gray-600 dark:text-gray-300">Edge</span>
+                            <span class="text-xs text-gray-600 dark:text-gray-300"> Microsoft Edge</span>
                         </div>
                         <div class="text-center">
-                            <div class="w-12 h-12 mx-auto mb-2 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center shadow-sm">
-                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" fill="#006CFF"/>
-                                </svg>
-                            </div>
-                            <span class="text-xs text-gray-600 dark:text-gray-300">Safari</span>
+                            <span class="text-xs text-gray-600 dark:text-gray-300">Firefox</span>
                         </div>
                     </div>
                 </div>
