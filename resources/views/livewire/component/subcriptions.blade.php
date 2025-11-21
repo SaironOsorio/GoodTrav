@@ -93,7 +93,7 @@
                             <!-- Columna de botón -->
                             <div class="flex flex-col items-center md:items-end gap-4">
                                 <a
-                                    href="{{route('register')}}"
+                                    href="{{route('register')}}" onclick="return checkMobileBeforeLogin(event)"
                                     class="
                                         {{ $isPopular
                                             ? 'bg-white text-[#5170ff] hover:bg-gray-100 focus:ring-4 focus:ring-white/50'
