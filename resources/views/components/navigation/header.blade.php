@@ -86,6 +86,14 @@
             document.getElementById('mobileWarningModal').classList.add('hidden');
             document.body.style.overflow = '';
         }
+
+        // Mostrar el modal si fue redirigido por el middleware
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('mobile_warning'))
+                document.getElementById('mobileWarningModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            @endif
+        });
     </script>
 
     <nav class="bg-[#5170ff] px-4 lg:px-6 py-2.5">
