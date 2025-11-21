@@ -26,6 +26,67 @@
         <x-navigation.header />
 
 
+        @php
+            $anunces = App\Models\Announcement::where('is_active', true)->get();
+        @endphp
+
+        @if($anunces->count())
+        <div id="forced-announcement-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative flex flex-col items-center">
+                <button type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-900 text-2xl font-bold close-forced-modal">&times;</button>
+                <h2 class="text-2xl font-bold mb-4 text-center">{{ 'Anuncio' }}</h2>
+                @if(!empty($anunces[0]->image_path))
+                    <img src="{{ Storage::url($anunces[0]->image_path) }}" alt="Anuncio" class="rounded-xl mb-4 max-h-60 object-contain">
+                @endif
+                <p class="text-center text-gray-700">{!! $anunces[0]->description ?? '' !!}</p>
+            </div>
+        </div>
+        @endif
+            @if($anunces->count())
+            <div id="forced-announcement-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+                <div class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full p-12 relative flex flex-col items-center">
+                    <button type="button" class="absolute top-6 right-8 text-gray-400 hover:text-gray-900 text-4xl font-bold close-forced-modal">&times;</button>
+                    <h2 class="text-4xl font-extrabold mb-8 text-center">{{ $anunces[0]->title ?? 'Anuncio' }}</h2>
+                    @if(!empty($anunces[0]->image_path))
+                        <img src="{{ Storage::url($anunces[0]->image_path) }}" alt="Anuncio" class="rounded-2xl mb-8 max-h-[400px] w-full object-contain">
+                    @endif
+                    <p class="text-center text-gray-700 text-xl">{!! $anunces[0]->description ?? '' !!}</p>
+                </div>
+            </div>
+            @endif
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('forced-announcement-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+            // Cerrar modal
+            document.querySelectorAll('.close-forced-modal').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        </script>
+
+
         <section class="hero-section relative bg-cover bg-center bg-no-repeat dark:bg-gray-900 min-h-[85vh] flex items-center overflow-hidden"
                 style="background-image: url('{{ asset('assets/images/fondobg.jpg') }}');">
 
