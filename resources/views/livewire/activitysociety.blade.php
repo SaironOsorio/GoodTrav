@@ -1,4 +1,26 @@
 <div class="overflow-x-auto">
+    @if(!$isSocietyMember)
+        <!-- Mensaje de bloqueo para no miembros -->
+        <div class="bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center">
+
+            <h3 class="text-2xl font-extrabold text-gray-700 mb-4 poppins-bold">
+                No eres miembro de Goodtrav Society
+            </h3>
+
+            <p class="text-gray-600 mb-6 montserrat-regular max-w-md mx-auto">
+                Para acceder a estas actividades exclusivas y ganar GT Points extra, necesitas ser parte de nuestra comunidad Society.
+            </p>
+
+
+            <div class="mt-6">
+                <a href="{{ route('society') }}"
+                   class="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-orange-400 hover:from-pink-600 hover:to-orange-500 text-white font-bold px-6 py-3 rounded-lg transition-all poppins-bold shadow-lg hover:shadow-xl">
+                    {{ __('Únete a Goodtrav Society') }}
+                </a>
+            </div>
+        </div>
+    @else
+        <!-- Contenido original para miembros de Society -->
     <table class="w-full border-collapse">
         <thead>
         </thead>
@@ -8,7 +30,7 @@
                 <td class="p-4">
                     <div class="flex items-center gap-3">
                         <div>
-                            <h4 class="font-semibold poppins-bold">{{ __('Sube 4 posts a redes (etiquetándonos)') }}</h4>
+                            <h4 class="font-semibold poppins-bold">{{ __('Sube 4 posts a redes mensual (etiquetándonos)') }}</h4>
                             <p class="text-xs text-gray-500 montserrat-regular">{{ __('Instagram Stories, Reels, Videos TikTok') }}</p>
                         </div>
                     </div>
@@ -196,4 +218,5 @@
             </tr>
         </tbody>
     </table>
+    @endif
 </div>

@@ -26,10 +26,16 @@ class Activitysociety extends Component
     public $successMessageEvent = '';
     public $pendingActivity = null;
     public $pendingEventActivity = null;
+    public $isSocietyMember = false;
 
     public function mount()
     {
-        $this->loadAllData();
+        // Verificar si el usuario es miembro de Goodtrav Society
+        $this->isSocietyMember = Auth::user()->is_society ?? false;
+
+        if ($this->isSocietyMember) {
+            $this->loadAllData();
+        }
     }
 
     private function loadAllData()
@@ -60,8 +66,7 @@ class Activitysociety extends Component
 
         $this->is_activity_completed = $approvedCount >= 4;
 
-        if($this->is_activity_completed && !Auth::user()->has_received_post_points)
-        {
+        if ($this->is_activity_completed && !Auth::user()->has_received_post_points) {
             $user = Auth::user();
             $user->increment('gt_points', 1000);
             $user->update(['has_received_post_points' => true]);
@@ -79,8 +84,7 @@ class Activitysociety extends Component
 
         $this->is_activity_event_completed = $approvedCount >= $count;
 
-        if($this->is_activity_event_completed && !Auth::user()->has_received_event_points)
-        {
+        if ($this->is_activity_event_completed && !Auth::user()->has_received_event_points) {
             $user = Auth::user();
             $user->increment('gt_points', 1000);
             $user->update(['has_received_event_points' => true]);
@@ -89,6 +93,12 @@ class Activitysociety extends Component
 
     public function uploadImage()
     {
+        // Verificar si es miembro de Society
+        if (!$this->isSocietyMember) {
+            $this->addError('image', 'Debes ser miembro de Goodtrav Society para realizar esta acción.');
+            return;
+        }
+
         // Verificar primero si ya completó las 4
         $approvedCount = Activity::where('user_id', Auth::id())
             ->where('type', 'post')
@@ -138,6 +148,12 @@ class Activitysociety extends Component
 
     public function uploadImageEvent()
     {
+        // Verificar si es miembro de Society
+        if (!$this->isSocietyMember) {
+            $this->addError('imageEvent', 'Debes ser miembro de Goodtrav Society para realizar esta acción.');
+            return;
+        }
+
         // Verificar primero si ya completó los eventos requeridos
         $approvedCount = Activity::where('user_id', Auth::id())
             ->where('type', 'event')
@@ -183,7 +199,7 @@ class Activitysociety extends Component
         $this->successMessageEvent = 'Imagen de evento subida correctamente. Espera a que sea aprobada.';
         $this->imageEvent = null;
 
- 
+
         $this->loadAllData();
     }
 
