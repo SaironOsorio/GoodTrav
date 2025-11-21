@@ -207,4 +207,85 @@
         </div>
     </div>
 
+    <script>
+        // Función para reclamar puntos de redes sociales
+        async function claimSocialPoints(platform, username, userId) {
+            const button = document.getElementById(platform + '-btn');
+
+            // Deshabilitar botón mientras procesa
+            button.disabled = true;
+            button.innerHTML = 'Procesando...';
+
+            try {
+                // Hacer petición AJAX para otorgar puntos
+                const response = await fetch('/claim-social-points', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({
+                        platform: platform,
+                        user_id: userId
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Cambiar botón a completado
+                    button.className = 'bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium cursor-not-allowed';
+                    button.innerHTML = '✓ Completado';
+
+                    // Abrir red social en nueva pestaña
+                    let url;
+                    if (platform === 'instagram') {
+                        url = 'https://www.instagram.com/' + username;
+                    } else if (platform === 'tiktok') {
+                        url = 'https://www.tiktok.com/@' + username;
+                    }
+                    window.open(url, '_blank');
+
+                    // Mostrar mensaje de éxito
+                    showSuccessMessage('+500 GT Points ganados por ' + (platform === 'instagram' ? 'Instagram' : 'TikTok') + '! 🎉');
+
+                } else {
+                    // Error: reactivar botón
+                    button.disabled = false;
+                    button.innerHTML = platform.toUpperCase() + ' +500';
+                    alert('Error al procesar. Intenta de nuevo.');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                button.disabled = false;
+                button.innerHTML = platform.toUpperCase() + ' +500';
+                alert('Error de conexión. Intenta de nuevo.');
+            }
+        }
+
+        // Función para mostrar mensaje de éxito
+        function showSuccessMessage(message) {
+            // Crear notificación temporal
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+            notification.innerHTML = message;
+
+            document.body.appendChild(notification);
+
+            // Mostrar notificación
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+
 </x-layouts.app>

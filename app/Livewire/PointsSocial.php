@@ -36,13 +36,9 @@ class PointsSocial extends Component
                 'gt_points' => ($user->gt_points ?? 0) + 500,
             ]);
             $this->isInstagramClaimed = true;
-
-            // Abrir Instagram en nueva pestaña
-            $instagramUrl = 'https://www.instagram.com/' . $this->instagram;
-            $this->dispatch('open-social-url', url: $instagramUrl);
-
-            session()->flash('success', '¡+500 GT Points ganados! 🎉 Ahora síguenos en Instagram');
+            session()->flash('success', '¡+500 puntos ganados por Instagram!');
             $this->dispatch('points-updated');
+            $this->redirect('points');
         }
     }
 
@@ -56,13 +52,9 @@ class PointsSocial extends Component
                 'gt_points' => ($user->gt_points ?? 0) + 500,
             ]);
             $this->isTiktokClaimed = true;
-
-            // Abrir TikTok en nueva pestaña
-            $tiktokUrl = 'https://www.tiktok.com/@' . $this->tiktok;
-            $this->dispatch('open-social-url', url: $tiktokUrl);
-
-            session()->flash('success', '¡+500 GT Points ganados! 🎉 Ahora síguenos en TikTok');
+            session()->flash('success', '¡+500 puntos ganados por TikTok!');
             $this->dispatch('points-updated');
+            $this->redirect('points');
         }
     }
 
