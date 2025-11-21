@@ -3,8 +3,8 @@
         <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
             <!-- Header Section -->
             <div class="max-w-screen-md mx-auto mb-8 lg:mb-16 text-center">
-                <h2 class="mb-4 text-2xl md:text-5xl lg:text-6xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
-                    Próximos Destinos
+                <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
+                    Próximos destinos
                 </h2>
                 <p class="text-gray-600 text-lg sm:text-lg md:text-lg dark:text-gray-400 montserrat-medium">
                     Tu puerta de entrada a la ciudad de tus sueños a través del inglés.

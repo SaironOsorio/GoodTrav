@@ -108,7 +108,7 @@
                 :label="__('Nacionalidad')"
                 autocomplete="nationality"
             >
-                <option value="">{{ __('Seleccione tu nacionalidad') }}</option>
+                <option value="">{{ __('Selecciona tu nacionalidad') }}</option>
                 @foreach ($countries as $country)
                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                 @endforeach

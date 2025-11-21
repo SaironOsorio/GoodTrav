@@ -49,10 +49,10 @@
                                 </h3>
 
                                 <div class="flex justify-center md:justify-start items-baseline mt-4">
-                                    <span class="mr-2 text-4xl font-extrabold montserrat-regular {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
+                                    <span class="mr-2 xl:text-4xl md:text-2xl sm:text-2xl font-extrabold montserrat-regular {{ $isPopular ? 'text-white' : 'text-gray-900 dark:text-white' }}">
                                         €{{ ($subscription->price) }}
                                     </span>
-                                    <span class="montserrat-regular text-xl {{ $isPopular ? 'text-white/80' : 'text-gray-600 dark:text-gray-400' }}">
+                                    <span class="montserrat-regular xl:text-xl  md:text-2xl sm:text-2xl {{ $isPopular ? 'text-white/80' : 'text-gray-600 dark:text-gray-400' }}">
                                         /{{ $subscription->duration }} mes
                                     </span>
                                 </div>
@@ -115,7 +115,7 @@
 
                        $basePrice = $subscriptions && $subscriptions->count() ? $subscriptions->first()->price : 0;
                        $couponPercent = 25;
-                       $discountedPrice = number_format($basePrice * (1 - $couponPercent / 100), 2);
+                       $discountedPrice = number_format($basePrice * (1 - $couponPercent / 100));
                        $centrosList = $contributors->map(function($contributor) {
                            return [
                                'name' => $contributor->name,
@@ -144,11 +144,11 @@
                             <div class="flex items-center gap-6">
                                 <div class="text-center">
                                     <div class="text-xs text-gray-500">Precio base</div>
-                                    <div class="text-base md:text-xl line-through font-extrabold text-gray-900 dark:text-white">€{{ number_format($basePrice, 2) }}/mes</div>
+                                    <div class="text-base md:text-xl sm:text-xl line-through font-extrabold text-gray-900 dark:text-white">€{{ number_format($basePrice, 2) }}/mes</div>
                                 </div>
                                 <div class="text-center">
                                     <div class="text-xs text-gray-500">Precio colaboradores ({{ $couponPercent }}%)</div>
-                                    <div class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
+                                    <div class="text-2xl xl:text-5xl md:text-3xl lg:text-4xl sm:text-4xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
                                 </div>
                             </div>
                         </div>

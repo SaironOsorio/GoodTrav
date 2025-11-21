@@ -216,7 +216,7 @@
                                 <span>9:00 - 18:00</span>
                             </p>
                             <p class="flex justify-between open-sans-medium">
-                                <span class="font-semibold">Sábados a Domingo:</span>
+                                <span class="font-semibold">Sábado a Domingo:</span>
                                 <span>Cerrado</span>
                             </p>
                         </div>
