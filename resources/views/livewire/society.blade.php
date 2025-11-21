@@ -3,7 +3,7 @@
     <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
         @php
             $society = App\Models\Pagesociety::first();
-            $imagePath = $society?->image ?? 'defaults/society-hero.jpg';
+            $imagePath = $society?->image ?? 'https://cms-assets.tutsplus.com/cdn-cgi/image/width=360/uploads/users/1631/posts/34088/image/Banner1.jpg';
         @endphp
         <div class="w-full h-[400px] md:h-[500px] bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 flex items-center justify-center rounded-2xl md:rounded-3xl">
             <img src="{{ Storage::url($imagePath) }}" class="object-cover w-full h-full rounded-2xl md:rounded-3xl" alt="" />
@@ -20,8 +20,8 @@
                     <div>
                         @php
                             $society = App\Models\Pagesociety::first();
-                            $titleCardOne = $society ? $society->title_card_one : '';
-                            $textCardOne = $society ? $society->text_card_one : '';
+                            $titleCardOne = $society ? $society->title_card_one : '¿Qué es GoodTrav Society?';
+                            $textCardOne = $society ? $society->text_card_one : 'Comunidad creada por viajeros, para futuros viajeros. Aquí compartirás, inspirarás y ganarás beneficios cool por ser tú. Vive el inglés viajando, cumpliendo tus sueños y ayudando a otros a cumplir sus sueños también.';
                         @endphp
                         <h3 class="font-bold text-3xl text-gray-800 mb-4 poppins-bold">
                             {{ __($titleCardOne) }}
@@ -37,8 +37,8 @@
                             <div class="bg-white border rounded-xl shadow-sm p-6">
                                 @php
                                     $society = App\Models\Pagesociety::first();
-                                    $titleCardTwo = $society ? $society->title_card_two : '';
-                                    $textCardTwo = $society ? $society->text_card_two : '';
+                                    $titleCardTwo = $society ? $society->title_card_two : 'Únete a GoodTrav Society';
+                                    $textCardTwo = $society ? $society->text_card_two : 'Para unirte a GoodTrav Society y obtener tu código de referidos, simplemente haz clic en el botón de abajo. ¡Empieza a compartir y ganar puntos hoy mismo!';
                                 @endphp
                                 <h3 class="font-bold text-xl text-gray-800 mb-3">{{ __($titleCardTwo) }}</h3>
                                 <p class="text-gray-600 leading-relaxed mb-4">
@@ -124,7 +124,7 @@
 
     <div class="bg-white rounded-xl shadow-md p-6">
       <h3 class="font-semibold text-2xl text-gray-800 text-center mb-4 poppins-bold">
-        Gana descuentos al <span class="text-[#5170ff] font-bold">VIAJAR</span> 
+        Gana descuentos al <span class="text-[#5170ff] font-bold">VIAJAR</span>
       </h3>
 
       <div class="border border-gray-300 rounded-lg overflow-hidden">
