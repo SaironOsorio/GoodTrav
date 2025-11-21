@@ -1,12 +1,4 @@
 <div>
-    <script>
-        document.addEventListener('livewire:init', () => {
-            Livewire.on('open-url', (event) => {
-                window.open(event.url, '_blank');
-            });
-        });
-    </script>
-
     <td class="p-4">
         <div class="flex items-center gap-3">
             <div>
