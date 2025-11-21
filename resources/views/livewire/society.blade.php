@@ -3,10 +3,10 @@
     <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
         @php
             $society = App\Models\Pagesociety::first();
-            $imagePath = $society?->image ?? 'https://cms-assets.tutsplus.com/cdn-cgi/image/width=360/uploads/users/1631/posts/34088/image/Banner1.jpg';
+            $imagePath = $society?->image ;
         @endphp
         <div class="w-full h-[400px] md:h-[500px] bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 flex items-center justify-center rounded-2xl md:rounded-3xl">
-            <img src="{{ Storage::url($imagePath) }}" class="object-cover w-full h-full rounded-2xl md:rounded-3xl" alt="" />
+            <img src="{{ Storage::url($imagePath) ?? 'https://cms-assets.tutsplus.com/cdn-cgi/image/width=360/uploads/users/1631/posts/34088/image/Banner1.jpg' }}" class="object-cover w-full h-full rounded-2xl md:rounded-3xl" alt="" />
         </div>
     </div>
 
@@ -168,7 +168,7 @@
         </div>
 
         <div class="grid grid-cols-2 border-b border-gray-300">
-          <p class="p-3 text-gray-700 open-sans-regular">Sube 4 posts a redes (etiquetándonos)</p>
+          <p class="p-3 text-gray-700 open-sans-regular">Sube 4 posts a redes mensual (etiquetándonos)</p>
           <p class="p-3 text-gray-800 font-semibold">+1000 GT Points al mes</p>
         </div>
 
