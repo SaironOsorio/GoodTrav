@@ -18,7 +18,7 @@
                 <h2 class="mb-4 text-3xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
                     ¿Tienes dudas?
                 </h2>
-                <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 open-sans-regular">
+                <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 montserrat-medium">
                     Si tienes alguna pregunta, no dudes en contactarnos. Escríbenos un mensaje y con gusto te respondemos.
                 </p>
             </div>

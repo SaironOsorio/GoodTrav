@@ -17,7 +17,7 @@
                 <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
                     Preguntas frecuentes
                 </h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400">
+                <p class="text-lg text-gray-600 dark:text-gray-400 montserrat-medium">
                     Resolvemos tus dudas sobre GoodTrav.
                 </p>
             </div>
