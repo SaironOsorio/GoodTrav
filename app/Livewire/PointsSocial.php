@@ -38,6 +38,7 @@ class PointsSocial extends Component
             $this->isInstagramClaimed = true;
             session()->flash('success', '¡+500 puntos ganados por Instagram!');
             $this->dispatch('points-updated');
+            $this->mount();
         }
     }
 
@@ -53,6 +54,7 @@ class PointsSocial extends Component
             $this->isTiktokClaimed = true;
             session()->flash('success', '¡+500 puntos ganados por TikTok!');
             $this->dispatch('points-updated');
+            $this->mount();
         }
     }
 
