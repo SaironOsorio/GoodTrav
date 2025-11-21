@@ -1,6 +1,6 @@
 <x-layouts.auth>
     <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Crear una cuenta')" :description="__('Ingresa tu datos a continuación para crear tu cuenta.')" />
+        <x-auth-header :title="__('Crear una cuenta')" :description="__('Ingresa tus datos a continuación para crear tu cuenta.')" />
 
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
@@ -108,7 +108,7 @@
                 :label="__('Nacionalidad')"
                 autocomplete="nationality"
             >
-                <option value="">{{ __('Seleccione su nacionalidad') }}</option>
+                <option value="">{{ __('Seleccione tu nacionalidad') }}</option>
                 @foreach ($countries as $country)
                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                 @endforeach
