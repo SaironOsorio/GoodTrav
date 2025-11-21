@@ -22,6 +22,7 @@ use Filament\Enums\ThemeMode;
 use Filament\Actions\Action;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Support\Enums\Width;
+use AchyutN\FilamentLogViewer\FilamentLogViewer;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -39,6 +40,9 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Blue,
             ])
             ->font('poppins', provider: GoogleFontProvider::class)
+            ->plugins([
+                FilamentLogViewer::make(),
+            ])
             ->maxContentWidth(Width::Full)
             ->defaultThemeMode(ThemeMode::Light)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
