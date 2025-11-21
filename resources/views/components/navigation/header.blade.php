@@ -72,19 +72,20 @@
                    (window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
         }
 
-        function showMobileWarning() {
+        function checkMobileBeforeLogin(event) {
             if (isMobileDevice()) {
+                event.preventDefault();
                 document.getElementById('mobileWarningModal').classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
+                return false;
             }
+            return true;
         }
 
         function closeMobileWarning() {
             document.getElementById('mobileWarningModal').classList.add('hidden');
             document.body.style.overflow = '';
         }
-
-        document.addEventListener('DOMContentLoaded', showMobileWarning);
     </script>
 
     <nav class="bg-[#5170ff] px-4 lg:px-6 py-2.5">
@@ -109,8 +110,8 @@
                 @auth
                     <a href="{{ route('dashboard') }}" class="text-white bg-[#ff5170] hover:bg-[#ff6f70] focus:ring-4 focus:ring-[#ff6f70] poppins-bold font-bold rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all">Panel</a>
                 @else
-                <a href="{{ route('login') }}" class="text-[#5170ff] bg-[#70ff51] hover:bg-[#6ee7b7] focus:ring-4 focus:ring-[#6ee7b7] font-medium poppins-bold rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all">Acceder</a>
-                <a href="{{ route('register') }}" class="text-white bg-[#ff5170] hover:bg-[#ff6f70] focus:ring-4 focus:ring-[#ff6f70] font-medium poppins-bold rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all">Registrarse</a>
+                <a href="{{ route('login') }}" onclick="return checkMobileBeforeLogin(event)" class="text-[#5170ff] bg-[#70ff51] hover:bg-[#6ee7b7] focus:ring-4 focus:ring-[#6ee7b7] font-medium poppins-bold rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all">Acceder</a>
+                <a href="{{ route('register') }}" onclick="return checkMobileBeforeLogin(event)" class="text-white bg-[#ff5170] hover:bg-[#ff6f70] focus:ring-4 focus:ring-[#ff6f70] font-medium poppins-bold rounded-lg text-sm px-3 py-2 lg:px-5 lg:py-2.5 focus:outline-none transform hover:translate-y-1 hover:scale-105 transition-all">Registrarse</a>
                 @endauth
             </div>
         </div>
