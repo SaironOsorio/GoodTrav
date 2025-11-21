@@ -91,7 +91,7 @@
                             </div>
 
                             <!-- Columna de botón -->
-                            <div class="flex flex-col items-center md:items-end gap-4">
+                            <div class="flex flex-col items-center gap-4">
                                 <a
                                     href="{{route('register')}}" onclick="return checkMobileBeforeLogin(event)"
                                     class="
