@@ -13,6 +13,7 @@ new class extends Component {
     /**
      * Cancel the user's subscription.
      */
+
     public function deleteUser(): void
     {
         $this->validate([
@@ -26,79 +27,38 @@ new class extends Component {
             return;
         }
 
-        // Verificar si tiene suscripción activa (verificar múltiples fuentes)
-        $hasActiveSubscription = false;
-
-        // Opción 1: Verificar con Cashier
-        if ($user->subscribed('default')) {
-            $hasActiveSubscription = true;
-        }
-
-        // Opción 2: Verificar con stripe_subscription_id directamente
-        if (!$hasActiveSubscription && $user->stripe_subscription_id) {
-            try {
-                $stripe = new \Stripe\StripeClient(config('cashier.secret'));
-                $stripeSubscription = $stripe->subscriptions->retrieve($user->stripe_subscription_id);
-
-                // Verificar si la suscripción está activa en Stripe
-                if (in_array($stripeSubscription->status, ['active', 'trialing'])) {
-                    $hasActiveSubscription = true;
-                }
-            } catch (\Exception $e) {
-                Log::error('Error verificando suscripción en Stripe: ' . $e->getMessage());
-            }
-        }
-
-        // Opción 3: Verificar por fechas de suscripción
-        if (!$hasActiveSubscription && $user->subscription_end_date && $user->subscription_end_date->isFuture()) {
-            $hasActiveSubscription = true;
-        }
-
-        if (!$hasActiveSubscription) {
+        // Verificar si tiene stripe_subscription_id
+        if (!$user->stripe_subscription_id) {
             $this->addError('password', __('No tienes una membresía activa.'));
             return;
         }
 
-        $subscription = $user->subscription('default');
+        try {
+            // Cancelar directamente en Stripe
+            $stripe = new \Stripe\StripeClient(config('cashier.secret'));
+            $subscription = $stripe->subscriptions->retrieve($user->stripe_subscription_id);
 
-        // Si no encuentra suscripción en Cashier pero tiene stripe_subscription_id, intentar cancelar directamente
-        if (!$subscription && $user->stripe_subscription_id) {
-            try {
-                $stripe = new \Stripe\StripeClient(config('cashier.secret'));
-                $stripe->subscriptions->update($user->stripe_subscription_id, [
-                    'cancel_at_period_end' => true
-                ]);
-
-                $this->showSuccessMessage = true;
-                $this->dispatch('subscription-cancelled');
-                return;
-            } catch (\Exception $e) {
-                $this->addError('password', __('Error al cancelar la suscripción. Intenta de nuevo.'));
+            // Verificar si ya está cancelada
+            if ($subscription->status === 'canceled') {
+                $this->addError('password', __('Tu membresía ya está cancelada.'));
                 return;
             }
-        }
 
-        // Verificar si ya está cancelada pero aún en período de gracia
-        if ($subscription->canceled() && !$subscription->onGracePeriod()) {
-            $this->addError('password', __('Tu membresía ya está cancelada.'));
-            return;
-        }
+            // Cancelar al final del período
+            $stripe->subscriptions->update($user->stripe_subscription_id, [
+                'cancel_at_period_end' => true
+            ]);
 
-        // Verificar si ya está programada para cancelar
-        if ($subscription->canceled() && $subscription->onGracePeriod()) {
-            $this->addError('password', __('Tu membresía ya está programada para cancelarse al final del período de facturación.'));
-            return;
-        }
-
-        // Cancelar la suscripción en Stripe
-        try {
-            $subscription = $user->subscription('default');
-            $subscription->cancel();
+            // Actualizar base de datos local
+            $user->update([
+                'subscription_status' => 'canceled',
+            ]);
 
             $this->showSuccessMessage = true;
             $this->dispatch('subscription-cancelled');
 
         } catch (\Exception $e) {
+            Log::error('Error cancelando suscripción: ' . $e->getMessage());
             $this->addError('password', __('Error al cancelar la suscripción. Intenta de nuevo.'));
         }
     }

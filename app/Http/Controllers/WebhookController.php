@@ -106,8 +106,6 @@ class WebhookController extends Controller
                     $user->gt_points = 0;
                     $user->save();
 
-                    // Crear o actualizar registro en tabla subscriptions de Cashier
-                    $this->ensureCashierSubscription($user, $stripeSubscription);
                 } catch (\Exception $e) {
                     Log::error('Error retrieving subscription: ' . $e->getMessage());
 
@@ -256,40 +254,5 @@ class WebhookController extends Controller
         }
 
         return response()->json(['status' => 'success']);
-    }
-
-    /**
-     * Asegurar que la suscripción existe en la tabla subscriptions de Cashier
-     */
-    protected function ensureCashierSubscription($user, $stripeSubscription)
-    {
-        try {
-            $subscription = $user->subscriptions()->where('stripe_id', $stripeSubscription->id)->first();
-
-            if (!$subscription) {
-                // Crear registro en tabla subscriptions
-                $user->subscriptions()->create([
-                    'name' => 'default',
-                    'stripe_id' => $stripeSubscription->id,
-                    'stripe_status' => $stripeSubscription->status,
-                    'stripe_price' => $stripeSubscription->items->data[0]->price->id ?? null,
-                    'quantity' => 1,
-                    'trial_ends_at' => $stripeSubscription->trial_end ? \Carbon\Carbon::createFromTimestamp($stripeSubscription->trial_end) : null,
-                    'ends_at' => null,
-                ]);
-
-                Log::info('✅ Cashier subscription record created', ['user_id' => $user->id]);
-            } else {
-                // Actualizar registro existente
-                $subscription->update([
-                    'stripe_status' => $stripeSubscription->status,
-                    'trial_ends_at' => $stripeSubscription->trial_end ? \Carbon\Carbon::createFromTimestamp($stripeSubscription->trial_end) : null,
-                ]);
-
-                Log::info('✅ Cashier subscription record updated', ['user_id' => $user->id]);
-            }
-        } catch (\Exception $e) {
-            Log::error('Error ensuring Cashier subscription: ' . $e->getMessage());
-        }
     }
 }
