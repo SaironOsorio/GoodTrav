@@ -25,26 +25,36 @@ new class extends Component {
             return;
         }
 
-        // Verificar si tiene suscripción
-        $subscription = $user->subscription('default');
-
-        if (!$subscription) {
+        // Verificar si tiene suscripción activa en Stripe
+        if (!$user->subscribed('default')) {
             $this->addError('password', __('No tienes una membresía activa.'));
             return;
         }
 
-        // Verificar si ya está cancelada
-        if ($subscription->canceled()) {
+        $subscription = $user->subscription('default');
+
+        // Verificar si ya está cancelada pero aún en período de gracia
+        if ($subscription->canceled() && !$subscription->onGracePeriod()) {
             $this->addError('password', __('Tu membresía ya está cancelada.'));
             return;
         }
 
-        // Cancelar la suscripción
-        if ($user->subscribed()) {
-            $subscription->cancel();
-            $this->showSuccessMessage = true;
+        // Verificar si ya está programada para cancelar
+        if ($subscription->canceled() && $subscription->onGracePeriod()) {
+            $this->addError('password', __('Tu membresía ya está programada para cancelarse al final del período de facturación.'));
+            return;
+        }
 
+        // Cancelar la suscripción en Stripe
+        try {
+            $subscription = $user->subscription('default');
+            $subscription->cancel();
+
+            $this->showSuccessMessage = true;
             $this->dispatch('subscription-cancelled');
+
+        } catch (\Exception $e) {
+            $this->addError('password', __('Error al cancelar la suscripción. Intenta de nuevo.'));
         }
     }
     /**
