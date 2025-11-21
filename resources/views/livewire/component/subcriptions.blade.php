@@ -103,7 +103,7 @@
                                     Comenzar ahora
                                 </a>
 
-                                <p class="text-xs open-sans-regular mr-8 {{ $isPopular ? 'text-white/70' : 'text-black dark:text-gray-400' }}">
+                                <p class="text-xs open-sans-regular lg:mr-8 md:mr-8 sm:text-center {{ $isPopular ? 'text-white/70' : 'text-black dark:text-gray-400' }}">
                                     Cancela cuando quieras
                                 </p>
                             </div>
