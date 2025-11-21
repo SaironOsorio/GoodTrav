@@ -13,7 +13,7 @@
                 <h2 class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white poppins-bold">
                    Comienza tu aventura con GoodTrav
                 </h2>
-                <p class="mb-5 text-lg text-gray-600 dark:text-gray-400 montserrat-regular">
+                <p class="mb-5 text-lg text-gray-600 dark:text-gray-400 montserrat-medium">
                     Explora nuestros planes y prepárate para vivir experencias inolvidables alrededor del mundo.
                 </p>
             </div>
@@ -124,77 +124,73 @@
                        })->toArray();
                    @endphp
 
-                   <div class="w-full max-w-7xl mx-auto mt-6">
-                       <div class="bg-gradient-to-br from-[#5170ff]/10 via-[#ff5170]/10 to-[#70ff51]/10 rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-gray-700 shadow-lg">
-                           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-                                @php
-                                    $setting = App\Models\Setting::first();
-                                    $title = $setting->title_contributors_list_title ?? '¿Formas parte de alguno de nuestros colaboradores?';
-                                    $description = $setting->title_contributors_list_subtitle ?? 'Si tu centro está en la lista, podrás aplicar un cupón y obtener un precio especial para tus estudiantes.';
-                                @endphp
-                               <div class="flex-1">
-                                   <h3 class="text-xl md:text-3xl font-extrabold text-gray-900 dark:text-white poppins-bold">
-                                       {{ $title }}
-                                   </h3>
-                                   <p class=" text-black text-sm dark:text-gray-300 mt-1 montserrat-regular">
-                                       {{ $description }}
-                                   </p>
-                               </div>
-
-                               <div class="flex items-center gap-6">
-                                   <div class="text-center">
-                                       <div class="text-xs text-gray-500">Precio base</div>
-                                       <div class="text-xl line-through font-extrabold text-gray-900 dark:text-white">€{{ number_format($basePrice, 2) }}/mes</div>
-                                   </div>
-                                   <div class="text-center">
-                                       <div class="text-xs text-gray-500">Precio colaboradores ({{ $couponPercent }}%)</div>
-                                       <div class="text-xl  font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
-                                   </div>
-                               </div>
-                           </div>
-
-
-                           <ul class="space-y-4 w-full">
-                               @foreach($centrosList as $centro)
-                                   <li class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-600">
-                                       <div class="flex items-center gap-4">
-                                           <div class="w-12 h-12 rounded-lg flex items-center justify-center">
-                                                <img src="{{ Storage::url($centro['image']) }}" alt="{{ $centro['name']  }}">
-                                           </div>
-                                           <div>
-                                               <p class="text-sm font-semibold text-gray-800 dark:text-white montserrat-regular">{{ $centro['name'] }}</p>
-                                           </div>
-                                       </div>
-
-                                       <div class="flex items-center gap-3">
-                                            @php
-                                                $socialMedia = \App\Models\Socialmedia::first();
-                                                $whatsApp = $socialMedia->whats_app ?? '614189556';
-                                            @endphp
-                                           <a
-                                               href="https://wa.me/{{ $whatsApp }}?text={{ urlencode('Hola, soy estudiante y quiero información para activar el descuento del centro: '.$centro['name'].' | Precio base: €'.number_format($basePrice,2).' -> Con cupón: €'.$discountedPrice) }}"
-                                               target="_blank"
-                                               rel="noopener noreferrer"
-                                               class="inline-flex items-center gap-2 bg-[#5170ff] hover:bg-[#5972e0] text-white px-4 py-2 rounded-full shadow-sm transition-transform duration-150 transform hover:-translate-y-0.5">
-                                               Solicitar cupón aquí
-                                           </a>
-                                       </div>
-                                   </li>
-                               @endforeach
-                            </ul>
-                            <div class="flex items-center gap-3 mt-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-                                </svg>
-
-                                <h5 class="font-black">
-                                    Centros verificados que nos aconsejan y confían en nosotros.
-                                </h5>
+                <div class="w-full max-w-7xl mx-auto mt-6">
+                    <div class="bg-gradient-to-br from-[#5170ff]/10 via-[#ff5170]/10 to-[#70ff51]/10 rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-gray-700 shadow-lg">
+                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+                            @php
+                                $setting = App\Models\Setting::first();
+                                $title = $setting->title_contributors_list_title ?? '¿Formas parte de alguno de nuestros colaboradores?';
+                                $description = $setting->title_contributors_list_subtitle ?? 'Si tu centro está en la lista, podrás aplicar un cupón y obtener un precio especial para tus estudiantes.';
+                            @endphp
+                            <div class="flex-1">
+                                <h3 class="text-xl md:text-3xl font-extrabold text-gray-900 dark:text-white poppins-bold">
+                                    {{ $title }}
+                                </h3>
+                                <p class="text-black text-sm dark:text-gray-300 mt-1 montserrat-regular">
+                                    {{ $description }}
+                                </p>
                             </div>
-                       </div>
-                   </div>
 
+                            <div class="flex items-center gap-6">
+                                <div class="text-center">
+                                    <div class="text-xs text-gray-500">Precio base</div>
+                                    <div class="text-base md:text-xl line-through font-extrabold text-gray-900 dark:text-white">€{{ number_format($basePrice, 2) }}/mes</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-xs text-gray-500">Precio colaboradores ({{ $couponPercent }}%)</div>
+                                    <div class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#5170ff]">€{{ $discountedPrice }}/mes</div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <ul class="space-y-4 w-full">
+                            @foreach($centrosList as $centro)
+                                <li class="flex items-center justify-between bg-white dark:bg-gray-700 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-600">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-lg flex items-center justify-center">
+                                            <img src="{{ Storage::url($centro['image']) }}" alt="{{ $centro['name']  }}">
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-semibold text-gray-800 dark:text-white montserrat-regular">{{ $centro['name'] }}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-3">
+                                        @php
+                                            $socialMedia = \App\Models\Socialmedia::first();
+                                            $whatsApp = $socialMedia->whats_app ?? '614189556';
+                                        @endphp
+                                        <a
+                                            href="https://wa.me/{{ $whatsApp }}?text={{ urlencode('Hola, soy estudiante y quiero información para activar el descuento del centro: '.$centro['name'].' | Precio base: €'.number_format($basePrice,2).' -> Con cupón: €'.$discountedPrice) }}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center gap-1 sm:gap-2 bg-[#5170ff] hover:bg-[#5972e0] text-white px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full shadow-sm transition-transform duration-150 transform hover:-translate-y-0.5 text-xs sm:text-sm md:text-base whitespace-nowrap">
+                                            Solicitar cupón aquí
+                                        </a>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <div class="flex items-center gap-3 mt-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                            </svg>
+                            <h5 class="font-black">
+                                Centros verificados que nos aconsejan y confían en nosotros.
+                            </h5>
+                        </div>
+                    </div>
+                </div>
                 </div>
             @else
                 <!-- Estado vacío -->
