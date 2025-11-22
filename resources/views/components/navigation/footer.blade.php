@@ -42,6 +42,7 @@
                         <a href="{{ route('legal') }}" class="block mt-2 text-sm text-white font-medium hover:underline">Aviso Legal</a>
                         <a href="{{ route('privacity') }}" class="block mt-2 text-sm text-white font-medium hover:underline">Politica Privacidad</a>
                         <a href="{{ route('cookies') }}" class="block mt-2 text-sm text-white font-medium hover:underline">Politica de Cookies</a>
+                        <a href="{{ route('terms') }}" class="block mt-2 text-sm text-white font-medium hover:underline">Términos y Condiciones</a>
                     </div>
 
                     <div>

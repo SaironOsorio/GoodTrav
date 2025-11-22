@@ -42,6 +42,11 @@ Route::get('Legal', function(){
 })
 ->name('legal');
 
+Route::get('Terminos', function(){
+    return view('terms');
+})
+->name('terms');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified', 'check.subscription'])
     ->name('dashboard');
