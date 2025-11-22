@@ -174,7 +174,7 @@
                                 <div class="flex-1 min-w-0">
                                     <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 open-sans-medium">Teléfono</p>
                                     <p class="font-bold text-gray-900 dark:text-white group-hover:text-[#70ff51] transition-colors open-sans-medium">
-                                        +{{ $phone }}
+                                        {{ $phone }}
                                     </p>
                                 </div>
                             </a>
