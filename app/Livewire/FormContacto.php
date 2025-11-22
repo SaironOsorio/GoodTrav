@@ -17,6 +17,7 @@ class FormContacto extends Component
     public $acepta_politica = false;
     public $enviado = false;
     public $error = '';
+    public $successMessage = '';
 
     protected $rules = [
         'name' => 'required|string|min:3|max:255',
@@ -40,33 +41,44 @@ class FormContacto extends Component
 
     public function submit()
     {
-        $this->validate();
+        Log::info('Intentando enviar formulario de contacto: ' . $this->email);
+        
 
         try {
-
             $socialMedia = Socialmedia::first();
             $recipientEmail = $socialMedia ? $socialMedia->email : 'info@goodtrav.com';
 
-            Mail::to($recipientEmail)->send(new ContactFormMail($this->name, $this->email, $this->telefono, $this->message));
+            Log::info('Enviando formulario de contacto a: ' . $recipientEmail);
+            Mail::to($recipientEmail)->send(new ContactFormMail(
+                $this->name,
+                $this->email,
+                $this->telefono,
+                $this->message
+            ));
+            Log::info('Formulario de contacto enviado: ' . $this->email);
 
+            // Mostrar mensaje de éxito
+            $this->successMessage = '✓ Mensaje enviado correctamente. Te responderemos pronto.';
             $this->enviado = true;
+
+            // Limpiar campos después de 2 segundos
+            $this->dispatch('form-submitted');
+
+            // Resetear campos
             $this->reset(['name', 'email', 'telefono', 'message', 'acepta_politica']);
 
+            // Limpiar mensaje después de 5 segundos
+            $this->dispatch('clear-success-message');
 
-            session()->flash('success', 'Mensaje enviado correctamente. Te responderemos pronto.');
         } catch (\Exception $e) {
             $this->error = 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.';
             Log::error('Error al enviar el formulario de contacto: ' . $e->getMessage());
-        } finally {
-            $this->reset(['name', 'email', 'telefono', 'message', 'acepta_politica']);
         }
-
     }
 
     public function render()
     {
         $this->dispatch('scroll-to-top');
-
         return view('livewire.form-contacto');
     }
 }

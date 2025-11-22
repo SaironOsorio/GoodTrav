@@ -26,8 +26,24 @@
             <!-- Contenedor principal -->
             <div class="grid lg:grid-cols-2 gap-6 lg:gap-12 max-w-6xl mx-auto">
                 <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-700 p-4 sm:p-6 lg:p-8 space-y-6 ios-input-fix">
-                    <form wire:submit.prevent="submit" class="space-y-6">
+                    @if ($successMessage)
+                        <div class="p-4 rounded-xl bg-gradient-to-r from-[#70ff51]/10 to-[#70ff51]/5 border border-[#70ff51]/30 flex items-start gap-3 animate-pulse">
+                            <svg class="w-5 h-5 text-[#70ff51] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="text-sm md:text-base font-medium text-gray-900 dark:text-white">{{ $successMessage }}</p>
+                        </div>
+                    @endif
 
+                    @if ($error)
+                        <div class="p-4 rounded-xl bg-gradient-to-r from-red-500/10 to-red-500/5 border border-red-500/30 flex items-start gap-3">
+                            <svg class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="text-sm md:text-base font-medium text-gray-900 dark:text-white">{{ $error }}</p>
+                        </div>
+                    @endif
+                    <form wire:submit.prevent="submit" class="space-y-6">
                         <!-- Mensajes -->
                         @if (session()->has('success'))
                             <div class="p-4 rounded-xl bg-gradient-to-r from-[#70ff51]/10 to-[#70ff51]/5 border border-[#70ff51]/30 flex items-start gap-3">
@@ -291,4 +307,18 @@
         -webkit-overflow-scrolling: touch;
     }
 </style>
+@endpush
+@push('scripts')
+<script>
+document.addEventListener('livewire:navigated', function() {
+    setTimeout(function() {
+        const successMessage = document.querySelector('[role="alert"]');
+        if (successMessage) {
+            successMessage.style.transition = 'opacity 0.3s ease-out';
+            successMessage.style.opacity = '0';
+            setTimeout(() => successMessage.remove(), 300);
+        }
+    }, 5000);
+});
+</script>
 @endpush
