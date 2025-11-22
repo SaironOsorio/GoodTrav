@@ -7,7 +7,7 @@ use App\Filament\Resources\Legals\Pages\EditLegal;
 use App\Filament\Resources\Legals\Pages\ListLegals;
 use App\Filament\Resources\Legals\Schemas\LegalForm;
 use App\Filament\Resources\Legals\Tables\LegalsTable;
-use App\Models\Legal;
+use App\Models\legal;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,7 +17,7 @@ use UnitEnum;
 
 class LegalResource extends Resource
 {
-    protected static ?string $model = Legal::class;
+    protected static ?string $model = legal::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ShieldCheck;
 

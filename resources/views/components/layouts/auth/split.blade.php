@@ -21,12 +21,12 @@
                     </div>
 
                     <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white mb-4 poppins-bold">
-                        Advertencia: Dispositivo Móvil
+                        Hola 👋🏻
+                        Estás usando el móvil.
                     </h3>
 
                     <p class="text-gray-600 dark:text-gray-300 mb-6 open-sans-regular">
-                        Esta plataforma está optimizada para ordenadores y tablets. Es posible que experimentes problemas de visualización o funcionalidad en dispositivos móviles.
-                        Navegadores como Safari, es posible que algunas funciones no estén disponibles o no funcionen correctamente.
+                        Puedes continuar sin problema, aunque para mejor experencia te recomendamos usar un ordenador o tablet.
                     </p>
 
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 mb-6">

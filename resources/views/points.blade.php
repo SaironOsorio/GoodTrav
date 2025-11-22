@@ -1,7 +1,7 @@
 <x-layouts.app :title="__('GT Points')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <h1 class="font-bold text-4xl text-[#5170ff] poppins-extrabold">{{ __('GT Points') }}</h1>
-        <h2 class="font-light text-2xl montserrat-medium">{{ __('Earn GT Points and Travel') }}</h2>
+        <h2 class="font-light text-2xl montserrat-regular">{{ __('Earn GT Points and Travel') }}</h2>
 
         <div class="bg-white rounded-2xl p-8 shadow-sm">
             <h3 class="text-2xl font-bold mb-6 poppins-bold">{{ __('Gana GT Points para viajar') }}</h3>
