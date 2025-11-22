@@ -15,7 +15,7 @@
                                 @php
                                     $setting = App\Models\Setting::first();
                                     $title = $setting->title_contributors_new_title ?? ' ¿Eres profesor o coordinador de grupos?';
-                                    $description = $setting->title_contributors_new_description ?? 'Únete a nuestra comunidad educativa y obtén descuentos especiales al traer a tus estudiantes. Ofrecemos condiciones exclusivas para instituciones y grupos organizados.';
+                                    $description = $setting->title_contributors_new_subtitle ?? 'Únete a nuestra comunidad educativa y obtén descuentos especiales al traer a tus estudiantes. Ofrecemos condiciones exclusivas para instituciones y grupos organizados.';
                                 @endphp
                                 <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-2 poppins-bold">
                                     {{ $title }}
