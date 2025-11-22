@@ -21,7 +21,7 @@
                     </div>
 
                     <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white mb-4 poppins-bold">
-                        Hola 👋🏻
+                        Hola 👋🏻 <br>
                         Estás usando el móvil.
                     </h3>
 
