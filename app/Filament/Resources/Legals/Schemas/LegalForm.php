@@ -21,7 +21,7 @@ class LegalForm
                         ['undo', 'redo'],
                     ])
                     ->columnSpanFull(),
-                RichEditor::make('content_privacity')
+                RichEditor::make('content_privacy')
                     ->label('Contenido de Privacidad')
                     ->helpertext('Aqui va el contenido de la politica de privacidad')
                     ->required()
