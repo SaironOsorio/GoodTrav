@@ -41,6 +41,16 @@ class LegalForm
                         ['undo', 'redo'],
                     ])
                     ->columnSpanFull(),
+                RichEditor::make('content_terms')
+                    ->label('Contenido de Terminos y Condiciones')
+                    ->helpertext('Aqui va el contenido de los terminos y condiciones')
+                    ->required()
+                    ->toolbarButtons([
+                        ['bold', 'italic', 'underline', 'link'],
+                        ['h2', 'h3'],
+                        ['undo', 'redo'],
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }

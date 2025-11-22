@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class legal extends Model
 {
     protected $fillable = [
-        'content-legal',
-        'content-privacity',
-        'content-cookies',
+        'content_legal',
+        'content_privacy',
+        'content_cookies',
+        'content_terms',
     ];
 }
