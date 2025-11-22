@@ -30,8 +30,9 @@
                 <td class="p-4">
                     <div class="flex items-center gap-3">
                         <div>
-                            <h4 class="font-semibold poppins-bold">{{ __('Sube 4 posts a redes mensual (etiquetándonos)') }}</h4>
+                            <h4 class="font-semibold poppins-bold">{{ __('Sube 4 posts a redes (etiquetándonos)') }}</h4>
                             <p class="text-xs text-gray-500 montserrat-regular">{{ __('Instagram Stories, Reels, Videos TikTok') }}</p>
+                            <p class="text-xs text-gray-500 montserrat-regular">{{ __('(mensual)') }}</p>
                         </div>
                     </div>
                 </td>
