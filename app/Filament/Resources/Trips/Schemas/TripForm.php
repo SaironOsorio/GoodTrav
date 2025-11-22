@@ -198,6 +198,23 @@ class TripForm
                             })
                         ])
                         ->columnSpanFull(),
+                    Section::make('Publicidad Goodtrav Society')
+                        ->description('Agrega la información para promocionar Goodtrav Society.')
+                        ->schema([
+                            FileUpload::make('path_image_publicity')
+                                ->label('Imagen de la publicidad')
+                                ->helperText('Sube una imagen relacionada con la publicidad de Goodtrav Society.')
+                                ->disk('public')
+                                ->directory('trip-publicity-images')
+                                ->image()
+                                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/jpg'])
+                                ->deleteUploadedFileUsing(function ($file) {
+                                if ($file && Storage::disk('public')->exists($file)) {
+                                    Storage::disk('public')->delete($file);
+                                }
+                            })
+                        ])
+                    ->columnSpanFull(),
                     Section::make('Disponibilidad y Requisitos')
                         ->description('Define la disponibilidad y los requisitos para el viaje.')
                         ->schema([

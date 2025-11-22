@@ -27,6 +27,7 @@ class Trip extends Model
         'plazas_available',
         'requirements',
         'city',
+        'path_image_publicity',
     ];
 
     protected $casts = [

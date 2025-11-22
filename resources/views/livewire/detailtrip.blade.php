@@ -156,13 +156,17 @@
     {{-- GoodTrav Society Bonus --}}
     <div class="px-4 md:px-8 py-12 md:py-16" x-data="{ open: false }">
         <div class="max-w-7xl mx-auto  rounded-2xl md:rounded-3xl p-6 md:p-12 lg:p-16">
-            <img src="https://www.josebernalte.com/wp-content/uploads/2016/10/16112016_blackfriday.jpg" alt="">
+            @if(empty($trip->path_image_publicity))
+                <img src="https://www.josebernalte.com/wp-content/uploads/2016/10/16112016_blackfriday.jpg" alt="">
+            @else
+                <img src="{{ Storage::url($trip->path_image_publicity) }}" alt="Publicidad de Goodtrav Society" class="w-full h-full object-cover rounded-2xl md:rounded-3xl">
+            @endif
         </div>
     </div>
 
     {{-- Cómo apuntarse --}}
 {{-- Cómo apuntarse --}}
-<div class="px-4 md:px-8 py-12 md:py-16 bg-white" 
+<div class="px-4 md:px-8 py-12 md:py-16 bg-white"
     x-data="{ open: false }"
     @reservation-saved.window="open = false; setTimeout(() => { window.location.reload(); }, 1500)">
     <div class="max-w-4xl mx-auto">
@@ -253,8 +257,8 @@
 
                 {{-- Body --}}
                 <div class="bg-white px-6 py-6 relative">
-                    <div 
-                        wire:loading 
+                    <div
+                        wire:loading
                         wire:target="submitReservation"
                         class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10 rounded-lg"
                     >
@@ -310,7 +314,7 @@
                                     }
                                 }
                             @endphp
-                            
+
                             @if ($isMember && count($availableDiscounts) > 0)
                                 <div class="mb-2 text-xs text-gray-500">
                                     Referidos: <span class="font-semibold">{{ $refCount }}</span>
@@ -332,7 +336,7 @@
                             @else
                                 <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
                                     <p class="text-sm text-gray-600">
-                                        No eres miembro de GoodTrav Society. 
+                                        No eres miembro de GoodTrav Society.
                                         <a href="{{ route('society') }}" class="text-[#5170ff] hover:underline font-semibold">Únete aquí</a>
                                     </p>
                                 </div>
@@ -379,12 +383,12 @@
                         class="w-full sm:w-auto px-6 py-3 bg-[#5170ff] hover:bg-[#4060ef] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                         {{-- Spinner (solo visible mientras carga) --}}
-                        <svg 
-                            wire:loading 
+                        <svg
+                            wire:loading
                             wire:target="submitReservation"
-                            class="animate-spin h-5 w-5 text-white" 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            fill="none" 
+                            class="animate-spin h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
                             viewBox="0 0 24 24"
                         >
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
